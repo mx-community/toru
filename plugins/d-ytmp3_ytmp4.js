@@ -1,28 +1,34 @@
 import axios from "axios"
 
 let handler = async (m, { conn, command, text, usedPrefix }) => {
-if (!text) return conn.reply(m.chat, `Ingresa un *texto o link* de *YouTube*`, m)
-
+if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un texto o enlace de YouTube para descargarlo.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Yo te esperaré` }, { quoted: m })
 try {
+await m.react("⏰")
 let type = "mp3"
-if (command === 'ytmp4' || command === 'ytv') type = "mp4"
+if (command === 'ytmp4' || command === 'video') type = "mp4"
 let data = await ytdl(text, type)
 
-let txt = `❀ *Título »* ${data.searchResult.title}
-❀ *Duración »* ${data.searchResult.duration}
-❀ *Autor »* ${data.searchResult.uploader}
-❀ *Vistas »* ${data.searchResult.viewCount}`
+let txt = `· ┄ · ⊸ 𔓕 *YouTube  :  Download*
 
-await conn.sendMessage(m.chat, { image: { url: data.searchResult.thumbnail }, caption: txt }, { quoted: m })
+＃ *Título* : ${data.searchResult.title}
+＃ *Duración* : ${data.searchResult.duration}
+＃ *Autor* : ${data.searchResult.uploader}
+＃ *Vistas* : ${data.searchResult.viewCount}
 
+> ${textbot}`
+
+await conn.sendMessage(m.chat, { text: txt, mentions: [m.sender], contextInfo: { externalAdReply: { title: "YouTube : Download", body: botname, thumbnail: data.searchResult.thumbnail, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+//await conn.sendMessage(m.chat, { image: { url: data.searchResult.thumbnail }, caption: txt }, { quoted: m })
 if (type === "mp3") {
 await conn.sendMessage(m.chat, { audio: { url: data.download.dl_url }, mimetype: "audio/mpeg", fileName: data.download.filename }, { quoted: m })
+await m.react("✅")
 } else if (type === "mp4") {
 await conn.sendMessage(m.chat, { video: { url: data.download.dl_url }, mimetype: "video/mp4", fileName: data.download.filename }, { quoted: m })
+await m.react("✅")
 }
 } catch (error) {
 console.error(error)
-await m.react("❌")
+await conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m })
 }}
 
 handler.command = ["ytmp3", "yta", "ytmp4", "ytv"]
@@ -97,5 +103,6 @@ const searchResponse = await axios.get(`https://yt-extractor.y2mp3.co/api/youtub
     } catch (error) {
         return { success: false, error: error.message, query };
     }
-                                         }
+}
+
   
