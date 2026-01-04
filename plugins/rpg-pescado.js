@@ -21,15 +21,15 @@ user.lastfish = Date.now() + cooldown
 user.torucoin += monedas
 user.toruexp += experiencia
 user.torupesc += pescado
-let fishResultado = `\t©H  *F I S H I N G  :  R P G*
+let fishResultado = `\tã€©  *F I S H I N G  :  R P G*
 - *${pickRandom(pesca)}*
 
-\t? ? ${currency} : *+${monedas.toLocaleString()}*
-\t? ? ${currency2} : *+${experiencia.toLocaleString()}*
-\t? ? Pescado *+${pescado.toLocaleString()}*
+\tð”“• ${currency} : *+${monedas.toLocaleString()}*
+\tâœ© ${currency2} : *+${experiencia.toLocaleString()}*
+\tðŸŸ Pescado *+${pescado.toLocaleString()}*
 
 > ${textbot}`
-await conn.sendMessage(m.chat, { text: fishResultado, mentions: [m.sender], contextInfo: { externalAdReply: { title: "¡©  P E S C A R  ¡©", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: fishResultado, mentions: [m.sender], contextInfo: { externalAdReply: { title: "ã€…  P E S C A R  ã€…", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 }
 
 handler.command = ['pescar', 'fish']
