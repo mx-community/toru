@@ -4,7 +4,7 @@ import fs from "fs"
 import path from "path"
 import os from "os"
 
-let handler = async (m, { conn, args, text, command }) => {
+let handler = async (m, { conn, args, text, usedPrefix, command }) => {
 let isDoc = /--doc|doc$/i.test(text || args[0])
 
 if (!args[0] || (isDoc && !text.replace(/--doc|doc$/i, '').trim())) {
