@@ -14,7 +14,7 @@ let txt = `· ┄ · ⊸ 𔓕 *YouTube  :  Download*
 ＃ *Título* : ${data.searchResult.title}
 ＃ *Duración* : ${data.searchResult.duration}
 ＃ *Autor* : ${data.searchResult.uploader}
-＃ *Vistas* : ${data.searchResult.viewCount}
+＃ *Vistas* : ${toNum(data.searchResult.viewCount)}
 
 > ${textbot}`
 const thumb = (await conn.getFile(data.searchResult.thumbnail))?.data
@@ -35,6 +35,10 @@ await conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m })
 handler.command = ["ytmp3", "yta", "ytmp4", "ytv"]
 
 export default handler
+
+function toNum(number) {
+if (number >= 1000 && number < 1000000) { return (number / 1000).toFixed(1) + 'k' } else if (number >= 1000000) { return (number / 1000000).toFixed(1) + 'M' } else if (number <= -1000 && number > -1000000) { return (number / 1000).toFixed(1) + 'k' } else if (number <= -1000000) { return (number / 1000000).toFixed(1) + 'M' } else { return number.toString() }
+}
 
 async function ytdl(query, type) {
 try {
