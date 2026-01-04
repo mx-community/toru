@@ -1,0 +1,25 @@
+import fetch from 'node-fetch';
+import axios from 'axios';
+let handler = async (m, { text, usedPrefix, command }) => {
+if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione una petición para buscar en Google.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Arboles` }, { quoted: m });
+const apiUrl = `https://delirius-apiofc.vercel.app/search/googlesearch?query=${encodeURIComponent(text)}`;
+try {
+await m.react("⏰");
+const response = await fetch(apiUrl);
+const result = await response.json();
+if (!result.status) return conn.sendMessage(m.chat, { text: `No se han encontrado resultados.` }, { quoted: m });
+let replyMessage = `· ┄ · ⊸ 𔓕 *Google  :  Search*\n\n\t＃ Tema : *${text}*\n\n`;
+result.data.slice(0, 1).forEach((item, index) => {
+replyMessage += `⧡ *Titulo* : ${item.title}\n`;
+replyMessage += `⧡ *Desc* : ${item.description}\n`;
+replyMessage += `⧡ *URL* : ${item.url}\n\n`;
+});
+const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/zdwlml.jpg`)).arrayBuffer())
+await conn.sendMessage(m.chat, { text: replyMessage, mentions: [m.sender], contextInfo: { externalAdReply: { title: "Google : Search", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m });
+await m.react("✅");
+} catch (error) {
+conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m });
+}};
+
+handler.command = ['google'];
+export default handler;
