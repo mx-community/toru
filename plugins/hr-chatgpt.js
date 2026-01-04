@@ -1,5 +1,5 @@
 import axios from 'axios'
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn, usedPrefix, command, text }) => {
 if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione una petición para hablar con ChatGPT.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Hola` }, { quoted: m })
 await m.react("⏰")
 try {
