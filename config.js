@@ -23,7 +23,7 @@ global.dev = "Alan.Js"
 global.author = "@mx-community"
 global.etiqueta = "@mx-support"
 global.currency = "Monedas"
-global.currency2 = "Puntos"
+global.currency2 = "Estrellas"
 global.banner = "https://qu.ax/XPDQK.jpg"
 global.catalogo = "https://qu.ax/EpMPK.jpg"
 
@@ -35,7 +35,7 @@ global.ch = { ch1: "120363318353263389@newsletter" }
 let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
 unwatchFile(file)
-console.log(chalk.greenBright("Update 'configXD.js'"))
+console.log(chalk.greenBright("Update 'config.js'"))
 import(`${file}?update=${Date.now()}`)
 })
 
