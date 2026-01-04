@@ -4,7 +4,7 @@ if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione una petició
 await m.react("⏰")
 try {
 let { data } = await axios.get(`https://api-hasumi.vercel.app/api/ai/chatgpt?text=${encodeURIComponent(text)}`)
-let respuesta = `${data.text}`
+let respuesta = `${data.texto}`
 await conn.sendMessage(m.chat, { text: respuesta, 
 contextInfo: { forwardingScore: 1, isForwarded: false, 
 externalAdReply: { showAdAttribution: false, renderLargerThumbnail: false, title: botname, body: "", containsAutoReply: true, mediaType: 1, thumbnailUrl: "https://files.catbox.moe/3rhs2g.jpg", sourceUrl: null }}}, { quoted: m })
