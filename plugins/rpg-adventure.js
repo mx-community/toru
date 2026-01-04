@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 let handler = async (m, { conn, usedPrefix, command }) => {
 if (!global.db.data.chats[m.chat].fRpg && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `? Los comandos de *[ RPG ]* estan desactivados.\n- Un administrador puede activarlo con: *#fc-rpg on*` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `âœ¦ Los comandos de *[ RPG ]* estan desactivados.\n- Un administrador puede activarlo con: *#fc-rpg on*` }, { quoted: m })
 }
 
 let monedas, experiencia
@@ -19,14 +19,14 @@ experiencia = Math.floor(Math.random() * 5)
 user.lastAdventure = Date.now() + cooldown
 user.torucoin += monedas
 user.toruexp += experiencia
-let respuesta = `\t©H  *A V E N T U R A  :  R P G*
-- ? *${pickRandom(aventura)}*
+let respuesta = `\tã€©  *A V E N T U R A  :  R P G*
+- *${pickRandom(aventura)}*
 
-\t? ${currency} : *+${monedas.toLocaleString()}*
-\t? ${currency2} : *+${experiencia.toLocaleString()}*
+\tð”“• ${currency} : *+${monedas.toLocaleString()}*
+\tâœ© ${currency2} : *+${experiencia.toLocaleString()}*
 
 > ${textbot}`
-await conn.sendMessage(m.chat, { text: respuesta, mentions: [m.sender], contextInfo: { externalAdReply: { title: "¡©  A V E N T U R A  ¡©", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: respuesta, mentions: [m.sender], contextInfo: { externalAdReply: { title: "ã€…  A V E N T U R A  ã€…", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 }
 
 handler.command = ['adventure', 'aventura']
