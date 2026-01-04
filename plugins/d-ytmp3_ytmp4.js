@@ -1,4 +1,5 @@
 import axios from "axios"
+import fetch from "node-fetch"
 
 let handler = async (m, { conn, command, text, usedPrefix }) => {
 if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un texto o enlace de YouTube para descargarlo.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Yo te esperaré` }, { quoted: m })
@@ -16,8 +17,8 @@ let txt = `· ┄ · ⊸ 𔓕 *YouTube  :  Download*
 ＃ *Vistas* : ${data.searchResult.viewCount}
 
 > ${textbot}`
-
-await conn.sendMessage(m.chat, { text: txt, mentions: [m.sender], contextInfo: { externalAdReply: { title: "YouTube : Download", body: botname, thumbnail: data.searchResult.thumbnail, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+const thumb = (await conn.getFile(data.searchResult.thumbnail))?.data
+await conn.sendMessage(m.chat, { text: txt, mentions: [m.sender], contextInfo: { externalAdReply: { title: "YouTube : Download", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 //await conn.sendMessage(m.chat, { image: { url: data.searchResult.thumbnail }, caption: txt }, { quoted: m })
 if (type === "mp3") {
 await conn.sendMessage(m.chat, { audio: { url: data.download.dl_url }, mimetype: "audio/mpeg", fileName: data.download.filename }, { quoted: m })
