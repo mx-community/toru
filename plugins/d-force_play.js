@@ -1,29 +1,33 @@
-
 import yts from "yt-search"
 import fetch from "node-fetch"
 import fs from "fs"
 import path from "path"
 import os from "os"
 
-let handler = async (m, { conn, args, text, command }) => {
+let handler = async (m, { conn, args, text, usedPrefix, command }) => {
 let isDoc = /--doc|doc$/i.test(text || args[0])
 
 if (!args[0] || (isDoc && !text.replace(/--doc|doc$/i, '').trim())) {
-return conn.reply(m.chat, `Ingresa un texto o link de YouTube\n\n\`»\` *.${command} --doc* para enviar como documento`, m)
+return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un texto o enlace de YouTube para descargarlo.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Golden Brown\n\n📍  Puedes usar la extensión *[ --doc ]* para descargarlo como documento.\n- Por ejemplo: *${usedPrefix + command} --doc* Golden Brown` }, { quoted: m })
 }
    
 let audioPath
 try {
+await m.react("⏰")
 let res = await search(args.join(" "))
 
-let txt = ` ${res[0].title || 'Sin título'}
+let txt = `· ┄ · ⊸ 𔓕 *YouTube  :  Download*
 
-✰ *Duracion »* ${res[0].timestamp}
-⚘ *Canal »* ${res[0].author.name || 'Desconocido'}
-❒ *Calidad »* 128K
-❀ *Link »* ${res[0].url}`
+＃ *Titulo* : ${res[0].title || 'Sin título'}
+＃ *Duración* : ${res[0].timestamp}
+＃ *Canal* : ${res[0].author.name || 'Desconocido'}
+＃ *Calidad* : 128K
+＃ *Enlace* : ${res[0].url}
 
-await conn.sendMessage(m.chat, { image: { url: res[0].thumbnail }, caption: txt }, { quoted: m })
+> ${textbot}`
+const thumb = (await conn.getFile(res[0].thumbnail))?.data
+await conn.sendMessage(m.chat, { text: txt, mentions: [m.sender], contextInfo: { externalAdReply: { title: "YouTube : Force", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+//await conn.sendMessage(m.chat, { image: { url: res[0].thumbnail }, caption: txt }, { quoted: m })
 
 let dl = await yt.download(res[0].url)
 let fileName = `${res[0].title}.mp3`
@@ -31,11 +35,14 @@ audioPath = await downloadToTmp(dl.downloadUrl, fileName)
 
 if (isDoc) {
 await conn.sendMessage(m.chat, { document: fs.readFileSync(audioPath), fileName, mimetype: "audio/mpeg" }, { quoted: m })
+await m.react("✅")
 } else {
 await conn.sendMessage(m.chat, { audio: fs.readFileSync(audioPath), mimetype: "audio/mpeg", fileName }, { quoted: m })
+await m.react("✅")
 }
 
 } catch (error) {
+conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m })
 console.error(error)
 } finally {
 if (audioPath && fs.existsSync(audioPath)) {
@@ -217,3 +224,6 @@ throw new Error("pooling alcanzó 100 intentos")
         return this.statusCheck(i, pk, rpObj)
     }
 }
+
+
+
