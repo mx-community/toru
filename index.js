@@ -20,12 +20,11 @@ import { Boom } from '@hapi/boom'
 import { makeWASocket, protoType, serialize } from './lib/simple.js'
 import { Low, JSONFile } from 'lowdb'
 import store from './lib/store.js'
-import { proto } from '@whiskeysockets/baileys'
+const { proto } = (await import('@whiskeysockets/baileys')).default
 import pkg from 'google-libphonenumber'
 const { PhoneNumberUtil } = pkg
 const phoneUtil = PhoneNumberUtil.getInstance()
-import pkg from '@whiskeysockets/baileys'
-const { DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion, makeCacheableSignalKeyStore, jidNormalizedUser } = pkg
+const { DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion, makeCacheableSignalKeyStore, jidNormalizedUser } = (await import('@whiskeysockets/baileys'))
 import readline, { createInterface } from 'readline'
 import NodeCache from 'node-cache'
 const { CONNECTING } = ws
