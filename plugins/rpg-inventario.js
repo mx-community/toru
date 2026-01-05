@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 
 let handler = async (m, { conn, usedPrefix }) => {
 if (!global.db.data.chats[m.chat].fRpg && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `✦ Los comandos de *[ RPG ]* estan desactivados.\n- Un administrador puede activarlo con: *#f-rpg on*` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `✦ Los comandos de *[ RPG ]* estan desactivados.\n- Un administrador puede activarlo con: *#fc-rpg on*` }, { quoted: m })
 }
 
 const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/5fvcw6.jpg`)).arrayBuffer())
@@ -17,6 +17,8 @@ let torucoin = user.torucoin || 0
 let bank = user.bank || 0
 let bankk = user.bankk || 0
 let level = user.level || 0
+let tawbot = user.tawbot || 0
+let puntos = user.puntos || 0
 let toruexp = user.toruexp || 0
 let torullave = user.torullave || 0
 let boletos = user.boletos || 0
@@ -37,6 +39,10 @@ const texto = `\t\t【  *I N V E N T A R I O*  】
 \t々 *Banco:*
 𔓕 ${currency} : *${bank.toLocaleString()}* (bank)
 ✩ ${currency2} : *${bankk.toLocaleString()}* (bank)
+
+\t々 *Necesarios:*
+💠 Fragmentos : *${tawbot.toLocaleString()}*
+🌀 Puntos : *${puntos.toLocaleString()}*
 
 \t々 *Recursos:*
 🗝️ Llaves : *${torullave.toLocaleString()}*
