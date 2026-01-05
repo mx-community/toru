@@ -4,6 +4,7 @@ if (!global.db.data.chats[m.chat].fRpg && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `✦ Los comandos de *[ RPG ]* estan desactivados.\n- Un administrador puede activarlo con: *#fc-rpg on*` }, { quoted: m })
 }
 let user = global.db.data.users[m.sender]
+ const thumbNo = Buffer.from(await (await fetch(`https://files.catbox.moe/8f71ne.jpg`)).arrayBuffer())
  
 if (user.torullave >= 1) {
 const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/gpnejy.jpg`)).arrayBuffer())
@@ -41,7 +42,8 @@ await conn.sendMessage(m.chat, { text: cofreXd, mentions: [m.sender], contextInf
 
 } else {
 let noXd = `No tienes suficientes *[ 🗝️ Llaves ]* para abrir otro cofre.\n- Tienes 🗝️ *${user.torullave.toLocaleString()} llaves* en tu inventario.`
-return conn.sendMessage(m.chat, { text: noXd }, { quoted: m })
+return await conn.sendMessage(m.chat, { text: noXd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "🗝️ Sin llaves para abrir", body: botname, thumbnail: thumbNo, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+// conn.sendMessage(m.chat, { text: noXd }, { quoted: m })
  }
 }
 
