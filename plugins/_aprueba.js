@@ -23,6 +23,8 @@ let misocial = user.misocial || '✘ (#red+)'
 
 let monedas = user.torucoin || 0
 let experiencia = user.toruexp || 0
+let nivel = user.nivele || 0
+let estado = user.rangos || 0
 let taw = user.tawbot || 0
 let taw2 = user.puntos || 0
 let taw3 = user.torucora || 0
@@ -38,10 +40,10 @@ const texto = `\t\t【  *P E R F I L*  】
 - Perfil de @${name}
 
 > 々 *Detalles:*
-𔓕 ${currency} : *${torucoin.toLocaleString()}*
-✩ ${currency2} : *${toruexp.toLocaleString()}*
-🜲 Rango : *#${rangos.toLocaleString()}*
-𖡛 Nivel : *lvl_${nivele.toLocaleString()}*
+𔓕 ${currency} : *${monedas.toLocaleString()}*
+✩ ${currency2} : *${experiencia.toLocaleString()}*
+🜲 Rango : *#${estado.toLocaleString()}*
+𖡛 Nivel : *lvl_${nivel.toLocaleString()}*
 
 📍  Puede usar *${usedPrefix + command} --date* o *--recs* para ver tus datos o recursos.
 
