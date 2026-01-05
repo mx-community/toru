@@ -47,8 +47,7 @@ const texto = `\t\t【  *P E R F I L*  】
 
 > ${textbot}`
 await conn.sendMessage(m.chat, { text: texto, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⫶☰  P E R F I L", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
-
-} else if (args[0] === "--date" && mentionedJid) {
+} else if (args[0] === "--date") {
 let datos = `\t\t【  *P E R F I L*  】
 > ${description}
 
@@ -62,7 +61,7 @@ let datos = `\t\t【  *P E R F I L*  】
 
 > ${textbot}`
 return conn.sendMessage(m.chat, { text: datos, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⫶☰  P E R F I L", body: `👋🏻 ¡Edita tu perfil con #myp!`, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
-} else if (args[0] === "--recs" && mentionedJid) {
+} else if (args[0] === "--recs") {
 let recursos = `\t\t【  *R E C U R S O S*  】
 - Recursos de @${name} 🎒
 
@@ -87,10 +86,7 @@ let recursos = `\t\t【  *R E C U R S O S*  】
 
 > ${textbot}`
 return conn.sendMessage(m.chat, { text: recursos, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⫶☰  P E R F I L", body: `🎒 Todos tus recursos aqui.`, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
-} else {
-let noXd = `📍  No hay otra categoría por ver.`
-return conn.sendMessage(m.chat, { text: noXd }, { quoted: m })
-}
+} 
 }
 
 handler.command = ['profile', 'perfil'] 
