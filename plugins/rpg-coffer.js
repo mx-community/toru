@@ -1,13 +1,13 @@
 import fetch from 'node-fetch'
 let handler = async (m, { conn, usedPrefix, command }) => {
 if (!global.db.data.chats[m.chat].fRpg && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `✦ Los comandos de *[ RPG ]* estan desactivados.\n- Un administrador puede activarlo con: *#f-rpg on*` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `✦ Los comandos de *[ RPG ]* estan desactivados.\n- Un administrador puede activarlo con: *#fc-rpg on*` }, { quoted: m })
 }
 let user = global.db.data.users[m.sender]
  
 if (user.torullave >= 1) {
 const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/gpnejy.jpg`)).arrayBuffer())
-let monedas, experiencia, corazones, velas, pastillas, piesas, boletos
+let monedas, experiencia, corazones, velas, pastillas, piesas, boletoss
 monedas = Math.floor(Math.random() * 20) 
 experiencia = Math.floor(Math.random() * 15) 
 corazones = Math.floor(Math.random() * 5) 
@@ -25,8 +25,11 @@ user.boletos += boletoss
 let cofreXd = `\t〩  C O F R E  :  R P G
 > ¡Abriste un cofre, reclama tu recompensa!
 
+⚶ *Balance:*
 \t𔓕 ${currency}  :  *+${monedas.toLocaleString()}*
 \t✩ ${currency2}  :  *+${experiencia.toLocaleString()}*
+
+⚶ *Recursos:*
 \t❤️ Corazones : *+${corazones.toLocaleString()}*
 \t🕯️ Velas : *+${velas.toLocaleString()}*
 \t💊 Pastillas : *+${pastillas.toLocaleString()}*
