@@ -1,6 +1,7 @@
+
 import fetch from 'node-fetch'
 
-let handler = async (m, { conn, usedPrefix, command, text, args, command }) => {
+let handler = async (m, { conn, usedPrefix, command, text, args }) => {
 if (!global.db.data.chats[m.chat].fRpg && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `✦ Los comandos de *[ RPG ]* estan desactivados.\n- Un administrador puede activarlo con: *#fc-rpg on*` }, { quoted: m })
 }
@@ -47,7 +48,7 @@ const texto = `\t\t【  *P E R F I L*  】
 > ${textbot}`
 await conn.sendMessage(m.chat, { text: texto, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⫶☰  P E R F I L", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 
-if (isDatos || isDatos && args[0]) {
+if (isDatos) {
 let datos = `\t\t【  *P E R F I L*  】
 > ${description}
 
@@ -61,7 +62,7 @@ let datos = `\t\t【  *P E R F I L*  】
 
 > ${textbot}`
 return await conn.sendMessage(m.chat, { text: datos, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⫶☰  P E R F I L", body: `👋🏻 ¡Edita tu perfil con #myp!`, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
-} else if (isRecurs || isRecurs && args[0]) {
+} else if (isRecurs) {
 let recursos = `\t\t【  *R E C U R S O S*  】
 - Recursos de @${name} 🎒
 
