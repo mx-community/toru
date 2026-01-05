@@ -22,29 +22,36 @@ user.toruexp = user.toruexp || 0
 user.torucora = user.torucora || 0
 user.toruvela = user.toruvela || 0
 user.torullave = user.torullave || 0
-
+user.boletos = user.boletos || 0
+ 
 let ganado = Math.floor(Math.random() * 20) 
 let ganado2 = Math.floor(Math.random() * 15) 
 let ganado3 = Math.floor(Math.random() * 15) 
 let ganado4 = Math.floor(Math.random() * 15) 
 let ganado5 = Math.floor(Math.random() * 2) 
+let ganado6 = Math.floor(Math.random() * 20) 
 user.torucoin += ganado
 user.toruexp += ganado2
 user.torucora += ganado3
 user.toruvela += ganado4
 user.torullave += ganado5
+user.boletos += ganado6
 
 let piesaXd = `\t〩  *P I E S A  :  A R M A D O*
 - ¡Has logrado reunir 10 piesas y revelar la imagen!
 
-⚶ \`\`\`Recompensa:\`\`\`
-\t𔓕 ${currency}  :  *+${ganado.toLocaleString()}*
-\t✩ ${currency2}  :  *+${ganado2.toLocaleString()}*
-\t❤️ Corazones  :  *+${ganado3.toLocaleString()}*
-\t🕯️ Velas  :  *+${ganado4.toLocaleString()}*
-\t🗝️ Llaves  :  *+${ganado5.toLocaleString()}*
+⚶ *Balance:*
+\t𔓕 ${currency} : *+${ganado.toLocaleString()}*
+\t✩ ${currency2} : *+${ganado2.toLocaleString()}*
+
+⚶ *Recursos:*
+\t❤️ Corazones : *+${ganado3.toLocaleString()}*
+\t🕯️ Velas : *+${ganado4.toLocaleString()}*
+\t🗝️ Llaves : *+${ganado5.toLocaleString()}*
+\t🧧 Boletos : *+${ganado6.toLocaleString()}*
 
 > 🧩 _Reune mas piesas para ganar mas recompensas._`
+user.torupiesa -= 10
 await m.react("🧩")
 await conn.sendMessage(m.chat, { image: { url: thumb }, caption: piesaXd }, { quoted: m })
 } else {
