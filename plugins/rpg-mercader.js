@@ -33,15 +33,18 @@ user.torullave += ganado6
 let respuesta = `\t〩  *M E R C A D E R : R P G*
 - ¡Gracias por los 10 pescados! Toma tu recompensa.
 
-⚶ \`\`\`Recompensa:\`\`\`
-\t𔓕 ${currency}  :  *+${ganado.toLocaleString()}*
-\t✩ ${currency2}  :  *+${ganado2.toLocaleString()}*
-\t❤️ Corazones  :  *+${ganado3.toLocaleString()}*
-\t🕯️ Velas  :  *+${ganado4.toLocaleString()}*
+⚶ *Balance:*
+\t𔓕 ${currency} : *+${ganado.toLocaleString()}*
+\t✩ ${currency2} : *+${ganado2.toLocaleString()}*
+
+⚶ *Recursos:*
+\t❤️ Corazones : *+${ganado3.toLocaleString()}*
+\t🕯️ Velas : *+${ganado4.toLocaleString()}*
 \t🧧 Boletos : *+${ganado5.toLocaleString()}*
-\t🗝️ Llaves  :  *+${ganado6.toLocaleString()}*
+\t🗝️ Llaves : *+${ganado6.toLocaleString()}*
 
 > 🐟 _Consigue mas pescados para mas recompensas._`
+ user.torupesc -= 10
 await m.react("🐟")
 await conn.sendMessage(m.chat, { text: respuesta, mentions: [m.sender], contextInfo: { externalAdReply: { title: "々 P E S C A D E R O 々", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 } else {
