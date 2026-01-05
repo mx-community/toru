@@ -4,7 +4,7 @@ if (!global.db.data.chats[m.chat].fRpg && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `✦ Los comandos de *[ RPG ]* estan desactivados.\n- Un administrador puede activarlo con: *#fc-rpg on*` }, { quoted: m })
 }
 
-const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/9rldx2.jpg`)).arrayBuffer())
+const thumbNo = Buffer.from(await (await fetch(`https://files.catbox.moe/9rldx2.jpg`)).arrayBuffer())
 let user = global.db.data.users[m.sender]
 if (user.torupiesa >= 10) {
 
@@ -56,7 +56,7 @@ await m.react("🧩")
 await conn.sendMessage(m.chat, { image: { url: thumb }, caption: piesaXd }, { quoted: m })
 } else {
 let noXd = `Solo tienes *[ 🧩 ${user.torupiesa} piesas ]* en tu inventario.\n- Reune *🧩 10 piesas* para revelar una imagen y obtener una recompensa.`
-return conn.sendMessage(m.chat, { text: noXd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "Piesas de recompensa.", body: "¡Tienes que reunir 10 piesas para ver la imagen!", thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: noXd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "Piesas de recompensa.", body: "¡Tienes que reunir 10 piesas para ver la imagen!", thumbnail: thumbNo, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
  }
 }
 
