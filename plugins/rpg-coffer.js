@@ -39,7 +39,7 @@ let cofreXd = `\t〩  C O F R E  :  R P G
 
 > 🗝️ _Abre otro cofre si tienes una llave mas._`
 await conn.sendMessage(m.chat, { text: cofreXd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "々  C O F R E  々", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
-
+user.torullave -= 1
 } else {
 let noXd = `No tienes suficientes *[ 🗝️ Llaves ]* para abrir otro cofre.\n- Tienes 🗝️ *${user.torullave.toLocaleString()} llaves* en tu inventario.`
 return await conn.sendMessage(m.chat, { text: noXd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "🗝️ Sin llaves para abrir", body: botname, thumbnail: thumbNo, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
