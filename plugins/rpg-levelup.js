@@ -47,7 +47,7 @@ imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/6x77gd.jpg`)).
 return conn.sendMessage(m.chat, { text: noFrag, mentions: [m.sender], contextInfo: { externalAdReply: { title: "¡Insuficientes fragmentos!", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
  }
 } else if (args[0] === "--rk") {
-if (user.rangos >= 350) {
+if (user.puntos >= 350) {
 estadistica = 1
 llaves = Math.floor(Math.random() * 2)
 monedas = Math.floor(Math.random() * 25)
