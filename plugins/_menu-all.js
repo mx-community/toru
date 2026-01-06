@@ -85,18 +85,19 @@ let menuProf = `\t⊹ *${usedPrefix}myp*
 \t⊹ *${usedPrefix}desc+*   [define]
 \t⊹ *${usedPrefix}birth*   [define]`
 let menuRpg = `\t⊹ *${usedPrefix}aventura*
-\t⊹ *${usedPrefix}mining*
-\t⊹ *${usedPrefix}fishing*
+\t⊹ *${usedPrefix}minar*
+\t⊹ *${usedPrefix}pescar*
 \t⊹ *${usedPrefix}cofre*
 \t⊹ *${usedPrefix}curar*
-\t⊹ *${usedPrefix}levelup*
+\t⊹ *${usedPrefix}nivel*
 \t⊹ *${usedPrefix}revelar*
 \t⊹ *${usedPrefix}mercader*
 \t⊹ *${usedPrefix}work*
-\t⊹ *${usedPrefix}shop*   [query]
+\t⊹ *${usedPrefix}inv*
+\t⊹ *${usedPrefix}dep*   [query]
+\t⊹ *${usedPrefix}dep2*   [query]
 \t⊹ *${usedPrefix}color*   [query]
-\t⊹ *${usedPrefix}wallet*   (who)
-\t⊹ *${usedPrefix}inv*   (who)`
+\t⊹ *${usedPrefix}wallet*   (who)`
 let menuUtils = `\t⊹ *${usedPrefix}lid*
 \t⊹ *${usedPrefix}lids*
 \t⊹ *${usedPrefix}cid*   [link]
