@@ -1,4 +1,4 @@
-import { personajes } from './rpg-personajes.js';
+import { personajes } from './plugins/rpg-personajes.js';
 
 let handler = async (m, { conn, usedPrefix, command, args }) => {
 let users = global.db.data.users;
