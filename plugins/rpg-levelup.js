@@ -11,23 +11,22 @@ let estado = `· ┄ · ⊸ 𔓕 *Nivel  :  Rango*
 > ¡Aqui tienes la información de tu nivel y rango!
 
 > *Rango y Nivel:*
-🜲 Rango : *#${user.rangos}*
-𖡛 Nivel : *lvl_${user.nivele}*
+🜲 Rango : *#${rangos}*
+𖡛 Nivel : *lvl_${nivele}*
 
-> Usa los siguientes comandos para subir de nivel o rango.
-*${usedPrefix + command}* --up
-*${usedPrefix + command}* --rk`
+> Reune *fragmentos* y *puntos* para dañarle.`
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/awfqp3.jpg`)).arrayBuffer())
 await conn.sendMessage(m.chat, { text: estado, mentions: [m.sender], contextInfo: { externalAdReply: { title: "〩 Nivel - Actual 〩", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 } else if (args[0] === "--up") {
 if (user.tawbot >= 300) {
+nivelado = 1
 llaves = Math.floor(Math.random() * 2)
 monedas = Math.floor(Math.random() * 25)
 experiencia = Math.floor(Math.random() * 25)
 user.torucoin += monedas
 user.toruexp += experiencia
 user.torullave += llaves
-user.nivele += 1
+user.nivele += nivelado
 let respNivel = `· ┄ · ⊸ 𔓕 *New  :  Level*
 > ¡Subiste de nivel! Aqui tienes tu recompensa.
 
@@ -42,20 +41,21 @@ await await conn.sendMessage(m.chat, { text: respNivel, mentions: [m.sender], co
 user.tawbot -= 300
 } else {
 let noFrag = `No tienes suficientes *[ 💠 Fragmentos ]* para subir de nivel.\n- Solo tienes 💠 *${user.tawbot} Fragmentos* en tu inventario.`
-imagen = Buffer . from ( await  ( await  fetch ( `https://files.catbox.moe/6x77gd.jpg` ) ) . arrayBuffer ( ) )
-return  conn.sendMessage ( m.chat , { text : noFrag , mentions : [ m.sender ] , contextInfo : { externalAdReply : { title : " ¡ Insuficientes fragmentos ! " , body : botname , thumbnail : imagen , sourceUrl : null , mediaType : 1 , renderLargerThumbnail : false } } } , { quoted : m } )​      
+imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/6x77gd.jpg`)).arrayBuffer())
+return conn.sendMessage(m.chat, { text: noFrag, mentions: [m.sender], contextInfo: { externalAdReply: { title: "¡Insuficientes fragmentos!", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
  }
-}  de lo contrario  si  ( args [ 0 ] === "--rk" )  {
-si  ( usuario . rangos >= 350 )  {​​​​
-llaves = Math.piso ( Math.aleatorio ( ) * 2 )​​​​
-monedas = Math.floor ( Math.random ( ) * 25 )​​​​
-experiencia = Math.floor ( Math.random ( ) * 25 )​​​​
-usuario . torucoin += monedas
-usuario . toruexp += experiencia
-usuario .torullave + = llaves
-usuario . rangos += 1
-deje que  respRank = `· ┄ · ⊸ 𔓕 *Nuevo: Rango*
-> ¡Subiste de rango! Aquí tienes tu recompensa.
+} else if (args[0] === "--rk") {
+if (user.rangos >= 350) {
+estadistica = 1
+llaves = Math.floor(Math.random() * 2)
+monedas = Math.floor(Math.random() * 25)
+experiencia = Math.floor(Math.random() * 25)
+user.torucoin += monedas
+user.toruexp += experiencia
+user.torullave += llaves
+user.rangos += estadistica
+let respRank = `· ┄ · ⊸ 𔓕 *New  :  Rank*
+> ¡Subiste de rango! Aqui tienes tu recompensa.
 
 ❒ *Rango* : +1
 ❒ *Llaves* : +${llaves.toLocaleString()}
@@ -82,3 +82,4 @@ export default handler
 function pickRandom(list) {
 return list[Math.floor(Math.random() * list.length)]
 }
+
