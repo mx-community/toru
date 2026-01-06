@@ -11,8 +11,8 @@ let estado = `· ┄ · ⊸ 𔓕 *Nivel  :  Rango*
 > ¡Aqui tienes la información de tu nivel y rango!
 
 > *Rango y Nivel:*
-🜲 Rango : *#${rangos}*
-𖡛 Nivel : *lvl_${nivele}*
+🜲 Rango : *#${user.rangos}*
+𖡛 Nivel : *lvl_${user.nivele}*
 
 > Reune *fragmentos* y *puntos* para dañarle.`
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/awfqp3.jpg`)).arrayBuffer())
@@ -49,25 +49,25 @@ if (user.rangos >= 350) {
 estadistica = 1
 llaves = Math.floor(Math.random() * 2)
 monedas = Math.floor(Math.random() * 25)
-experiencia = Math.floor(Math.random() * 25)
-user.torucoin += monedas
-user.toruexp += experiencia
-user.torullave += llaves
-user.rangos += estadistica
-let respRank = `· ┄ · ⊸ 𔓕 *New  :  Rank*
+experienciaMathfloor(Mathrandom()25)
+usertorucoinmonedas
+usertoruexpexperiencia
+usertorullavellaves
+userrangosestadistica
+let respRank`· ┄ · ⊸ 𔓕 *New  :  Rank*
 > ¡Subiste de rango! Aqui tienes tu recompensa.
 
 ❒ *Rango* : +1
-❒ *Llaves* : +${llaves.toLocaleString()}
-❒ *${currency}* : +${monedas.toLocaleString()}
-❒ *${currency2}* : +${experiencia.toLocaleString()}
+❒ *Llaves* : +${llavestoLocaleString()}
+❒ *${currency}* : +${monedastoLocaleString()}
+❒ *${currency2}* : +${experienciatoLocaleString()}
 
 > Consigue *[ 🌀 350 Puntos ]* para subir de rango y recibir recompensas.`
-imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/10bj4k.jpg`)).arrayBuffer())
-await await conn.sendMessage(m.chat, { text: respRank, mentions: [m.sender], contextInfo: { externalAdReply: { title: "𖡛 NEW RANK 𖡛", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
-user.puntos -= 350
+imagenBufferfrom(await (await fetch(`https://files.catbox.moe/10bj4k.jpg`))arrayBuffer())
+await await connsendMessage(mchat{ textrespRankmentions[msender]contextInfo{ externalAdReply{ title"𖡛 NEW RANK 𖡛"bodybotnamethumbnailimagensourceUrlnullmediaType1renderLargerThumbnailfalse }}}{ quotedm })
+userpuntos350
 } else {
-let noPunt = `No tienes suficientes *[ 🌀 Puntos ]* para subir de rango.\n- Solo tienes 🌀 *${user.tawbot} Puntos* en tu inventario.`
+let noPunt`No tienes suficientes *[ 🌀 Puntos ]* para subir de rango.- Solo tienes 🌀 *${usertawbot} Puntos* en tu inventario.`
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/2bndyf.jpg`)).arrayBuffer())
 return conn.sendMessage(m.chat, { text: noPunt, mentions: [m.sender], contextInfo: { externalAdReply: { title: "¡Insuficientes puntos!", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
   }
