@@ -1,14 +1,21 @@
-module.exports = {
-personajes: {
+const personajes = {
 '1': {
-nombre: 'Guts',
+nombre: 'Endeavor',
 rareza: 'común',
 valor: 10
 },
 '2': {
-nombre: 'Takeda',
+nombre: 'Guts',
 rareza: 'rara',
 valor: 50
-}
+},
+'3': {
+nombre: 'Takeda',
+rareza: 'épica',
+valor: 100
 }
 };
+
+export default { personajes };
+
+
