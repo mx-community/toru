@@ -1,4 +1,4 @@
-import fs from 'fs';
+import { promises as fs } from 'fs';
 import { personajes } from './rpg-personajes.js';
 
 const dbFile = './database.json';
