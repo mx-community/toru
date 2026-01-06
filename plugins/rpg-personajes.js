@@ -16,4 +16,4 @@ valor: 10
 }
 };
 
-export default { personajes };
+export { personajes };
