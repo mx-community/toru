@@ -11,8 +11,8 @@ let estado = `· ┄ · ⊸ 𔓕 *Nivel  :  Rango*
 > ¡Aqui tienes la información de tu nivel y rango!
 
 > *Rango y Nivel:*
-🜲 Rango : *#${rangos}*
-𖡛 Nivel : *lvl_${nivele}*
+🜲 Rango : *#${user.rangos}*
+𖡛 Nivel : *lvl_${user.nivele}*
 
 > Usa los siguientes comandos para subir de nivel o rango.
 *${usedPrefix + command}* --up
