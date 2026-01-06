@@ -2,7 +2,7 @@ import { personajes } from './rpg-personajes.js';
 
 let handler = async (m, { conn, usedPrefix, command, args }) => {
   let users = global.db.data.users;
-  let userId = m.sender;
+  let userId = sender;
 
   if (command === 'comprar') {
     if (args.length !== 1) {
