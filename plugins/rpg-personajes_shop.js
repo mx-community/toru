@@ -1,18 +1,13 @@
-import { promises as fs } from 'fs';
-import { personajes } from './rpg-personajes.js';
+import fs from 'fs';
+const personajes = require('./rpg-personajes.js');
 
 const dbFile = './database.json';
-const dbData = fs.existsSync(dbFile) ? JSON.parse(fs.readFileSync(dbFile)) : {};
+const dbData = fs.existsSync(dbFile) ? JSON.parse(fs.readFileSync(dbFile)) : { users: {} };
 
-global.db = {
-data: dbData,
-save: () => {
-fs.writeFileSync(dbFile, JSON.stringify(dbData, null, 2));
-}
-};
+global.db = dbData;
 
 let handler = async (m, { conn, usedPrefix, command, args }) => {
-let users = global.db.data.users;
+let users = global.db.users;
 let userId = m.sender;
 
 if (!users[userId]) {
@@ -20,7 +15,7 @@ users[userId] = {
 boletos: 0,
 personajes: {}
 };
-global.db.save();
+fs.writeFileSync(dbFile, JSON.stringify(dbData, null, 2));
 }
 
 if (command === 'shop!') {
@@ -30,7 +25,7 @@ return;
 }
 
 let nombrePersonaje = args.join(' ').toLowerCase();
-let personaje = Object.values(personajes).find(p => p.nombre.toLowerCase().includes(nombrePersonaje));
+let personaje = Object.values(personajes.personajes).find(p => p.nombre.toLowerCase().includes(nombrePersonaje));
 
 if (!personaje) {
 m.reply(`El personaje "${nombrePersonaje}" no existe.`);
@@ -50,15 +45,15 @@ return;
 users[userId].personajes[personaje.nombre] = {
 nombre: personaje.nombre,
 rareza: personaje.rareza,
-valor: personaje.valor,
+valor: personaje.valor
 };
 
 users[userId].boletos -= personaje.valor;
-global.db.save();
+fs.writeFileSync(dbFile, JSON.stringify(dbData, null, 2));
 m.reply(`¡Felicidades! Has comprado a ${personaje.nombre} por ${personaje.valor} boletos.`);
 }
 };
 
 handler.command = ['shop!'];
 export default handler;
-  
+                       
