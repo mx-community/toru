@@ -10,7 +10,7 @@ global.owner = [ "5493873655135", "5493873579805", "51959842633", "51957626299" 
 
 global.apikeyOptishield = (ebe2e764b8a003d278472b711498aec7)
 
-global.sendOptishield = ( params ) async => {
+global.sendOptishield = async (params) => {
 params.apikey = global.apikeyOptishield;
 const { data: json } = await axios("https://optishield.uk/api/", {  params });
 return json
