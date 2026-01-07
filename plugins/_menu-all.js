@@ -94,9 +94,10 @@ let menuRpg = `\t⊹ *${usedPrefix}aventura*
 \t⊹ *${usedPrefix}mercader*
 \t⊹ *${usedPrefix}work*
 \t⊹ *${usedPrefix}inv*
+\t⊹ *${usedPrefix}regalo*
 \t⊹ *${usedPrefix}dep*   [query]
 \t⊹ *${usedPrefix}dep2*   [query]
-\t⊹ *${usedPrefix}color*   [query]
+\t⊹ *${usedPrefix}shop*   [query]
 \t⊹ *${usedPrefix}wallet*   (who)`
 let menuUtils = `\t⊹ *${usedPrefix}lid*
 \t⊹ *${usedPrefix}lids*
