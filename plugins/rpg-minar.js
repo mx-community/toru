@@ -20,7 +20,7 @@ const tiempoRestante = formatTime(user.lastmining - Date.now())
 return conn.sendMessage(m.chat, { text: `Debes esperar *${tiempoRestante}* para volver a usar el comando.` }, { quoted: m })
 }
 
-if (user.torupico >= 2) {
+if (user.torupico >= 1) {
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/bt96yl.jpg`)).arrayBuffer())
 monedas = Math.floor(Math.random() * 25) 
 experiencia = Math.floor(Math.random() * 25) 
@@ -44,7 +44,6 @@ let minResultado = `\t〩  *M I N I N G  :  R P G*
 
 > ${textbot}`
 await conn.sendMessage(m.chat, { text: minResultado, mentions: [m.sender], contextInfo: { externalAdReply: { title: "々  P E S C A R  々", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
-user.torupico -= 10
 user.health -= 10
 } else {
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/bt96yl.jpg`)).arrayBuffer())
