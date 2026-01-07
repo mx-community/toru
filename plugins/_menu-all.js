@@ -94,6 +94,9 @@ let menuRpg = `\t⊹ *${usedPrefix}aventura*
 \t⊹ *${usedPrefix}mercader*
 \t⊹ *${usedPrefix}work*
 \t⊹ *${usedPrefix}inv*
+\t⊹ *${usedPrefix}pico*
+\t⊹ *${usedPrefix}espada*
+\t⊹ *${usedPrefix}hacha*
 \t⊹ *${usedPrefix}regalo*
 \t⊹ *${usedPrefix}dep*   [query]
 \t⊹ *${usedPrefix}dep2*   [query]
