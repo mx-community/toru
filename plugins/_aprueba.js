@@ -1,9 +1,9 @@
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
   let user = global.db.data.users[m.sender]
   let items = {
-    "boletos": "boletos",
-    "velas": "toruvela",
-    "piesas": "torupiesa"
+    "boletos": { dbName: "boletos", emoji: "🧧" },
+    "velas": { dbName: "toruvela", emoji: "🕯️" },
+    "piesas": { dbName: "torupiesa", emoji: "🧩" }
   }
   let precios = {
     "boletos": 10,
@@ -22,13 +22,13 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
   if (isNaN(cantidad) || cantidad <= 0) return conn.sendMessage(m.chat, { text: "Cantidad inválida" }, { quoted: m })
 
   let precioTotal = precios[item] * cantidad
-  if (user.coin < precioTotal) return conn.sendMessage(m.chat, { text: `No tienes suficientes fragmentos (${precioTotal} necesarios)` }, { quoted: m })
+  if (user.coin < precioTotal) return conn.sendMessage(m.chat, { text: `No tienes suficientes fragmentos (${precioTotal} necesarios) para comprar ${cantidad} ${items[item].emoji} ${item}` }, { quoted: m })
 
   user.coin -= precioTotal
-  user[items[item]] += cantidad
+  user[items[item].dbName] += cantidad
 
-  conn.sendMessage(m.chat, { text: `Has comprado ${cantidad} ${item} por ${precioTotal} fragmentos` }, { quoted: m })
+  conn.sendMessage(m.chat, { text: `Has comprado ${cantidad} ${items[item].emoji} ${item} por ${precioTotal} fragmentos` }, { quoted: m })
 }
 
-handler.command = ["shopp"]
+handler.command = ["shop"]
 export default handler
