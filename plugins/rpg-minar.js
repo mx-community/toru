@@ -43,7 +43,7 @@ let minResultado = `\t〩  *M I N I N G  :  R P G*
 \t🌀 Puntos : *+${puntoss.toLocaleString()}*
 
 > ${textbot}`
-await conn.sendMessage(m.chat, { text: minResultado, mentions: [m.sender], contextInfo: { externalAdReply: { title: "々  P E S C A R  々", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: minResultado, mentions: [m.sender], contextInfo: { externalAdReply: { title: "々  M I N I N G  々", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 user.health -= 10
 } else {
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/bt96yl.jpg`)).arrayBuffer())
