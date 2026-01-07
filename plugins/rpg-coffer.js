@@ -8,19 +8,21 @@ let user = global.db.data.users[m.sender]
  
 if (user.torullave >= 1) {
 const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/gpnejy.jpg`)).arrayBuffer())
-let monedas, experiencia, corazones, velas, pastillas, piesas, boletoss
-monedas = Math.floor(Math.random() * 20) 
-experiencia = Math.floor(Math.random() * 15) 
+let monedas, experiencia, corazones, velas, piesas, boletoss, fragmentos, puntoss
+monedas = Math.floor(Math.random() * 30) 
+experiencia = Math.floor(Math.random() * 30) 
+puntoss = Math.floor(Math.random() * 30) 
+fragmentos = Math.floor(Math.random() * 30) 
 corazones = Math.floor(Math.random() * 5) 
-velas = Math.floor(Math.random() * 5) 
-pastillas = Math.floor(Math.random() * 5) 
+velas = Math.floor(Math.random() * 5)  
 piesas = Math.floor(Math.random() * 5) 
 boletoss = Math.floor(Math.random() * 5) 
 user.torucoin += monedas
 user.toruexp += experiencia
 user.torucora += corazones
 user.toruvela += velas
-user.torupasti += pastillas
+user.tawbot += fragmentos 
+user.puntos += puntoss
 user.torupiesa += piesas
 user.boletos += boletoss
 let cofreXd = `\t〩  C O F R E  :  R P G
@@ -30,10 +32,13 @@ let cofreXd = `\t〩  C O F R E  :  R P G
 \t𔓕 ${currency}  :  *+${monedas.toLocaleString()}*
 \t✩ ${currency2}  :  *+${experiencia.toLocaleString()}*
 
+⚶ *Necesario:*
+\t💠 Fragmentos : *+${fragmentos.toLocaleString()}*
+\t🌀 Puntos : *+${puntoss.toLocaleString()}*
+
 ⚶ *Recursos:*
 \t❤️ Corazones : *+${corazones.toLocaleString()}*
 \t🕯️ Velas : *+${velas.toLocaleString()}*
-\t💊 Pastillas : *+${pastillas.toLocaleString()}*
 \t🧩 Piesas : *+${piesas.toLocaleString()}*
 \t🧧 Boletos : *+${boletoss.toLocaleString()}*
 
