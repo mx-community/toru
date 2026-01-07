@@ -48,7 +48,7 @@ ${readMore}
 > ${textbot}`
   
 const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/0t5dev.jpg`)).arrayBuffer())
-if (!text) return await conn.sendMessage(m.chat, { text: listado, mentions: [m.sender], contextInfo: { externalAdReply: { title: "〩  S H O P  〩", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+if (!text) return await conn.sendMessage(m.chat, { text: listados, mentions: [m.sender], contextInfo: { externalAdReply: { title: "〩  S H O P  〩", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 
 let [item, cantidad] = text.split(" ")
 item = item.toLowerCase()
