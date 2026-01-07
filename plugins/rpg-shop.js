@@ -11,6 +11,9 @@ let items = {
 "cupones": { dbName: "cupones", emoji: "🎟️" },
 "fragmentos": { dbName: "tawbot", emoji: "💠" },
 "puntos": { dbName: "puntos", emoji: "🌀" },
+"pico": { dbName: "torupico", emoji: "⛏️" },
+"espada": { dbName: "toruesp", emoji: "🗡️" },
+"hacha": { dbName: "toruach", emoji: "🪓" },
 "llaves": { dbName: "torullave", emoji: "🗝️" },
 "piesas": { dbName: "torupiesa", emoji: "🧩" }
 }
@@ -24,6 +27,9 @@ let precios = {
 "corazones": 3,
 "cupones": 65,
 "regalos": 45,
+"pico": 50,
+"espada": 50,
+"hacha": 50,
 "piesas": 10
 }
 
@@ -45,6 +51,11 @@ ${readMore}
 🎁 *Regalos*  :  $45
 🎟️ *Cupones*  :  $65
 
+> 〩 *Escenciales:*
+⛏️ *Pico*  :  $50
+🗡️ *Espada*  :  $50
+🪓 *Hacha*  :  $50
+
 > ${textbot}`
   
 const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/0t5dev.jpg`)).arrayBuffer())
@@ -64,7 +75,7 @@ if (user.torucoin < precioTotal) return conn.sendMessage(m.chat, { text: `No tie
 user.torucoin -= precioTotal
 user[items[item].dbName] += cantidad
 
-conn.sendMessage(m.chat, { text: `Has comprado *[ ${items[item].emoji} ${cantidad} ${item} ]* por *[ 𔓕 ${precioTotal} ${currency} ]* con exito.` }, { quoted: m })
+conn.sendMessage(m.chat, { text: `Has comprado *[ ${items[item].emoji} ${cantidad} ${item} ]* con exito.\n- Por *[ 𔓕 ${precioTotal} ${currency} ]* gastados.` }, { quoted: m })
 }
 
 handler.command = ["shop"]
