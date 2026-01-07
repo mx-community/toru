@@ -1,137 +1,75 @@
 import fetch from 'node-fetch'
-let handler = async (m, {command, conn, usedPrefix, args}) => {
+
+let handler = async (m, { conn, text, args, usedPrefix, command }) => {
 let user = global.db.data.users[m.sender]
-
-const items = {
-buy: {
-boletos: {torucoin: 7}, toruexp: {tawbot: 15}, rangos: {puntos: 500}, nivele: {puntos: 300},
-torucoin: {tawbot: 10}, toruvela: {torucoin: 5}, torucora: {torucoin: 5},
-torullave: {boletos: 5}, torupesc: {torucoin: 3}, toruregal: {boletos: 10},
-tawbot: {toruexp: 3}, cupones: {torucoin: 50},
-torupasti: {torucora: 1}, puntos: {toruexp: 3}, torupiesa: {torucoin: 15}
-},
-
-sell: {
-boletos: {torucoin: 7}, toruexp: {tawbot: 15}, rangos: {puntos: 500}, nivele: {puntos: 300},
-torucoin: {tawbot: 10}, toruvela: {torucoin: 5}, torucora: {torucoin: 5},
-torullave: {boletos: 5}, torupesc: {torucoin: 3}, toruregal: {boletos: 10},
-tawbot: {toruexp: 3}, cupones: {torucoin: 50},
-torupasti: {torucora: 1}, puntos: {toruexp: 3}, torupiesa: {torucoin: 15}
+let items = {
+"boletos": { dbName: "boletos", emoji: "🧧" },
+"velas": { dbName: "toruvela", emoji: "🕯️" },
+"regalos": { dbName: "toruregal", emoji: "🎁" },
+"pescados": { dbName: "torupesc", emoji: "🐟" },
+"corazones": { dbName: "torucora", emoji: "❤️" },
+"cupones": { dbName: "cupones", emoji: "🎟️" },
+"fragmentos": { dbName: "tawbot", emoji: "💠" },
+"puntos": { dbName: "puntos", emoji: "🌀" },
+"llaves": { dbName: "torullave", emoji: "🗝️" },
+"piesas": { dbName: "torupiesa", emoji: "🧩" }
 }
+let precios = {
+"boletos": 10,
+"velas": 10,
+"llaves": 25,
+"fragmentos": 1,
+"puntos": 2,
+"pescados": 5,
+"corazones": 3,
+"cupones": 65,
+"regalos": 45,
+"piesas": 10
 }
 
-const listItems = Object.fromEntries(Object.entries(items[command.toLowerCase()]).filter(([v]) => v && v in user))
+let listados = `· ┄ · ⊸ 𔓕 *Tienda  :  Shop*
+- Compra items que requieras con *(${currency})*.
 
-const thumbBase = Buffer.from(await (await fetch(`https://qu.ax/hNADg.jpg`)).arrayBuffer())
-let textBase = `\t〩 \`TIENDA : SHOP\`
-- Compra algunos elementos, sube de nivel o aprovecha las recompensas.
-
-> Compra o vende con *(𔓕 ${currency})*.
-🧧 *Boletos* : $7
-🕯️ *Vela* : $5
-❤️ *Corazon* : $5
-🐟 *Pescado* : $3
-🧩 *Piesa* : $15
-🎟️ *Cupon* : $50
-
-> Compra o vende con *(✩ ${currency2})*
-💠 *Fragmento* : $3
-🌀 *Puntos* : $3
-
-> Compra con *(🧧 Boletos)*
-🗝️ *Llave* : $5
-🎁 *Regalo* : $10
-
-> Compra o vende con *(❤️ Corazones)*
-💊 *Pastillas* : $1
-
-> Compra o vende con *(💠 Fragmentos)*
-𔓕 *${currency}* : $10
-✩ *${currency2}* : $15
-
-> Compra o vende con *(🌀 Puntos)*
-🜲 *Rango* : $500
-𖡛 *Nivel* : $300
-
-⚶ Por ejemplo:
-*${usedPrefix}buy* boletos 5
-*${usedPrefix}sell* boletos 5
+\t⚶ Por ejemplo:
+*${usedPrefix + command}* boletos 1
+${readMore}
+> 〩 *Items y precios:*
+🧧 *Boletos*  :  $10 
+🧩 *Piesas*  :  $10 
+🕯️ *Velas*  :  $10 
+❤️ *Corazones*  :  $3 
+🗝️ *Llaves*  :  $25 
+💠 *Fragmentos*  :  $1 
+🌀 *Puntos*  :  $2 
+🐟 *Pescados*  :  $5 
+🎁 *Regalos*  :  $45
+🎟️ *Cupones*  :  $65
 
 > ${textbot}`
-const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/5fvcw6.jpg`)).arrayBuffer())
-const item = (args[0] || '').toLowerCase()
-const total = Math.floor(isNumber(args[1]) ? Math.min(Math.max(parseInt(args[1]), 1), Number.MAX_SAFE_INTEGER) : 1) * 1
-let premium = user.premium
+  
+const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/0t5dev.jpg`)).arrayBuffer())
+if (!text) return await conn.sendMessage(m.chat, { text: listados, mentions: [m.sender], contextInfo: { externalAdReply: { title: "〩  S H O P  〩", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 
-if (!listItems[item]) return await conn.sendMessage(m.chat, { text: textBase, mentions: [m.sender], contextInfo: { externalAdReply: { title: "Tienda de artefactos", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
-if (command.toLowerCase() == 'buy') {
-let paymentMethod = Object.keys(listItems[item]).find((v) => v in user)
-if (user[paymentMethod] < listItems[item][paymentMethod] * total)
-let insuficienteResp = `📍  No tienes el recurso suficiente para realizar el proceso.
-- Necesitas una cantidad valida para continuar.
+let [item, cantidad] = text.split(" ")
+item = item.toLowerCase()
 
-𝇈 *Necesitas* : ${listItems[item][paymentMethod] * total - user[paymentMethod]} ${paymentMethod}
-𝇈 *Para* : ${total} ${item}
+if (!items[item]) return conn.sendMessage(m.chat, { text: "El item no existe en la lista de items." }, { quoted: m })
 
-> Solo tienes *(${user[paymentMethod]} ${paymentMethod})* en tu inventario.`
-return conn.sendMessage(m.chat, { text: insuficienteResp }, { quoted: m })
-user[paymentMethod] -= listItems[item][paymentMethod] * total
-user[item] += total
-let compradoResp = `· ┄ · ⊸ 𔓕 *Shop  :  Buy*
-> ✅ Has comprado el recurso con exito.
+cantidad = parseInt(cantidad)
+if (isNaN(cantidad) || cantidad <= 0) return conn.sendMessage(m.chat, { text: `La cantidad no es valida, use solo números.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* boletos 1` }, { quoted: m })
 
-𝇈 *Artefacto* : ${item}
-𝇈 *Cantidad* : ${total}
-𝇈 *Gastos* : ${listItems[item][paymentMethod] * total} de *${paymentMethod}*
+let precioTotal = precios[item] * cantidad
+if (user.torucoin < precioTotal) return conn.sendMessage(m.chat, { text: `No tienes suficientes *[ 𔓕 ${currency} ]* para comprar el item.\n- Necesitas *𔓕 ${precioTotal} ${currency}* para comprar *[ ${items[item].emoji} ${cantidad} ${item} ]* en la tienda.` }, { quoted: m })
 
-> ${textbot}`
-await conn.sendMessage(m.chat, { text: compradoResp }, { quoted: m })
-} else {
-if (user[item] < total)
-let respNo = `📍  No tienes la cantidad requerida para vender el artefacto.
-- Solo tienes *(${user[item]} ${item})* en tu inventario.`
-return conn.sendMessage(m.chat, { text: respNo }, { quoted: m })
-let paymentMethod = Object.keys(listItems[item]).find((v) => v in user)
-user[item] -= total
-user[paymentMethod] += listItems[item][paymentMethod] * total
-let vendidoResp = `· ┄ · ⊸ 𔓕 *Shop  :  Sell*
-> ✅ Has vendido el recurso con exito.
+user.torucoin -= precioTotal
+user[items[item].dbName] += cantidad
 
-𝇈 *Vendido* : ${item}
-𝇈 *Cantidad* : ${total}
-𝇈 *Ganancias* : *${listItems[item][paymentMethod] * total} *${paymentMethod}*
-
-📍  Ahora tienes *(${user[paymentMethod]} ${paymentMethod})* en tu inventario.
-
-> ${textbot}`
-await conn.sendMessage(m.chat, { text: vendidoResp }, { quoted: m })
-}
+conn.sendMessage(m.chat, { text: `Has comprado *[ ${items[item].emoji} ${cantidad} ${item} ]* por *[ 𔓕 ${precioTotal} ${currency} ]* con exito.` }, { quoted: m })
 }
 
-handler.command = ["buy", "sell"]
-handler.disabled = false
-
+handler.command = ["shop"]
+handler.group = true
 export default handler
 
-function msToTime(duration) {
-var milliseconds = parseInt((duration % 1000) / 100),
-seconds = Math.floor((duration / 1000) % 60),
-minutes = Math.floor((duration / (1000 * 60)) % 60),
-hours = Math.floor((duration / (1000 * 60 * 60)) % 24)
-
-hours = hours < 10 ? '0' + hours : hours
-minutes = minutes < 10 ? '0' + minutes : minutes
-seconds = seconds < 10 ? '0' + seconds : seconds
-
-return minutes + ' minutos y ' + seconds + ' seg '
-}
-
-function pickRandom(list) {
-return list[Math.floor(Math.random() * list.length)]
-}
-
-function isNumber(number) {
-if (!number) return number
-number = parseInt(number)
-return typeof number == 'number' && !isNaN(number)
-}
+const more = String.fromCharCode(8206)
+const readMore = more.repeat(4001)
