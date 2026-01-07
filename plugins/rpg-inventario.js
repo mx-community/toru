@@ -39,7 +39,7 @@ const texto = `\t\t【  *I N V E N T A R I O*  】
 \t々 *Banco:*
 𔓕 ${currency} : *${bank.toLocaleString()}* (bank)
 ✩ ${currency2} : *${bankk.toLocaleString()}* (bank)
-
+${readMore}
 \t々 *Necesarios:*
 💠 Fragmentos : *${tawbot.toLocaleString()}*
 🌀 Puntos : *${puntos.toLocaleString()}*
@@ -62,3 +62,7 @@ handler.command = ['inventario', 'inv']
 handler.group = true 
 
 export default handler
+
+const more = String.fromCharCode(8206)
+const readMore = more.repeat(4001)
+                                                                              
