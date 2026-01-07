@@ -14,8 +14,8 @@ if (Date.now() < user.lastAdventure) {
 const tiempoRestante = formatTime(user.lastAdventure - Date.now())
 return conn.sendMessage(m.chat, { text: `Debes esperar *${tiempoRestante}* para volver a usar el comando.` }, { quoted: m })
 }
-monedas = Math.floor(Math.random() * 10) 
-experiencia = Math.floor(Math.random() * 5) 
+monedas = Math.floor(Math.random() * 15) 
+experiencia = Math.floor(Math.random() * 15) 
 user.lastAdventure = Date.now() + cooldown
 user.torucoin += monedas
 user.toruexp += experiencia
