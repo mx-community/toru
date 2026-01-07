@@ -1,3 +1,5 @@
+import fetch from 'node-fetch'
+
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
 let user = global.db.data.users[m.sender]
 let items = {
