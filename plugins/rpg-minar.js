@@ -14,8 +14,8 @@ if (Date.now() < user.lastmining) {
 const tiempoRestante = formatTime(user.lastmining - Date.now())
 return conn.sendMessage(m.chat, { text: `Debes esperar *${tiempoRestante}* para volver a usar el comando.` }, { quoted: m })
 }
-monedas = Math.floor(Math.random() * 10) 
-experiencia = Math.floor(Math.random() * 5) 
+monedas = Math.floor(Math.random() * 20) 
+experiencia = Math.floor(Math.random() * 15) 
 fragmentos = Math.floor(Math.random() * 35) 
 puntoss = Math.floor(Math.random() * 35) 
 user.lastmining = Date.now() + cooldown
@@ -26,8 +26,11 @@ user.puntos += puntoss
 let minResultado = `\t〩  *M I N I N G  :  R P G*
 - *${pickRandom(mineral)}*
 
+⚶ *Balance:*
 \t𔓕 ${currency} : *+${monedas.toLocaleString()}*
 \t✩ ${currency2} : *+${experiencia.toLocaleString()}*
+
+⚶ *Recursos:*
 \t💠 Fragmentos : *+${fragmentos.toLocaleString()}*
 \t🌀 Puntos : *+${puntoss.toLocaleString()}*
 
