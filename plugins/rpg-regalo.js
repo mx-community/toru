@@ -54,7 +54,7 @@ return await conn.sendMessage(m.chat, { text: noXd, mentions: [m.sender], contex
  }
 }
 
-handler.command = ['coffer', 'cofre']
+handler.command = ['regalo', 'caja']
 handler.group = true
 
 export default handler
