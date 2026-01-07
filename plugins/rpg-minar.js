@@ -20,7 +20,7 @@ const tiempoRestante = formatTime(user.lastmining - Date.now())
 return conn.sendMessage(m.chat, { text: `Debes esperar *${tiempoRestante}* para volver a usar el comando.` }, { quoted: m })
 }
 
-if (user.torupico >= 1) {
+if (user.torupico >= 50) {
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/bt96yl.jpg`)).arrayBuffer())
 monedas = Math.floor(Math.random() * 25) 
 experiencia = Math.floor(Math.random() * 25) 
@@ -45,9 +45,10 @@ let minResultado = `\t〩  *M I N I N G  :  R P G*
 > ${textbot}`
 await conn.sendMessage(m.chat, { text: minResultado, mentions: [m.sender], contextInfo: { externalAdReply: { title: "々  M I N I N G  々", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 user.health -= 10
+user.torupico -= 10
 } else {
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/bt96yl.jpg`)).arrayBuffer())
-noXd = `Te falta un *[ ⛏️ Pico ]* para minar.\n- Compra en la tienda por *[ 𔓕 50 ${currency} ]* en total.`
+noXd = `Te falta un *[ ⛏️ Pico ]* para minar.\n- Compra con *${usedPrefix}rpg* por *[ ✩ 50 ${currency2} ]* en total.`
 return conn.sendMessage(m.chat, { text: noXd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⛏️ ¡Pico faltante para minar!", body: "Compra un pico para poder minar.", thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 }
 }
