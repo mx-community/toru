@@ -4,18 +4,26 @@ if (!global.db.data.chats[m.chat].fRpg && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `✦ Los comandos de *[ RPG ]* estan desactivados.\n- Un administrador puede activarlo con: *#fc-rpg on*` }, { quoted: m })
 }
 
-let monedas, experiencia, fragmentos, puntoss
-const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/bt96yl.jpg`)).arrayBuffer())
+let monedas, experiencia, fragmentos, puntoss, imagen, noXd
 let user = global.db.data.users[m.sender]
 const cooldown = 2 * 60 * 1000
 user.lastmining = user.lastmining || 0
+user.health = user.health || 100
+
+if (user.health < 10) {
+imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/ozwfwe.jpg`)).arrayBuffer())
+return conn.sendMessage(m.chat, { text: `No tienes la salud suficiente para minar.\n- Tu salud es de *[ ❤️ ${user.health}% ]*, usa *${usedPrefix}curar* para sanar.`, mentions: [m.sender], contextInfo: { externalAdReply: { title: "❤️ ¡Salud insuficiente!", body: "Tienes poca salud, curate primero.", thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+}
 
 if (Date.now() < user.lastmining) {
 const tiempoRestante = formatTime(user.lastmining - Date.now())
 return conn.sendMessage(m.chat, { text: `Debes esperar *${tiempoRestante}* para volver a usar el comando.` }, { quoted: m })
 }
-monedas = Math.floor(Math.random() * 20) 
-experiencia = Math.floor(Math.random() * 15) 
+
+if (user.torupico >= 2) {
+imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/bt96yl.jpg`)).arrayBuffer())
+monedas = Math.floor(Math.random() * 25) 
+experiencia = Math.floor(Math.random() * 25) 
 fragmentos = Math.floor(Math.random() * 35) 
 puntoss = Math.floor(Math.random() * 35) 
 user.lastmining = Date.now() + cooldown
@@ -35,7 +43,14 @@ let minResultado = `\t〩  *M I N I N G  :  R P G*
 \t🌀 Puntos : *+${puntoss.toLocaleString()}*
 
 > ${textbot}`
-await conn.sendMessage(m.chat, { text: minResultado, mentions: [m.sender], contextInfo: { externalAdReply: { title: "々  P E S C A R  々", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: minResultado, mentions: [m.sender], contextInfo: { externalAdReply: { title: "々  P E S C A R  々", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+user.torupico -= 10
+user.health -= 10
+} else {
+imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/bt96yl.jpg`)).arrayBuffer())
+noXd = `Te falta un *[ ⛏️ Pico ]* para minar.\n- Compra en la tienda por *[ 𔓕 50 ${currency} ]* en total.`
+return conn.sendMessage(m.chat, { text: noXd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⛏️ ¡Pico faltante para minar!", body: "Compra un pico para poder minar.", thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+}
 }
 
 handler.command = ['mining', 'minar']
@@ -61,4 +76,5 @@ const mineral = [
 "Has minado en una cueva con varias ventajas.",
 "Minaste todo el dia en la cueva profunda."
 ]
-  
+
+                     
