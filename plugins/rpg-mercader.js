@@ -17,18 +17,18 @@ user.toruvela = user.toruvela || 0
 user.boletos = user.torucora || 0
 user.torullave = user.torullave || 0
 
-let ganado = Math.floor(Math.random() * 20) 
-let ganado2 = Math.floor(Math.random() * 15) 
+let ganado = Math.floor(Math.random() * 60) 
+let ganado2 = Math.floor(Math.random() * 55) 
 let ganado3 = Math.floor(Math.random() * 15) 
 let ganado4 = Math.floor(Math.random() * 15) 
 let ganado5 = Math.floor(Math.random() * 15) 
-let ganado6 = Math.floor(Math.random() * 2) 
+//let ganado6 = Math.floor(Math.random() * 2) 
 user.torucoin += ganado
 user.toruexp += ganado2
 user.torucora += ganado3
 user.toruvela += ganado4
 user.boletos += ganado5
-user.torullave += ganado6
+user.torullave += 2
 
 let respuesta = `\t〩  *M E R C A D E R : R P G*
 - ¡Gracias por los 10 pescados! Toma tu recompensa.
@@ -41,7 +41,7 @@ let respuesta = `\t〩  *M E R C A D E R : R P G*
 \t❤️ Corazones : *+${ganado3.toLocaleString()}*
 \t🕯️ Velas : *+${ganado4.toLocaleString()}*
 \t🧧 Boletos : *+${ganado5.toLocaleString()}*
-\t🗝️ Llaves : *+${ganado6.toLocaleString()}*
+\t🗝️ Llaves : *+2*
 
 > 🐟 _Consigue mas pescados para mas recompensas._`
  user.torupesc -= 10
