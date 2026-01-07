@@ -57,6 +57,9 @@ if (!("descargas" in user) || !isNumber(user.descargas)) user.descargas = 0
 if (!("arcoins" in user) || !isNumber(user.arcoins)) user.arcoins = 0
 if (!("uscoins" in user) || !isNumber(user.uscoins)) user.uscoins = 0
 if (!("level" in user) || !isNumber(user.level)) user.level = 0
+if (!("torupico" in user) || !isNumber(user.torupico)) user.torupico = 0
+if (!("toruesp" in user) || !isNumber(user.toruesp)) user.toruesp = 0
+if (!("toruach" in user) || !isNumber(user.toruach)) user.toruach = 0
 if (!("health" in user) || !isNumber(user.health)) user.health = 100
 if (!("genre" in user)) user.genre = ""
 if (!("birth" in user)) user.birth = ""
@@ -109,6 +112,9 @@ dlstickers: 0,
 arcoins: 0,
 uscoins: 0,
 level: 0,
+torupico: 0,
+toruesp: 0,
+toruach: 0,
 health: 100,
 genre: "",
 birth: "",
