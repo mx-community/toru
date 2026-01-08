@@ -3,7 +3,7 @@ import FormData from 'form-data';
 import cheerio from 'cheerio';
 const handler = async (m, { conn, text, usedPrefix, command }) => {
 if (!text) {
-return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un texto para crear el logo.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Adan` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un texto para crear un logo.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* toru` }, { quoted: m });
 }
 await m.react("⏰");
 const modelos = {
@@ -49,11 +49,11 @@ logo37: 'https://en.ephoto360.com/stars-night-online-1-85.html'
 const modelo = modelos[command.toLowerCase()];
 
 if (!modelo) {
-return conn.sendMessage(m.chat, { text: `📍  No se ha encontrado el logo ( *${usedPrefix command}* ), verifica si esta en la lista de logos.` }, { quoted: m });
-}
+return conn.sendMessage(m.chat, { text: `📍  No se ha encontrado el logo ( *#${command}* ), verifica si esta en la lista de logos.` }, { quoted: m });
+};
 
 const data = await ephoto(modelo, text);
-await conn.sendMessage(m.chat, { image: { url: data }, caption: `*whatsapp-logo-${text}.jpg*` }, { quoted: m });
+await conn.sendMessage(m.chat, { image: { url: data }, caption: `🖼️  *generador-logo-${text}.jpg*` }, { quoted: m });
 };
 
 async function ephoto(url, text) {
@@ -117,4 +117,5 @@ handler.command = [
 "logo37"
 ];
 export default handler;
+
   
