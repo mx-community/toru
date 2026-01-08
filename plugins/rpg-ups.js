@@ -23,10 +23,10 @@ imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/bt96yl.jpg`)).
 await conn.sendMessage(m.chat, { text: pico, mentions: [m.sender], contextInfo: { externalAdReply: { title: "PICO  :  RPG", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 } else if (args[0] === "--up") {
 if (user.toruexp >= 50) {
-exito = `Mejoraste el *[ ⛏️ Pico ]* en +50 puntos de durabilidad.`
-return conn.sendMessage(m.chat, { text: exito }, { quoted: m })
 user.torupico += 50
 user.toruexp -= 50
+exito = `Mejoraste el *[ ⛏️ Pico ]* en +50 puntos de durabilidad.`
+return conn.sendMessage(m.chat, { text: exito }, { quoted: m })
 } else {
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/r0t9ng.jpg`)).arrayBuffer())
 noXd = `No tienes suficientes *[ ✩ ${currency2} ]* para mejorar el pico.\n- Solo tienes ✩ *${user.toruexp} ${currency}* en tu inventario.`
