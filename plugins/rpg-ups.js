@@ -38,7 +38,7 @@ return conn.sendMessage(m.chat, { text: noXd, mentions: [m.sender], contextInfo:
 if (command === "espada") {
 if (!args[0]) {
 let espada = `· ┄ · ⊸ 𔓕 *Espada  :  RPG*
-- _Mejora tu pico de minería._
+- _Mejora tu espada de batalla._
 
 > 〩 *Durabilidad:*
 \t🗡️ *${user.toruesp}%*
@@ -67,7 +67,7 @@ return conn.sendMessage(m.chat, { text: noXd, mentions: [m.sender], contextInfo:
 if (command === "hacha") {
 if (!args[0]) {
 let hacha = `· ┄ · ⊸ 𔓕 *Hacha  :  RPG*
-- _Mejora tu pico de minería._
+- _Mejora tu hacha de trabajo._
 
 > 〩 *Durabilidad:*
 \t🪓 *${user.toruach}%*
