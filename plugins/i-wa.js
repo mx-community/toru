@@ -32,7 +32,7 @@ let infoXd = `\t〨  *C A N A L  :  M X*
 
 \t⸭ 📍  Hola usuario *@${name}*, espero y estes bien, este es nuestro canal, nuevo y reciente.
 
-🌐 ${global.canal} (no puede ser cambiado)
+🌐 *Undefined* (Aun no estableció un canal)
 
 > ${textbot}`
 await conn.sendMessage(m.chat, { text: infoXd }, { quoted: m })
@@ -116,7 +116,7 @@ await conn.sendMessage(m.chat, { text: `✓  Comentario enviado a los desarrolla
 
 };
 
-handler.command = ['info', 'creador' 'infobot', 'canal', 'channel', 'donate', 'donar', 'mp', 'bk', 'pay', 'tyc', 'terminos', 'support', 'soporte'];
+handler.command = ['info', 'creador', 'infobot', 'canal', 'channel', 'donate', 'donar', 'mp', 'bk', 'pay', 'tyc', 'terminos', 'support', 'soporte'];
 
 export default handler;
   
