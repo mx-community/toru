@@ -11,9 +11,6 @@ let items = {
 "cupones": { dbName: "cupones", emoji: "🎟️" },
 "fragmentos": { dbName: "tawbot", emoji: "💠" },
 "puntos": { dbName: "puntos", emoji: "🌀" },
-"pico": { dbName: "torupico", emoji: "⛏️" },
-"espada": { dbName: "toruesp", emoji: "🗡️" },
-"hacha": { dbName: "toruach", emoji: "🪓" },
 "llaves": { dbName: "torullave", emoji: "🗝️" },
 "piesas": { dbName: "torupiesa", emoji: "🧩" }
 }
@@ -27,9 +24,6 @@ let precios = {
 "corazones": 3,
 "cupones": 65,
 "regalos": 45,
-"pico": 50,
-"espada": 50,
-"hacha": 50,
 "piesas": 10
 }
 
@@ -51,10 +45,7 @@ ${readMore}
 🎁 *Regalos*  :  $45
 🎟️ *Cupones*  :  $65
 
-> 〩 *Escenciales:*
-⛏️ *Pico*  :  $50
-🗡️ *Espada*  :  $50
-🪓 *Hacha*  :  $50
+📍  Usa *${usedPrefix}rpg* para comprar herramientas necesarias.
 
 > ${textbot}`
   
