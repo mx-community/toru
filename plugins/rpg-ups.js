@@ -49,13 +49,13 @@ let espada = `· ┄ · ⊸ 𔓕 *Espada  :  RPG*
 
 > Usa *(${usedPrefix + command} --up)* para mejorar la durabilidad.`
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/36pk4m.jpg`)).arrayBuffer())
-await conn.sendMessage(m.chat, { text: espada, mentions: [m.sender], contextInfo: { externalAdReply: { title: "PICO  :  RPG", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: espada, mentions: [m.sender], contextInfo: { externalAdReply: { title: "ESPADA  :  RPG", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 } else if (args[0] === "--up") {
 if (user.toruexp >= 50) {
-exito = `Mejoraste la *[ 🗡️ Espada ]* en +50 puntos de durabilidad.`
-return conn.sendMessage(m.chat, { text: exito }, { quoted: m })
 user.toruesp += 50
 user.toruexp -= 50
+exito = `Mejoraste la *[ 🗡️ Espada ]* en +50 puntos de durabilidad.`
+return conn.sendMessage(m.chat, { text: exito }, { quoted: m })
 } else {
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/r0t9ng.jpg`)).arrayBuffer())
 noXd = `No tienes suficientes *[ ✩ ${currency2} ]* para mejorar el pico.\n- Solo tienes ✩ *${user.toruexp} ${currency}* en tu inventario.`
@@ -78,13 +78,13 @@ let hacha = `· ┄ · ⊸ 𔓕 *Hacha  :  RPG*
 
 > Usa *(${usedPrefix + command} --up)* para mejorar la durabilidad.`
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/pg6w1t.jpg`)).arrayBuffer())
-await conn.sendMessage(m.chat, { text: hacha, mentions: [m.sender], contextInfo: { externalAdReply: { title: "PICO  :  RPG", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: hacha, mentions: [m.sender], contextInfo: { externalAdReply: { title: "HACHA  :  RPG", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 } else if (args[0] === "--up") {
 if (user.toruexp >= 50) {
-exito = `Mejoraste el *[ 🪓 Hacha ]* en +50 puntos de durabilidad.`
-return conn.sendMessage(m.chat, { text: exito }, { quoted: m })
 user.toruach += 50
 user.toruexp -= 50
+exito = `Mejoraste el *[ 🪓 Hacha ]* en +50 puntos de durabilidad.`
+return conn.sendMessage(m.chat, { text: exito }, { quoted: m })
 } else {
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/r0t9ng.jpg`)).arrayBuffer())
 noXd = `No tienes suficientes *[ ✩ ${currency2} ]* para mejorar el pico.\n- Solo tienes ✩ *${user.toruexp} ${currency}* en tu inventario.`
