@@ -45,7 +45,7 @@ let cofreXd = `\t〩  *R E G A L O  :  R P G*
 \t🗝️ Llaves : *+3*
 
 > 🎁 _Consigue mas regalos para mas recompensas._`
-await conn.sendMessage(m.chat, { text: cofreXd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "々  C O F R E  々", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: cofreXd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "々  R E G A L O  々", body: "¡Abriste un regalo!", thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 user.toruregal -= 1
 } else {
 let noXd = `No tienes *[ 🎁 Regalos ]* para abrir.\n- Puedes comprar en la tienda usando *${usedPrefix}shop*.`
