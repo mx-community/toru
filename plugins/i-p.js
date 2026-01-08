@@ -3,6 +3,7 @@ import moment from 'moment-timezone'
 import { cpus as _cpus, totalmem, freemem, platform, hostname } from 'os'
 import { exec, execSync } from 'child_process'
 import { sizeFormatter } from 'human-readable'
+import os from 'os'
 import fetch from 'node-fetch'
 
 let handler = async (m, { conn }) => {
