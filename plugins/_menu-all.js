@@ -33,6 +33,7 @@ let menuInfo = `\t⊹ *${usedPrefix}info*
 \t⊹ *${usedPrefix}mods!*
 \t⊹ *${usedPrefix}admins!*
 \t⊹ *${usedPrefix}stat*
+\t⊹ *${usedPrefix}anuncios*
 \t⊹ *${usedPrefix}support*   [text]`
 let menuDesc = `\t⊹ *${usedPrefix}ytmp3*   [link/text]
 \t⊹ *${usedPrefix}ytmp4*   [link/text]
