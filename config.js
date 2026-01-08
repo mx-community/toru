@@ -22,7 +22,7 @@ global.prems = []
 global.mods = []
 
 global.libreria = "mx-baileys"
-global.vs = "^1.0.0"
+global.vs = "^1.8.2"
 global.nameqr = "Onix-Created"
 global.sessions = "Sessions/Principal"
 global.jadi = "Sessions/SubBot"
@@ -33,6 +33,7 @@ global.author = "@mx-community"
 global.etiqueta = "@mx-support"
 global.currency = "Monedas"
 global.currency2 = "Estrellas"
+global.toruads = "Sin anuncios por el momento..."
 global.banner = "https://qu.ax/XPDQK.jpg"
 global.catalogo = "https://qu.ax/EpMPK.jpg"
 
