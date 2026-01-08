@@ -61,6 +61,9 @@ if (!("torupico" in user) || !isNumber(user.torupico)) user.torupico = 0
 if (!("toruesp" in user) || !isNumber(user.toruesp)) user.toruesp = 0
 if (!("toruach" in user) || !isNumber(user.toruach)) user.toruach = 0
 if (!("health" in user) || !isNumber(user.health)) user.health = 100
+if (!("tawc" in user) || !isNumber(user.tawc)) user.tawc = 0
+if (!("tawc2" in user) || !isNumber(user.tawc2)) user.tawc2 = 0
+if (!("tawc3" in user) || !isNumber(user.tawc3)) user.tawc3 = 0
 if (!("genre" in user)) user.genre = ""
 if (!("birth" in user)) user.birth = ""
 if (!("misocial" in user)) user.misocial = ""
@@ -116,6 +119,9 @@ torupico: 0,
 toruesp: 0,
 toruach: 0,
 health: 100,
+tawc: 0,
+tawc2: 0,
+tawc3: 0,
 genre: "",
 birth: "",
 misocial: "",
