@@ -69,7 +69,7 @@ imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/10bj4k.jpg`)).
 await await conn.sendMessage(m.chat, { text: respRank, mentions: [m.sender], contextInfo: { externalAdReply: { title: "𖡛 NEW RANK 𖡛", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 user.puntos -= 150
 } else {
-let noPunt = `No tienes suficientes *[ 🌀 Puntos ]* para subir de rango.\n- Solo tienes 🌀 *${user.tawbot} Puntos* en tu inventario.`
+let noPunt = `No tienes suficientes *[ 🌀 Puntos ]* para subir de rango.\n- Solo tienes 🌀 *${user.puntos} Puntos* en tu inventario.`
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/2bndyf.jpg`)).arrayBuffer())
 return conn.sendMessage(m.chat, { text: noPunt, mentions: [m.sender], contextInfo: { externalAdReply: { title: "¡Insuficientes puntos!", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
   }
