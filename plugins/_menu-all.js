@@ -93,15 +93,19 @@ let menuRpg = `\t⊹ *${usedPrefix}aventura*
 \t⊹ *${usedPrefix}revelar*
 \t⊹ *${usedPrefix}mercader*
 \t⊹ *${usedPrefix}work*
+\t⊹ *${usedPrefix}velero*
 \t⊹ *${usedPrefix}inv*
 \t⊹ *${usedPrefix}pico*
 \t⊹ *${usedPrefix}espada*
 \t⊹ *${usedPrefix}hacha*
 \t⊹ *${usedPrefix}regalo*
+\t⊹ *${usedPrefix}cazar*
+\t⊹ *${usedPrefix}talar*
+\t⊹ *${usedPrefix}rpg*   [query]
 \t⊹ *${usedPrefix}dep*   [query]
 \t⊹ *${usedPrefix}dep2*   [query]
 \t⊹ *${usedPrefix}shop*   [query]
-\t⊹ *${usedPrefix}wallet*   (who)`
+\t⊹ *${usedPrefix}stats*   [reply]`
 let menuUtils = `\t⊹ *${usedPrefix}lid*
 \t⊹ *${usedPrefix}lids*
 \t⊹ *${usedPrefix}cid*   [link]
@@ -111,10 +115,13 @@ let menuUtils = `\t⊹ *${usedPrefix}lid*
 \t⊹ *${usedPrefix}getpic*   [mention]
 \t⊹ *${usedPrefix}flag*   [country]
 \t⊹ *${usedPrefix}hweb*   [link]`
-let menuStick = `\t⊹ *${usedPrefix}sticker*   [reply]
+let menuStick = `\t⊹ *${usedPrefix}exif-*
+\t⊹ *${usedPrefix}exif+*   [text|text]
+\t⊹ *${usedPrefix}sticker*   [reply]
 \t⊹ *${usedPrefix}emojix*   [emoji+emoji]
-\t⊹ *${usedPrefix}exif*   [text]
+\t⊹ *${usedPrefix}exif+*   [text]
 \t⊹ *${usedPrefix}mtext*   [text]
+\t⊹ *${usedPrefix}brat*   [text]
 \t⊹ *${usedPrefix}qc*   [text]`
 let menuLogos = `\t⊹ *${usedPrefix}logo1*   [text]
 \t⊹ *${usedPrefix}logo2*   [text]
@@ -374,6 +381,7 @@ let categoColec = `🜲 Usuario : @${name}
 ᗢ Premium : ${premium}
 ⧨ Modo : *Publico*
 
+\`\`\`[ Actualizando... ]\`\`\`
 ${menuColec}
 
 > ${textbot}`
@@ -456,7 +464,7 @@ ${menuStick}
 ${menuLogos}
 
 
-༤〩 \`Coleccion\`
+༤〩 \`Coleccion\` *(actualizando...)*
 ${menuColec}
 
 
