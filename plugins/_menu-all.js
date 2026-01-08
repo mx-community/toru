@@ -111,6 +111,7 @@ let menuUtils = `\t⊹ *${usedPrefix}lid*
 \t⊹ *${usedPrefix}lids*
 \t⊹ *${usedPrefix}cid*   [link]
 \t⊹ *${usedPrefix}chatgpt*  [text]
+\t⊹ *${usedPrefix}imagina*  [text]
 \t⊹ *${usedPrefix}fetch*   [link]
 \t⊹ *${usedPrefix}is*   [option]
 \t⊹ *${usedPrefix}getpic*   [mention]
