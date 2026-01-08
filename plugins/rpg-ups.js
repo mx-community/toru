@@ -19,7 +19,7 @@ let pico = `· ┄ · ⊸ 𔓕 *Pico  :  RPG*
 ● Consumo  :  *-10% por mina*
 
 > Usa *(${usedPrefix + command} --up)* para mejorar la durabilidad.`
-imagen = Buffer.from(await (await fetch(``)).arrayBuffer())
+imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/bt96yl.jpg`)).arrayBuffer())
 await conn.sendMessage(m.chat, { text: pico, mentions: [m.sender], contextInfo: { externalAdReply: { title: "PICO  :  RPG", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 } else if (args[0] === "--up") {
 if (user.toruexp >= 50) {
