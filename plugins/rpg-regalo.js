@@ -30,8 +30,8 @@ let cofreXd = `\t〩  *R E G A L O  :  R P G*
 > ¡Abriste un cofre, reclama tu recompensa!
 
 ⚶ *Balance:*
-\t𔓕 ${currency}  :  *+${monedas.toLocaleString()}*
-\t✩ ${currency2}  :  *+${experiencia.toLocaleString()}*
+\t💵 ${currency}  :  *+${monedas.toLocaleString()}*
+\t🪙 ${currency2}  :  *+${experiencia.toLocaleString()}*
 
 ⚶ *Necesario:*
 \t💠 Fragmentos : *+${fragmentos.toLocaleString()}*
