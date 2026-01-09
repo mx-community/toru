@@ -24,8 +24,8 @@ user.torupesc += pescado
 let fishResultado = `\t〩  *F I S H I N G  :  R P G*
 - *${pickRandom(pesca)}*
 
-\t𔓕 ${currency} : *+${monedas.toLocaleString()}*
-\t✩ ${currency2} : *+${experiencia.toLocaleString()}*
+\t💵 ${currency} : *+${monedas.toLocaleString()}*
+\t🪙 ${currency2} : *+${experiencia.toLocaleString()}*
 \t🐟 Pescado *+${pescado.toLocaleString()}*
 
 > ${textbot}`
