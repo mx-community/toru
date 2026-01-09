@@ -29,7 +29,7 @@ exito = `Mejoraste el *[ ⛏️ Pico ]* en +50 puntos de durabilidad.`
 return conn.sendMessage(m.chat, { text: exito }, { quoted: m })
 } else {
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/r0t9ng.jpg`)).arrayBuffer())
-noXd = `No tienes suficientes *[ ✩ ${currency2} ]* para mejorar el pico.\n- Solo tienes ✩ *${user.toruexp} ${currency}* en tu inventario.`
+noXd = `No tienes suficientes *[ 🪙 ${currency2} ]* para mejorar el pico.\n- Solo tienes 🪙 *${user.toruexp} ${currency}* en tu inventario.`
 return conn.sendMessage(m.chat, { text: noXd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "¡Sin estrellas suficientes!", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 }
 }
@@ -58,7 +58,7 @@ exito = `Mejoraste la *[ 🗡️ Espada ]* en +50 puntos de durabilidad.`
 return conn.sendMessage(m.chat, { text: exito }, { quoted: m })
 } else {
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/r0t9ng.jpg`)).arrayBuffer())
-noXd = `No tienes suficientes *[ ✩ ${currency2} ]* para mejorar el pico.\n- Solo tienes ✩ *${user.toruexp} ${currency}* en tu inventario.`
+noXd = `No tienes suficientes *[ 🪙 ${currency2} ]* para mejorar el pico.\n- Solo tienes 🪙 *${user.toruexp} ${currency}* en tu inventario.`
 return conn.sendMessage(m.chat, { text: noXd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "¡Sin estrellas suficientes!", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 }
 }
@@ -87,7 +87,7 @@ exito = `Mejoraste el *[ 🪓 Hacha ]* en +50 puntos de durabilidad.`
 return conn.sendMessage(m.chat, { text: exito }, { quoted: m })
 } else {
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/r0t9ng.jpg`)).arrayBuffer())
-noXd = `No tienes suficientes *[ ✩ ${currency2} ]* para mejorar el pico.\n- Solo tienes ✩ *${user.toruexp} ${currency}* en tu inventario.`
+noXd = `No tienes suficientes *[ 🪙 ${currency2} ]* para mejorar el pico.\n- Solo tienes 🪙 *${user.toruexp} ${currency}* en tu inventario.`
 return conn.sendMessage(m.chat, { text: noXd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "¡Sin estrellas suficientes!", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 }
 }
