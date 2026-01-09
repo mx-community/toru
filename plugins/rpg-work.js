@@ -20,10 +20,10 @@ user.lastwork = Date.now() + cooldown
 user.torucoin += monedas
 user.toruexp += experiencia
 let workResultado = `\t〩  *W O R K  :  R P G*
-- 💬 *${pickRandom(trabajo)}*
+- *${pickRandom(trabajo)}*
 
-\t⧡ ${currency} : *+${monedas.toLocaleString()}*
-\t⧡ ${currency2} : *+${experiencia.toLocaleString()}*
+\t💵 ${currency} : *+${monedas.toLocaleString()}*
+\t🪙 ${currency2} : *+${experiencia.toLocaleString()}*
 
 > ${textbot}`
 await conn.sendMessage(m.chat, { text: workResultado, mentions: [m.sender], contextInfo: { externalAdReply: { title: "々  W O R K  々", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
