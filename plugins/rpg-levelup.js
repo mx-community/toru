@@ -10,7 +10,7 @@ if (!args[0]) {
 let estado = `· ┄ · ⊸ 𔓕 *Nivel  :  Rango*
 > ¡Aqui tienes la información de tu nivel y rango!
 
-> *Nivel y Rango:*
+> *Estado actual:*
 𖡛 Nivel : *lvl_${user.nivele}*
 🜲 Rango : *#${user.rangos}*
 
@@ -34,8 +34,8 @@ let respNivel = `· ┄ · ⊸ 𔓕 *New  :  Level*
 
 ❒ *Nivel* : +1
 ❒ *Llaves* : +${llaves.toLocaleString()}
-❒ *${currency}* : +${monedas.toLocaleString()}
-❒ *${currency2}* : +${experiencia.toLocaleString()}
+💵 *${currency}* : +${monedas.toLocaleString()}
+🪙 *${currency2}* : +${experiencia.toLocaleString()}
 
 > Consigue *[ 💠 100 Fragmentos ]* para subir de nivel y recibir recompensas.`
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/10bj4k.jpg`)).arrayBuffer())
@@ -60,9 +60,9 @@ let respRank = `· ┄ · ⊸ 𔓕 *New  :  Rank*
 > ¡Subiste de rango! Aqui tienes tu recompensa.
 
 ❒ *Rango* : +1
-❒ *Llaves* : +${llaves.toLocaleString()}
-❒ *${currency}* : +${monedas.toLocaleString()}
-❒ *${currency2}* : +${experiencia.toLocaleString()}
+❒ *Llaves* : +${llaves.toLocaleString()}*
+💵 *${currency}* : +${monedas.toLocaleString()}
+🪙 *${currency2}* : +${experiencia.toLocaleString()}
 
 > Consigue *[ 🌀 150 Puntos ]* para subir de rango y recibir recompensas.`
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/10bj4k.jpg`)).arrayBuffer())
