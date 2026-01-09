@@ -22,8 +22,8 @@ user.toruexp += experiencia
 let respuesta = `\t〩  *A V E N T U R A  :  R P G*
 - *${pickRandom(aventura)}*
 
-\t𔓕 ${currency} : *+${monedas.toLocaleString()}*
-\t✩ ${currency2} : *+${experiencia.toLocaleString()}*
+\t💵 ${currency} : *+${monedas.toLocaleString()}*
+\t🪙 ${currency2} : *+${experiencia.toLocaleString()}*
 
 > ${textbot}`
 await conn.sendMessage(m.chat, { text: respuesta, mentions: [m.sender], contextInfo: { externalAdReply: { title: "々  A V E N T U R A  々", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
