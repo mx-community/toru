@@ -5,7 +5,7 @@ const handler = async (m, { conn, usedPrefix, command }) => {
 let user = global.db.data.users[m.sender]
 let mensaje = `· ┄ · ⊸ 𔓕 *Coins  :  Stat*
 
-\t💵 *${currecy}* : ${user.torucoin}
+\t💵 *${currency}* : ${user.torucoin}
 \t🪙 *${currency2}* : ${user.toruexp}
 
 > ${text}`
