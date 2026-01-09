@@ -1,12 +1,12 @@
 // coins.js
-import emojis from './rpg-emojis.js'
+//import emojis from './rpg-emojis.js'
 
 const handler = async (m, { conn, usedPrefix, command }) => {
 let user = global.db.data.users[m.sender]
 let mensaje = `· ┄ · ⊸ 𔓕 *Coins  :  Stat*
 
-\t${emojis.dolares} *${currecy}* : ${user.torucoin}
-\t${emojis.monedas} *${currency2}* : ${user.toruexp}
+\t💵 *${currecy}* : ${user.torucoin}
+\t🪙 *${currency2}* : ${user.toruexp}
 
 > ${text}`
 conn.sendMessage(m.chat, { text: mensaje }, { quoted: m })
