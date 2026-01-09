@@ -11,8 +11,9 @@ user.lastmining = user.lastmining || 0
 user.health = user.health || 100
 
 if (user.health < 10) {
-imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/ozwfwe.jpg`)).arrayBuffer())
-return conn.sendMessage(m.chat, { text: `No tienes la salud suficiente para minar.\n- Tu salud es de *[ ❤️ ${user.health}% ]*, usa *${usedPrefix}curar* para sanar.`, mentions: [m.sender], contextInfo: { externalAdReply: { title: "❤️ ¡Salud insuficiente!", body: "Tienes poca salud, curate primero.", thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+//imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/ozwfwe.jpg`)).arrayBuffer())
+return conn.sendMessage(m.chat, { text: `No tienes la salud suficiente para minar.\n- Tu salud es de *[ ❤️ ${user.health}% ]*, usa *${usedPrefix}curar* para sanar.` }, { quoted: m })
+//conn.sendMessage(m.chat, { text: `No tienes la salud suficiente para minar.\n- Tu salud es de *[ ❤️ ${user.health}% ]*, usa *${usedPrefix}curar* para sanar.`, mentions: [m.sender], contextInfo: { externalAdReply: { title: "❤️ ¡Salud insuficiente!", body: "Tienes poca salud, curate primero.", thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 }
 
 if (Date.now() < user.lastmining) {
@@ -47,9 +48,10 @@ await conn.sendMessage(m.chat, { text: minResultado, mentions: [m.sender], conte
 user.health -= 10
 user.torupico -= 10
 } else {
-imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/bt96yl.jpg`)).arrayBuffer())
-noXd = `Te falta un *[ ⛏️ Pico ]* para minar.\n- Compra con *${usedPrefix}rpg* por *[ ✩ 50 ${currency2} ]* en total.`
-return conn.sendMessage(m.chat, { text: noXd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⛏️ ¡Pico faltante para minar!", body: "Compra un pico para poder minar.", thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+//imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/bt96yl.jpg`)).arrayBuffer())
+noXd = `Te falta un *[ ⛏️ Pico ]* para minar.\n- Compra con *${usedPrefix}rpg* por *[ 🪙 50 ${currency2} ]* en total.`
+return conn.sendMessage(m.chat, { text: noXd }, { quoted: m })
+  //conn.sendMessage(m.chat, { text: noXd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⛏️ ¡Pico faltante para minar!", body: "Compra un pico para poder minar.", thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 }
 }
 
