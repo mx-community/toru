@@ -49,7 +49,7 @@ user.health -= 10
 user.toruach -= 10
 } else {
 //imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/bt96yl.jpg`)).arrayBuffer())
-noXd = `Te falta un *[ 🪓 Hacha ]* para buscar madera.\n- Compra con *${usedPrefix}rpg* por *[ 💶 50 ${currency2} ]* en total.`
+noXd = `Te falta un *[ 🪓 Hacha ]* para buscar madera.\n- Compra con *${usedPrefix}rpg* por *[ 🪙 50 ${currency2} ]* en total.`
 return conn.sendMessage(m.chat, { text: noXd }, { quoted: m })
 //conn.sendMessage(m.chat, { text: noXd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⛏️ ¡Pico faltante para minar!", body: "Compra un pico para poder minar.", thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 }
