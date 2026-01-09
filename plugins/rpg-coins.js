@@ -8,7 +8,7 @@ let mensaje = `· ┄ · ⊸ 𔓕 *Coins  :  Stat*
 \t💵 *${currency}* : ${user.torucoin}
 \t🪙 *${currency2}* : ${user.toruexp}
 
-> ${text}`
+> ${textbot}`
 conn.sendMessage(m.chat, { text: mensaje }, { quoted: m })
 }
 
