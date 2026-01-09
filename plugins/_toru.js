@@ -43,8 +43,8 @@ global.apirest_url = 'https://api.cafirexos.com'
 global.apirest_url2 = 'https://api-brunosobrino-dcaf9040.koyeb.app'
 global.apirest_url3 = 'https://api-brunosobrino.onrender.com'
 
-global.toruImg = "https://files.catbox.moe/4oz3wp.jpg"
-global.toruMenu = "https://files.catbox.moe/esnv6d.jpg"
+global.toruImg = "https://i.postimg.cc/g0f4ZncC/IMG-20251118-WA0027.jpg"
+global.toruMenu = "https://i.postimg.cc/PJv67Y3Z/68747470733a2f2f692e706f7374696d672e63632f543336517a4877332f506963736172742d32352d31312d31372d32312d.jpg"
 
 global.redes = [canal, comunidad, webmx, paypal].getRandom()
 
