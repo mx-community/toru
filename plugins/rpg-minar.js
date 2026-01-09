@@ -35,8 +35,8 @@ let minResultado = `\t〩  *M I N I N G  :  R P G*
 - *${pickRandom(mineral)}*
 
 ⚶ *Balance:*
-\t𔓕 ${currency} : *+${monedas.toLocaleString()}*
-\t✩ ${currency2} : *+${experiencia.toLocaleString()}*
+\t💵 ${currency} : *+${monedas.toLocaleString()}*
+\t🪙 ${currency2} : *+${experiencia.toLocaleString()}*
 
 ⚶ *Recursos:*
 \t💠 Fragmentos : *+${fragmentos.toLocaleString()}*
