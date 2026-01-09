@@ -18,12 +18,12 @@ const texto = `\t〩  *W A L L E T  :  R P G*
 - Balance de @${name}
 
 ⚶ *Personal:*
-\t𔓕 ${currency} : *${torucoin.toLocaleString()}*
-\t✩ ${currency2} : *${toruexp.toLocaleString()}*
+\t💵 ${currency} : *${torucoin.toLocaleString()}*
+\t🪙 ${currency2} : *${toruexp.toLocaleString()}*
 
 ⚶ *Guardado:*
-\t𔓕 ${currency} : *${bank.toLocaleString()}*
-\t✩ ${currency2} : *${bankk.toLocaleString()}*
+\t💵 ${currency} : *${bank.toLocaleString()}*
+\t🪙 ${currency2} : *${bankk.toLocaleString()}*
 
 > 📍  Tienes *${total.toLocaleString()} de ${currency}* y *${total2.toLocaleString()} de ${currency2}* en total.`
 await conn.sendMessage(m.chat, { text: texto }, { quoted: m })
