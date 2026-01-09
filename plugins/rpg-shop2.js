@@ -24,7 +24,7 @@ user.torupico += 50
 info = `Has comprado *[ ⛏️ 1 Pico ]* por 50 *${currency2}* con exito.\n- Usa *${usedPrefix}pico* para ver los detalles.`
 return conn.sendMessage(m.chat, { text: info }, { quoted: m })
 } else {
-noXd = `No tienes suficientes *[ ✩ ${currency2} ]* para comprar el item.\n- Solo tienes ✩ *${user.toruexp} ${currency2}* en tu inventario.`
+noXd = `No tienes suficientes *[ 🪙 ${currency2} ]* para comprar el item.\n- Solo tienes 🪙 *${user.toruexp} ${currency2}* en tu inventario.`
 return conn.sendMessage(m.chat, { text: noXd }, { quoted: m })
  }
 } else if (args[0] === "espada") {
@@ -34,7 +34,7 @@ user.toruesp += 50
 info = `Has comprado *[ 🗡️ 1 Espada ]* por 50 *${currency2}* con exito.\n- Usa *${usedPrefix}espada* para ver los detalles.`
 return conn.sendMessage(m.chat, { text: info }, { quoted: m })
 } else {
-noXd = `No tienes suficientes *[ ✩ ${currency2} ]* para comprar el item.\n- Solo tienes ✩ *${user.toruexp} ${currency2}* en tu inventario.`
+noXd = `No tienes suficientes *[ 🪙 ${currency2} ]* para comprar el item.\n- Solo tienes 🪙 *${user.toruexp} ${currency2}* en tu inventario.`
 return conn.sendMessage(m.chat, { text: noXd }, { quoted: m })
  }
 } else if (args[0] === "hacha") {
@@ -44,7 +44,7 @@ user.toruach += 50
 info = `Has comprado *[ 🪓 1 Hacha ]* por 50 *${currency2}* con exito.\n- Usa *${usedPrefix}hacha* para ver los detalles.`
 return conn.sendMessage(m.chat, { text: info }, { quoted: m })
 } else {
-noXd = `No tienes suficientes *[ ✩ ${currency2} ]* para comprar el item.\n- Solo tienes ✩ *${user.toruexp} ${currency2}* en tu inventario.`
+noXd = `No tienes suficientes *[ 🪙 ${currency2} ]* para comprar el item.\n- Solo tienes 🪙 *${user.toruexp} ${currency2}* en tu inventario.`
 return conn.sendMessage(m.chat, { text: noXd }, { quoted: m })
  }
 }
