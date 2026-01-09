@@ -61,12 +61,12 @@ cantidad = parseInt(cantidad)
 if (isNaN(cantidad) || cantidad <= 0) return conn.sendMessage(m.chat, { text: `La cantidad no es valida, use solo números.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* boletos 1` }, { quoted: m })
 
 let precioTotal = precios[item] * cantidad
-if (user.torucoin < precioTotal) return conn.sendMessage(m.chat, { text: `No tienes suficientes *[ 𔓕 ${currency} ]* para comprar el item.\n- Necesitas *𔓕 ${precioTotal} ${currency}* para comprar *[ ${items[item].emoji} ${cantidad} ${item} ]* en la tienda.` }, { quoted: m })
+if (user.torucoin < precioTotal) return conn.sendMessage(m.chat, { text: `No tienes suficientes *[ 💵 ${currency} ]* para comprar el item.\n- Necesitas *💵 ${precioTotal} ${currency}* para comprar *[ ${items[item].emoji} ${cantidad} ${item} ]* en la tienda.` }, { quoted: m })
 
 user.torucoin -= precioTotal
 user[items[item].dbName] += cantidad
 
-conn.sendMessage(m.chat, { text: `Has comprado *[ ${items[item].emoji} ${cantidad} ${item} ]* con exito.\n- Por *[ 𔓕 ${precioTotal} ${currency} ]* gastados.` }, { quoted: m })
+conn.sendMessage(m.chat, { text: `Has comprado *[ ${items[item].emoji} ${cantidad} ${item} ]* con exito.\n- Por *[ 💵 ${precioTotal} ${currency} ]* gastados.` }, { quoted: m })
 }
 
 handler.command = ["shop"]
