@@ -95,13 +95,14 @@ let menuRpg = `\t⊹ *${usedPrefix}aventura*
 \t⊹ *${usedPrefix}mercader*
 \t⊹ *${usedPrefix}work*
 \t⊹ *${usedPrefix}velero*
-\t⊹ *${usedPrefix}inv*
+\t⊹ *${usedPrefix}coins*
 \t⊹ *${usedPrefix}pico*
 \t⊹ *${usedPrefix}espada*
 \t⊹ *${usedPrefix}hacha*
 \t⊹ *${usedPrefix}regalo*
 \t⊹ *${usedPrefix}cazar*
 \t⊹ *${usedPrefix}talar*
+\t⊹ *${usedPrefix}inv*   [reply]
 \t⊹ *${usedPrefix}rpg*   [query]
 \t⊹ *${usedPrefix}dep*   [query]
 \t⊹ *${usedPrefix}dep2*   [query]
@@ -275,156 +276,254 @@ let menu = `> ${hora}, ${dia} ${fechaTxt}
 
 〝👋🏻  Bot automático via *(WhatsApp/Business)*, puede obtener información/datos o otras ventajas para proporcionar un uso util para todo usuario.〞
 
-⧨ Modo : *Publico*
+⧨ Modo : *Privado*
 🜲 Usuario : @${name}
-＃ Prefix : *(multi)*
+＃ Prefix : *(/ ! # - .)*
 ᗢ Premium : *${premium}*
 ✦ Version : *${vs} (/mx_lt)*
-
-
+⎋ URL : ${botweb}
+${readMore}
 \t〩 \`Categorias:\`
 ${listaPrincipal}
 
 \t⚶ Por ejemplo:
 *#menu info*`
-return conn.sendMessage(m.chat, { text: menu, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot2, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: menu, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: false, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot2, sourceUrl: botweb }}}, { quoted: m })
+//conn.sendMessage(m.chat, { text: menu, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot2, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 } else if (args[0] === 'info' || args[0] === '1') {
-let categoInfo = `🜲 Usuario : @${name}
-ᗢ Premium : ${premium}
-⧨ Modo : *Publico*
+let categoInfo = `> ${hora}, ${dia} ${fechaTxt}
+
+⧨ Modo : *Privado*
+🜲 Usuario : @${name}
+＃ Prefix : *(/ ! # - .)*
+ᗢ Premium : *${premium}*
+✦ Version : *${vs} (/mx_lt)*
+⎋ URL : ${botweb}
+${readMore}
 
 ${menuInfo}
 
 > ${textbot}`
-return conn.sendMessage(m.chat, { text: categoInfo, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: categoInfo, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: true, renderLargerThumbnail: true, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot, sourceUrl: botweb }}}, { quoted: m })
+//conn.sendMessage(m.chat, { text: categoInfo, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'dls' || args[0] === '2') {
-let categoDesc = `🜲 Usuario : @${name}
-ᗢ Premium : ${premium}
-⧨ Modo : *Publico*
+let categoDesc = `> ${hora}, ${dia} ${fechaTxt}
+
+⧨ Modo : *Privado*
+🜲 Usuario : @${name}
+＃ Prefix : *(/ ! # - .)*
+ᗢ Premium : *${premium}*
+✦ Version : *${vs} (/mx_lt)*
+⎋ URL : ${botweb}
+${readMore}
 
 ${menuDesc}
 
 > ${textbot}`
-return conn.sendMessage(m.chat, { text: categoDesc, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: categoDesc, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: true, renderLargerThumbnail: true, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot, sourceUrl: botweb }}}, { quoted: m })
+//conn.sendMessage(m.chat, { text: categoDesc, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'conv' || args[0] === '3') {
-let categoConv = `🜲 Usuario : @${name}
-ᗢ Premium : ${premium}
-⧨ Modo : *Publico*
+let categoConv = `> ${hora}, ${dia} ${fechaTxt}
+
+⧨ Modo : *Privado*
+🜲 Usuario : @${name}
+＃ Prefix : *(/ ! # - .)*
+ᗢ Premium : *${premium}*
+✦ Version : *${vs} (/mx_lt)*
+⎋ URL : ${botweb}
+${readMore}
 
 ${menuConv}
 
 > ${textbot}`
 return conn.sendMessage(m.chat, { text: categoConv, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'search' || args[0] === '4') {
-let categoSearch = `🜲 Usuario : @${name}
-ᗢ Premium : ${premium}
-⧨ Modo : *Publico*
+let categoSearch = `> ${hora}, ${dia} ${fechaTxt}
+
+⧨ Modo : *Privado*
+🜲 Usuario : @${name}
+＃ Prefix : *(/ ! # - .)*
+ᗢ Premium : *${premium}*
+✦ Version : *${vs} (/mx_lt)*
+⎋ URL : ${botweb}
+${readMore}
 
 ${menuSearch}
 
 > ${textbot}`
-return conn.sendMessage(m.chat, { text: categoSearch, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: categoSearch, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: true, renderLargerThumbnail: true, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot, sourceUrl: botweb }}}, { quoted: m })
+//conn.sendMessage(m.chat, { text: categoSearch, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'group' || args[0] === '5') {
-let categoGroup = `🜲 Usuario : @${name}
-ᗢ Premium : ${premium}
-⧨ Modo : *Publico*
+let categoGroup = `> ${hora}, ${dia} ${fechaTxt}
+
+⧨ Modo : *Privado*
+🜲 Usuario : @${name}
+＃ Prefix : *(/ ! # - .)*
+ᗢ Premium : *${premium}*
+✦ Version : *${vs} (/mx_lt)*
+⎋ URL : ${botweb}
+${readMore}
 
 ${menuGroup}
 
 > ${textbot}`
-return conn.sendMessage(m.chat, { text: categoGroup, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: categoGroup, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: true, renderLargerThumbnail: true, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot, sourceUrl: botweb }}}, { quoted: m })
+//conn.sendMessage(m.chat, { text: categoGroup, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'prof' || args[0] === '6') {
-let categoProf = `🜲 Usuario : @${name}
-ᗢ Premium : ${premium}
-⧨ Modo : *Publico*
+let categoProf = `> ${hora}, ${dia} ${fechaTxt}
+
+⧨ Modo : *Privado*
+🜲 Usuario : @${name}
+＃ Prefix : *(/ ! # - .)*
+ᗢ Premium : *${premium}*
+✦ Version : *${vs} (/mx_lt)*
+⎋ URL : ${botweb}
+${readMore}
 
 ${menuProf}
 
 > ${textbot}`
-return conn.sendMessage(m.chat, { text: categoProf, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: categoProf, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: true, renderLargerThumbnail: true, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot, sourceUrl: botweb }}}, { quoted: m })
+//conn.sendMessage(m.chat, { text: categoProf, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'rpg' || args[0] === '7') {
-let categoRpg = `🜲 Usuario : @${name}
-ᗢ Premium : ${premium}
-⧨ Modo : *Publico*
+let categoRpg = `> ${hora}, ${dia} ${fechaTxt}
+
+⧨ Modo : *Privado*
+🜲 Usuario : @${name}
+＃ Prefix : *(/ ! # - .)*
+ᗢ Premium : *${premium}*
+✦ Version : *${vs} (/mx_lt)*
+⎋ URL : ${botweb}
+${readMore}
 
 ${menuRpg}
 
 > ${textbot}`
-return conn.sendMessage(m.chat, { text: categoRpg, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: categoRpg, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: true, renderLargerThumbnail: true, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot, sourceUrl: botweb }}}, { quoted: m })
+//conn.sendMessage(m.chat, { text: categoRpg, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'utils' || args[0] === '8') {
-let categoUtils = `🜲 Usuario : @${name}
-ᗢ Premium : ${premium}
-⧨ Modo : *Publico*
+let categoUtils = `> ${hora}, ${dia} ${fechaTxt}
+
+⧨ Modo : *Privado*
+🜲 Usuario : @${name}
+＃ Prefix : *(/ ! # - .)*
+ᗢ Premium : *${premium}*
+✦ Version : *${vs} (/mx_lt)*
+⎋ URL : ${botweb}
+${readMore}
 
 ${menuUtils}
 
 > ${textbot}`
-return conn.sendMessage(m.chat, { text: categoUtils, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: categoUtils, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: true, renderLargerThumbnail: true, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot, sourceUrl: botweb }}}, { quoted: m })
+//conn.sendMessage(m.chat, { text: categoUtils, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'stickers' || args[0] === '9') {
-let categoStick = `🜲 Usuario : @${name}
-ᗢ Premium : ${premium}
-⧨ Modo : *Publico*
+let categoStick = `> ${hora}, ${dia} ${fechaTxt}
+
+⧨ Modo : *Privado*
+🜲 Usuario : @${name}
+＃ Prefix : *(/ ! # - .)*
+ᗢ Premium : *${premium}*
+✦ Version : *${vs} (/mx_lt)*
+⎋ URL : ${botweb}
+${readMore}
 
 ${menuStick}
 
 > ${textbot}`
-return conn.sendMessage(m.chat, { text: categoStick, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: categoStick, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: true, renderLargerThumbnail: true, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot, sourceUrl: botweb }}}, { quoted: m })
+//conn.sendMessage(m.chat, { text: categoStick, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'logos' || args[0] === '10') {
-let categoLogos = `🜲 Usuario : @${name}
-ᗢ Premium : ${premium}
-⧨ Modo : *Publico*
+let categoLogos = `> ${hora}, ${dia} ${fechaTxt}
+
+⧨ Modo : *Privado*
+🜲 Usuario : @${name}
+＃ Prefix : *(/ ! # - .)*
+ᗢ Premium : *${premium}*
+✦ Version : *${vs} (/mx_lt)*
+⎋ URL : ${botweb}
+${readMore}
 
 ${menuLogos}
 
 > ${textbot}`
 return conn.sendMessage(m.chat, { text: categoLogos, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'coleccion' || args[0] === '11') {
-let categoColec = `🜲 Usuario : @${name}
-ᗢ Premium : ${premium}
-⧨ Modo : *Publico*
+let categoColec = `> ${hora}, ${dia} ${fechaTxt}
+
+⧨ Modo : *Privado*
+🜲 Usuario : @${name}
+＃ Prefix : *(/ ! # - .)*
+ᗢ Premium : *${premium}*
+✦ Version : *${vs} (/mx_lt)*
+⎋ URL : ${botweb}
+${readMore}
 
 \`\`\`[ Actualizando... ]\`\`\`
 ${menuColec}
 
 > ${textbot}`
-return conn.sendMessage(m.chat, { text: categoColec, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: categoColec, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: true, renderLargerThumbnail: true, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot, sourceUrl: botweb }}}, { quoted: m })
+//conn.sendMessage(m.chat, { text: categoColec, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'random' || args[0] === '12') {
-let categoRandom = `🜲 Usuario : @${name}
-ᗢ Premium : ${premium}
-⧨ Modo : *Publico*
+let categoRandom = `> ${hora}, ${dia} ${fechaTxt}
+
+⧨ Modo : *Privado*
+🜲 Usuario : @${name}
+＃ Prefix : *(/ ! # - .)*
+ᗢ Premium : *${premium}*
+✦ Version : *${vs} (/mx_lt)*
+⎋ URL : ${botweb}
+${readMore}
 
 ${menuRandom}
 
 > ${textbot}`
-return conn.sendMessage(m.chat, { text: categoRandom, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: categoRandom, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: true, renderLargerThumbnail: true, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot, sourceUrl: botweb }}}, { quoted: m })
+//conn.sendMessage(m.chat, { text: categoRandom, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'reac' || args[0] === '13') {
-let categoReac = `🜲 Usuario : @${name}
-ᗢ Premium : ${premium}
-⧨ Modo : *Publico*
+let categoReac = `> ${hora}, ${dia} ${fechaTxt}
+
+⧨ Modo : *Privado*
+🜲 Usuario : @${name}
+＃ Prefix : *(/ ! # - .)*
+ᗢ Premium : *${premium}*
+✦ Version : *${vs} (/mx_lt)*
+⎋ URL : ${botweb}
+${readMore}
 
 ${menuReac}
 
 > ${textbot}`
-return conn.sendMessage(m.chat, { text: categoReac, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: categoReac, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: true, renderLargerThumbnail: true, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot, sourceUrl: botweb }}}, { quoted: m })
+//conn.sendMessage(m.chat, { text: categoReac, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'owner' || args[0] === 'own') {
-let categoOwn = `🜲 Usuario : @${name}
-ᗢ Premium : ${premium}
-⧨ Modo : *Publico*
+let categoOwn = `> ${hora}, ${dia} ${fechaTxt}
+
+⧨ Modo : *Privado*
+🜲 Usuario : @${name}
+＃ Prefix : *(/ ! # - .)*
+ᗢ Premium : *${premium}*
+✦ Version : *${vs} (/mx_lt)*
+⎋ URL : ${botweb}
+${readMore}
 
 ${menuOwn}
 
 > ${textbot}`
-return conn.sendMessage(m.chat, { text: categoOwn, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: categoOwn, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: true, renderLargerThumbnail: true, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot, sourceUrl: botweb }}}, { quoted: m })
+//conn.sendMessage(m.chat, { text: categoOwn, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'all' || args[0] === '0') {
 let categoAll = `> ${hora}, ${dia} ${fechaTxt}
 
 〝👋🏻  Bot automático via *(WhatsApp/Business)*, puede obtener información/datos o otras ventajas para proporcionar un uso util para todo usuario.〞
 
-⧨ Modo : *Publico*
+⧨ Modo : *Privado*
 🜲 Usuario : @${name}
-＃ Prefix : *(multi)*
+＃ Prefix : *(/ ! # - .)*
 ᗢ Premium : *${premium}*
 ✦ Version : *${vs} (/mx_lt)*
+⎋ URL : ${botweb}
 ${readMore}
 ༤〩 \`Informacion\`
 ${menuInfo}
@@ -482,7 +581,8 @@ ${menuReac}
 ${menuOwn}
 
 > ${textbot}`
-return conn.sendMessage(m.chat, { text: categoAll, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: categoAll, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: true, renderLargerThumbnail: true, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot, sourceUrl: botweb }}}, { quoted: m })
+//conn.sendMessage(m.chat, { text: categoAll, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else {
 let pruebaXd = `📍  El menu *( ${args[0]} )* no existe.\n- Use *${usedPrefix + command}* para ver las categorías.`
 return conn.sendMessage(m.chat, { text: pruebaXd }, { quoted: m })
