@@ -31,7 +31,7 @@ global.botweb = "https://wa.me/5493873655135"
 global.textbot = "ʙᴏᴛ ɪɴᴛᴇɢʀᴀᴛᴇᴅ ᴡɪᴛʜ ᴡʜᴀᴛsᴀᴘᴘ."
   
   //APIS MX 📍
-global.apis = 'https://delirius-apiofc.vercel.app'
+global.apis = 'https://api.delirius.store'
 global.apimx_cafirexos = 'https://api.cafirexos.com'
 global.apimx_key = 'BrunoSobrino'
 global.apimx_brunosobrino = 'https://api-brunosobrino-dcaf9040.koyeb.app'
