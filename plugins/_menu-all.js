@@ -122,7 +122,6 @@ let menuStick = `\t⊹ *${usedPrefix}exif-*
 \t⊹ *${usedPrefix}exif+*   [text|text]
 \t⊹ *${usedPrefix}sticker*   [reply]
 \t⊹ *${usedPrefix}emojix*   [emoji+emoji]
-\t⊹ *${usedPrefix}exif+*   [text]
 \t⊹ *${usedPrefix}mtext*   [text]
 \t⊹ *${usedPrefix}brat*   [text]
 \t⊹ *${usedPrefix}qc*   [text]`
