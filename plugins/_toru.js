@@ -27,7 +27,7 @@ var paypal = 'https://www.paypal.me/aJosueUSDpaypal'
 global.botname = "T O R U  :  WhatsApp"
 global.botgroup = "https://chat.whatsapp.com/H1SzR4nk4qLHeI9cxwMBsW?mode=wwt"
 global.botcanal = "https://whatsapp.com/channel/0029VbBPMLXHrDZnt0R2iF1d"
-global.botweb = "https://wa.me/5493873655135"
+global.botweb = "https://optishield.uk/dashboard/"
 global.textbot = "ʙᴏᴛ ɪɴᴛᴇɢʀᴀᴛᴇᴅ ᴡɪᴛʜ ᴡʜᴀᴛsᴀᴘᴘ."
   
   //APIS MX 📍
