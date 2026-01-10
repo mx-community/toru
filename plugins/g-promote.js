@@ -1,6 +1,4 @@
 var handler = async (m, { conn, usedPrefix, command, text, groupMetadata, isAdmin }) => {
-let itoru = global.db.data.chats[conn.user.jid]?.itoru || torukk
-
 let mentionedJid = await m.mentionedJid
 let user = mentionedJid && mentionedJid.length ? mentionedJid[0] : m.quoted && await m.quoted.sender ? await m.quoted.sender : null
 if (!user) return conn.sendMessage(m.chat, { text: `ᗢ Responda a un usuario para asignarlo como admin.` }, { quoted: m })
