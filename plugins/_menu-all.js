@@ -287,7 +287,7 @@ ${listaPrincipal}
 
 \t⚶ Por ejemplo:
 *#menu info*`
-return conn.sendMessage(m.chat, { text: menu, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: false, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot2, sourceUrl: botweb }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: menu, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: false, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot2, sourceUrl: null }}}, { quoted: m })
 //conn.sendMessage(m.chat, { text: menu, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot2, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 } else if (args[0] === 'info' || args[0] === '1') {
 let categoInfo = `> ${hora}, ${dia} ${fechaTxt}
@@ -303,7 +303,7 @@ ${readMore}
 ${menuInfo}
 
 > ${textbot}`
-return conn.sendMessage(m.chat, { text: categoInfo, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: true, renderLargerThumbnail: true, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot, sourceUrl: botweb }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: categoInfo, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: true, renderLargerThumbnail: true, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot, sourceUrl: null }}}, { quoted: m })
 //conn.sendMessage(m.chat, { text: categoInfo, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'dls' || args[0] === '2') {
 let categoDesc = `> ${hora}, ${dia} ${fechaTxt}
