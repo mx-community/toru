@@ -33,7 +33,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione una busqueda en Tenor.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Osos` }, { quoted: m })
 try {
 await m.react("⏰")
-const res = await fetch(`https://delirius-apiofc.vercel.app/search/tenor?q=${text}`)
+const res = await fetch(`https://api.delirius.store/search/tenor?q=${text}`)
 const json = await res.json()
 const gifs = json.data
 if (!gifs || gifs.length < 2) return conn.sendMessage(m.chat, { text: `No se han encontrado gifs.` }, { quoted: m })
