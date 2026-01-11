@@ -198,7 +198,7 @@ break
 }
 if (m.isGroup) {
 try {
-const res = await fetch(`https://delirius-apiofc.vercel.app/search/tenor?q=${query}`)
+const res = await fetch(`https://api.delirius.store/search/tenor?q=${query}`)
 const json = await res.json()
 const gifs = json.data
 if (!gifs || gifs.length === 0) return conn.sendMessage(m.chat, { text: `No se han encontrado resultados.` }, { quoted: m })
