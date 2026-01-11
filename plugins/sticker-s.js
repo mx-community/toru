@@ -29,8 +29,8 @@ let handler = async (m, { conn, args }) => {
 
     let stiker = await sticker(
       media,
-      global.packname || '',
-      global.author || '',
+      global.packsticker || '',
+      global.packsticker2 || '',
       mode
     )
 
