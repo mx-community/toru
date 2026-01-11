@@ -152,18 +152,10 @@ if (!("isBanned" in chat)) chat.isBanned = false
 if (!("isMute" in chat)) chat.isMute = false
 if (!("welcome" in chat)) chat.welcome = true
 if (!("sWelcome" in chat)) chat.sWelcome = ""
+if (!('sAutorespond' in chat)) chat.sAutorespond = ""
 if (!("sBye" in chat)) chat.sBye = ""
 if (!("detect" in chat)) chat.detect = false
-if (!("itoru" in chat)) chat.itoru = ""
-if (!("ifoto" in chat)) chat.ifoto = ""
-if (!("imenu" in chat)) chat.imenu = ""
-if (!("itorum" in chat)) chat.itorum = ""
-if (!("itorue" in chat)) chat.itorue = ""
-if (!("icanal" in chat)) chat.icanal = ""
-if (!("igrupo" in chat)) chat.igrupo = ""
-if (!("ipagina" in chat)) chat.ipagina = ""
-if (!("itexto" in chat)) chat.itexto = ""
-if (!("iname" in chat)) chat.iname = ""
+if (!('autorespond' in chat)) chat.autorespond = false
 if (!("primaryBot" in chat)) chat.primaryBot = null
 if (!("fAdmin" in chat)) chat.fAdmin = false
 if (!("fViewonce" in chat)) chat.fViewonce = false
@@ -181,16 +173,10 @@ isBanned: false,
 isMute: false,
 welcome: true,
 sWelcome: "",
+sAutorespond: "",
 sBye: "",
 detect: false,
-itoru: "",
-ifoto: "",
-imenu: "",
-icanal: "",
-igrupo: "",
-ipagina: "",
-itexto: "",
-iname: "",
+autorespond: false,
 primaryBot: null,
 fAdmin: false,
 fViewonce: false,
