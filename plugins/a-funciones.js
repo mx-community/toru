@@ -186,6 +186,17 @@ throw false
 chat.fMenu = isEnable
 break
 }
+case 'c-autobot':
+case 'fc-online':
+if (m.isGroup) {
+if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}
+}
+chat.autorespond = isEnable
+break
+
 case 'c-rpg':
 case 'fc-rpg': {
 if (!m.isGroup) {
@@ -214,13 +225,7 @@ break
 }}
 chat[type] = isEnable
 
-let toruAc = `\t〩  *F U N C I O N*
-
-𝇈 *Comando* : ${type}
-𝇈 *Funcion* : ${isEnable ? 'activado' : 'desactivado'}
-𝇈 *Para* : ${isAll ? 'todos los chats' : 'en este chat'}
-
-> ${textbot}`
+let toruAc = `${type} = ${isEnable ? 'true' : 'false'}`
 await conn.sendMessage(m.chat, { text: toruAc }, { quoted: m })
 }
 
@@ -240,6 +245,7 @@ handler.command = [
 "c-menu", "fc-menu",
 "c-rpg", "fc-rpg",
 "c-game", "fc-game",
+"c-autobot", "fc-online",
 "f-welcome", "fc-welcome"
 ]
 
