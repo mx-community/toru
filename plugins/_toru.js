@@ -44,7 +44,7 @@ global.apirest_url2 = 'https://api-brunosobrino-dcaf9040.koyeb.app'
 global.apirest_url3 = 'https://api-brunosobrino.onrender.com'
 
 global.toruImg = "https://files.catbox.moe/t6n0rz.jpg"
-global.toruMenu = "https://files.catbox.moe/jgcxaq.jpg"
+global.toruMenu = "https://files.catbox.moe/esnv6d.jpg"
 
 global.redes = [canal, comunidad, webmx, paypal].getRandom()
 
