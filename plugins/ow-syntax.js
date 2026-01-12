@@ -3,11 +3,11 @@ import path from 'path'
 
 var handler = async (m, { usedPrefix, command }) => {
 try {
-await conn.sendMessage(m.chat, { text: `Buscando errores en los archivos plugins...` }, { quoted: m })
+await m.react("⏰")
 conn.sendPresenceUpdate('composing', m.chat)
 const pluginsDir = './plugins'
 const files = fs.readdirSync(pluginsDir).filter(file => file.endsWith('.js'))
-let response = `📍  *Plugins erroneos encontrados:*\n\n`
+let response = `📍  *[ COMPLEMENTOS ]*\n\n`
 let hasErrors = false
 for (const file of files) {
 try {
@@ -17,16 +17,15 @@ hasErrors = true
 response += `[ ${file} ] = ERROR:\n> ${error.message}\n\n`
 }}
 if (!hasErrors) {
-response += '✓  No se han encontrado plugins dañinos.'
+response += '```No errors have been found.```'
 }
 await conn.sendMessage(m.chat, { text: response }, { quoted: m })
+await m.react("📍")
 } catch (err) {
-await conn.sendMessage(m.chat, { text: `*[ 📍 ]*  ERROR_COMMAND = Command error, try again and if the error persists, report the command.` }, { quoted: m })
+await conn.sendMessage(m.chat, { text: `${err.message}` }, { quoted: m })
 }}
 
-handler.command = ['syntax']
-handler.help = ['syntax']
-handler.tags = ['tools']
+handler.command = ['err']
 handler.rowner = true
 
 export default handler
