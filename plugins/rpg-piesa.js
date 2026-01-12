@@ -39,8 +39,8 @@ let piesaXd = `\t〩  *P I E S A  :  A R M A D O*
 - ¡Has logrado reunir 10 piesas y revelar la imagen!
 
 ⚶ *Balance:*
-\t𔓕 ${currency} : *+${ganado.toLocaleString()}*
-\t✩ ${currency2} : *+${ganado2.toLocaleString()}*
+\t💵 ${currency} : *+${ganado.toLocaleString()}*
+\t🪙 ${currency2} : *+${ganado2.toLocaleString()}*
 
 ⚶ *Recursos:*
 \t❤️ Corazones : *+${ganado3.toLocaleString()}*
