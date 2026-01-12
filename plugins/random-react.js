@@ -76,7 +76,7 @@ str = from === who ? `${from} se mató a sí mismo/a! 〩` : `${from} mató a ${
 query = 'anime kill'
 break
 case 'kiss': case 'muak':
-str = from === who ? `${from.split`@`[0]} se besó a sí mismo/a! 〩` : `${from.split`@`[0]} besó a ${who.split`@`[0]}! 〩`
+str = from === who ? `@${from.split`@`[0]} se besó a sí mismo/a! 〩` : `@${from.split`@`[0]} besó a @${who.split`@`[0]}! 〩`
 query = 'anime kiss'
 break
 case 'laugh': case 'reirse':
