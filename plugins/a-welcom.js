@@ -48,14 +48,14 @@ const thumb = Buffer.from(await (await fetch(`${global.toruImg}`)).arrayBuffer()
 
 if (chat.welcome && m.messageStubType == WAMessageStubType.GROUP_PARTICIPANT_ADD) {
 const { pp, caption, mentions } = await generarBienvenida({ conn, userId, groupMetadata, chat })
-await conn.sendMessage(m.chat, { text: caption, mentions: mentions, contextInfo: { externalAdReply: { title: botname, body: "¡Bienvenido/a!", thumbnail: pp, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: caption, mentions: mentions, contextInfo: { externalAdReply: { title: botname, body: "¡Bienvenido/a!", thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, m )
 //await conn.sendMessage(m.chat, { image: { url: pp }, caption, mentionedJid: mentions }, { quoted: null })
 try { fs.unlinkSync(img) } catch {}
 }
 
 if (chat.welcome && (m.messageStubType == WAMessageStubType.GROUP_PARTICIPANT_REMOVE || m.messageStubType == WAMessageStubType.GROUP_PARTICIPANT_LEAVE)) {
 const { pp, caption, mentions } = await generarDespedida({ conn, userId, groupMetadata, chat })
-await conn.sendMessage(m.chat, { text: caption, mentions: mentions, contextInfo: { externalAdReply: { title: botname, body: "¡Adios!", thumbnail: pp, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: caption, mentions: mentions, contextInfo: { externalAdReply: { title: botname, body: "¡Adios!", thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, m )
 //await conn.sendMessage(m.chat, { image: { url: pp }, caption, mentionedJid: mentions }, { quoted: null })
 try { fs.unlinkSync(img) } catch {}
 }
