@@ -6,7 +6,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione una busqueda para Sticker.Ly\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Caballo Juan` }, { quoted: m });
 await m.react('⏰');
 try {
-const res = await fetch(`https://delirius-apiofc.vercel.app/search/stickerly?query=${encodeURIComponent(text)}`);
+const res = await fetch(`https://api.delirius.store/search/stickerly?query=${encodeURIComponent(text)}`);
 const json = await res.json();
 if (!json.status || !json.data || json.data.length === 0) return conn.sendMessage(m.chat, { text: `No se han encontrado resultados.` }, { quoted: m });
 
