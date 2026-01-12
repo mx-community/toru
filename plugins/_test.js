@@ -9,9 +9,9 @@ return conn.sendMessage(m.chat, { text: `ᗢ Proporcione varios requisitos para 
 
 const [texto, titulo, descripcion, img ] = args
 
-if (!texto) return conn.sendMessage(m.chat, { text: `Texto faltante, escriba un texto principal.` }, { quoted: m })
-if (!titulo) return conn.sendMessage(m.chat, { text: `Titulo faltante, escriba el titulo de mensaje referente.` }, { quoted: m })
-if (!descripcion) return conn.sendMessage(m.chat, { text: `Descripcion faltante, escriba una descripción.` }, { quoted: m })
+//if (!texto) return conn.sendMessage(m.chat, { text: `Texto faltante, escriba un texto principal.` }, { quoted: m })
+//if (!titulo) return conn.sendMessage(m.chat, { text: `Titulo faltante, escriba el titulo de mensaje referente.` }, { quoted: m })
+//if (!descripcion) return conn.sendMessage(m.chat, { text: `Descripcion faltante, escriba una descripción.` }, { quoted: m })
 if (!img.startsWith('http')) return conn.sendMessage(m.chat, { text: `Imagen faltante, proporciona un enlace.` }, { quoted: m })
 let ch = `120363424098891946@newsletter`
 let imagen = Buffer.from(await (await fetch(`${img}`)).arrayBuffer())
