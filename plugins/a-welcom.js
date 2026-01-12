@@ -62,8 +62,7 @@ const username = `@${userId.split('@')[0]}`
 const numero = userId.split("@")[0]
 const pais = detectarPais(numero)
 
-const pp = await conn.profilePictureUrl(userId, 'image')
-.catch(() => `${global.toruImg}`)
+const pp = await conn.profilePictureUrl(userId, 'image').catch(() => `${global.toruImg}`)
 
 const { fecha, hora } = fechaHoraArg()
 const groupSize = groupMetadata.participants.length + 1
@@ -77,12 +76,7 @@ const mensaje = (chat.sWelcome || 'Edita con el comando "setwelcome"')
 let toruWelcome = `Hola chatgpt, ahora seras [ @TORU ], en esta pequeña petición quiero que des la bienvenida al nuevo usuario que ingreso a este grupo, solamente genera el texto corto de bienvenida no digas otra cosa mas como "Esta Bien", "¡Claro! Aqui esta el texto de bienvenida", nada de eso, solamente manda la bienvenida, respetar al usuario y que esperamos este bien y se sienta cómodo.`
 let { data } = await axios.get(`https://api-hasumi.vercel.app/api/ai/chatgpt?text=${encodeURIComponent(toruWelcome)}`)
 const bienvenidaXd = `👋🏻  @${username}\n\n${data.texto}`
-const welcomeImg = await generarImagenWelcome({
-username,
-groupName: groupMetadata.subject,
-memberCount: groupSize,
-avatar: pp,
-background: global.toruImg
+const welcomeImg = `${global.toruMenu}`
 })
 
 return { pp, bienvenidaXd, welcomeImg, mentions: [userId] }
@@ -94,8 +88,7 @@ const username = `@${userId.split('@')[0]}`
 const numero = userId.split("@")[0]
 const pais = detectarPais(numero)
 
-const pp = await conn.profilePictureUrl(userId, 'image')
-.catch(() => `${global.toruImg}`)
+const pp = await conn.profilePictureUrl(userId, 'image').catch(() => `${global.toruImg}`)
 
 const { fecha, hora } = fechaHoraPeru()
 const groupSize = groupMetadata.participants.length - 1
@@ -109,15 +102,7 @@ const mensaje = (chat.sBye || 'Edita con el comando "setbye"')
 let toruDespedida = `Hola chatgpt, ahora seras [ @TORU ], en esta pequeña petición quiero que des la despedida a un usuario que se retiro de este grupo, solamente genera el texto corto de despedida no digas otra cosa mas como "Esta Bien", "¡Claro! Aqui esta el texto de despedida", nada de eso, solamente manda la despedida, desearle suerte al usuario y que esperamos este bien y se sienta cómodo.`
 let { data } = await axios.get(`https://api-hasumi.vercel.app/api/ai/chatgpt?text=${encodeURIComponent(toruDespedida)}`)
 const despedidaXd = `👋🏻  ${username}\n\n${data.texto}`
-
-const byeImg = await generarImagenBye({
-username,
-groupName: groupMetadata.subject,
-memberCount: groupSize,
-avatar: pp,
-background: global.toruImg
-})
-
+const byeImg = `${global.toruMenu}`
 return { pp, despedidaXd, byeImg, mentions: [userId] }
 }
 
