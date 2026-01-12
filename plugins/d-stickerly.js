@@ -19,12 +19,12 @@ const info = `· ┄ · ⊸ 𔓕 *StickerLy  :  Download*
 \t⚶ *PROPIEDAD*
 \t＃ Pack : *${data.name}*
 \t＃ Autor/a : *${data.author}* (@${data.username})
-\t＃ Seguidores : *${data.followers}* seguidores
+\t＃ Seguidores : *${toNum(data.followers)}* seguidores
 
 ⚶ *DETALLES*
 \t＃ Stickers : *${data.total}* stickers
-\t＃ Vistas : *${data.viewCount}* vistas
-\t＃ Exports : *${data.exportCount}* exportados
+\t＃ Vistas : *${toNum(data.viewCount)}* vistas
+\t＃ Exports : *${toNum(data.exportCount)}* exportados
 \t＃ Animados : *${data.isAnimated ? "Sí" : "No"}*`.trim()
 await conn.sendMessage(m.chat, { text: info, contextInfo: { externalAdReply: { title: `${data.name}`, body: botname, thumbnailUrl: data.preview, sourceUrl: data.url, mediaType: 1, renderLargerThumbnail: false, },},}, { quoted: m })
 
@@ -57,3 +57,7 @@ conn.sendMessage(m.chat, { text: `${e.message}` }, { quoted: m })
 handler.command = ["sly", "stickerly"]
 
 export default handler
+
+function toNum(number) {
+if (number >= 1000 && number < 1000000) { return (number / 1000).toFixed(1) + 'k' } else if (number >= 1000000) { return (number / 1000000).toFixed(1) + 'M' } else if (number <= -1000 && number > -1000000) { return (number / 1000).toFixed(1) + 'k' } else if (number <= -1000000) { return (number / 1000000).toFixed(1) + 'M' } else { return number.toString() }}
+
