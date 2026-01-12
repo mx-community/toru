@@ -16,7 +16,7 @@ throw new Error("No se pudo obtener el pack. Verifica el enlace.")
 const data = json.data
 const info = `· ┄ · ⊸ 𔓕 *StickerLy  :  Download*
 
-\t⚶ *PROPIEDAD*
+⚶ *PROPIEDAD*
 \t＃ Pack : *${data.name}*
 \t＃ Autor/a : *${data.author}* (@${data.username})
 \t＃ Seguidores : *${toNum(data.followers)}* seguidores
