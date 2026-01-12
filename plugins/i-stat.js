@@ -9,8 +9,7 @@ import fetch from 'node-fetch'
 let handler = async (m, { conn }) => {
 
 const start = new Date().getTime()
-await m.react("💾")
-//conn.sendMessage(m.chat, { text: `📍  Enviando resultados de avance, espere un momento...` }, { quoted: m })
+await m.react("📍")
 const end = new Date().getTime()
 const ping = end - start
 
@@ -32,7 +31,7 @@ const totalRAM = (os.totalmem() / 1024 / 1024 / 1024).toFixed(2)
 const freeRAM = (os.freemem() / 1024 / 1024 / 1024).toFixed(2)
 const cpu = os.cpus()[0]
 const cpuModel = cpu.model.split('@')[0].trim()
-const cpuSpeed = (cpu.speed / 1000).toFixed(2) // GHz 👻
+const cpuSpeed = (cpu.speed / 1000).toFixed(2)
 const cores = os.cpus().length
 const arch = os.arch()
 const platform = os.platform().toUpperCase()
@@ -46,7 +45,7 @@ const thumb = Buffer.from(await (await fetch(`${global.toruImg}`)).arrayBuffer()
 exec('neofetch --stdout', async (error, stdout) => {
 let sysInfo = stdout.toString('utf-8').replace(/Memory:/, 'Ram:')
 let response = `· ┄ · ⊸ 𔓕 *Status  :  Test*
-＃ Servidores : *${totalBots + " bots" || "serverless"}*
+＃ Servidores : *${totalBots || "serverless"}*
 ⎋ R. usuarios : *${totalUsers.toLocaleString()}*
 ⎋ R. grupos : *${totalChats.toLocaleString()}*
 ⚶ Ping : *${ping} ms*
@@ -68,7 +67,8 @@ let response = `· ┄ · ⊸ 𔓕 *Status  :  Test*
 ⛉ Plataforma : ${platform}
 ⛉ Hosting : ${hostname} 
 ⛉ Node.js : ${nodeVer}
-⛉ Baileys : mx-data@bails.`
+
+> ${textbot}`
 
 await conn.sendMessage(m.chat, {
 text: response,
@@ -80,15 +80,12 @@ body: textbot,
 thumbnail: thumb,
 sourceUrl: null,
 mediaType: 1,
-renderLargerThumbnail: true
-}
-}
-}, { quoted: m })
+renderLargerThumbnail: false
+}}}, { quoted: m })
 })
 }
 
-handler.help = ['ping', 'status', 'stat']
-handler.tags = ['info']
+
 handler.command = ['stat', 'status']
 
 export default handler
