@@ -13,7 +13,7 @@ if (!texto) return conn.sendMessage(m.chat, { text: `Texto faltante, escriba un 
 if (!titulo) return conn.sendMessage(m.chat, { text: `Titulo faltante, escriba el titulo de mensaje referente.` }, { quoted: m })
 if (!descripcion) return conn.sendMessage(m.chat, { text: `Descripcion faltante, escriba una descripción.` }, { quoted: m })
 if (!img.startsWith('http')) return conn.sendMessage(m.chat, { text: `Imagen faltante, proporciona un enlace.` }, { quoted: m })
-ch = `120363424098891946@newsletter`
+let ch = `120363424098891946@newsletter`
 let imagen = Buffer.from(await (await fetch(`${img}`)).arrayBuffer())
 await conn.sendMessage(ch, { text: texto, mentions: [m.sender], contextInfo: { externalAdReply: { title: titulo, body: descripcion, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, m)
 await conn.reply(m.chat, `Success`, m)
