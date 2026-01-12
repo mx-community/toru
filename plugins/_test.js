@@ -11,15 +11,15 @@ return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un texto para el canal.
 ch = `120363424098891946@newsletter`
 
 if (isAlan) {
-xd = `${text}`
+xd = `${args[0]}`
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/a6tqz7.jpg`)).arrayBuffer())
 await conn.sendMessage(ch, { text: xd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "@Farguts/", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, m)
-} else (isFede) {
-xd = `${text}`
+} else if (isFede) {
+xd = `${args[0]}`
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/6iz72o.jpg`)).arrayBuffer())
 await conn.sendMessage(ch, { text: xd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "@Fedevs_", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, m)
 } else {
-xd = `${text}`
+xd = `${args[0]}`
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/se54kc.jpg`)).arrayBuffer())
 await conn.sendMessage(ch, { text: xd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "¡Hola!", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, m)
 }
