@@ -43,7 +43,7 @@ let cofreXd = `\t〩  V E L E R O  :  R P G
 \t🧧 Boletos : *+${boletoss.toLocaleString()}*
 
 > 🕯️ _Consigue 10 velas mas para darte otra recompensa._`
-await conn.sendMessage(m.chat, { text: cofreXd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "々  C O F R E  々", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: cofreXd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "々  V E L E R O  々", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 user.toruvela -= 10
 } else {
 let noXd = `No tienes suficientes *[ 🕯️ Velas ]* para venderlos al mercader.\n- Tienes 🕯️ *${user.toruvela.toLocaleString()} velas* en tu inventario.`
