@@ -36,7 +36,7 @@ global.currency2 = "Monedas"
 global.toruads = "Sin anuncios por el momento..."
 global.banner = "https://qu.ax/XPDQK.jpg"
 global.catalogo = "https://qu.ax/EpMPK.jpg"
-
+global.toruCh = "https://files.catbox.moe/bbm4z7.jpg"
 
 global.ch = { ch1: "120363318353263389@newsletter" }
 
