@@ -45,7 +45,8 @@ global.apirest_url3 = 'https://api-brunosobrino.onrender.com'
 
 global.toruImg = "https://files.catbox.moe/t6n0rz.jpg"
 global.toruMenu = "https://files.catbox.moe/esnv6d.jpg"
-
+global.toruCh = "https://files.catbox.moe/bbm4z7.jpg"
+  
 global.redes = [canal, comunidad, webmx, paypal].getRandom()
 
 global.nombre = m.pushName || 'Anónimo'
