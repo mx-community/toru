@@ -2,8 +2,8 @@ import fetch from 'node-fetch'
 import fs from 'fs'
 import { WAMessageStubType } from '@whiskeysockets/baileys'
 
-async function generarBienvenida({ conn, userId, groupMetadata, chat }) {
-const username = `@${userId.split('@')[0]}`
+async function generarBienvenida({ conn, sender, groupMetadata, chat }) {
+const username = `@${m.sender.split(`@`)[0]}`
 const pp = await conn.profilePictureUrl(userId, 'image').catch(() => `${global.toruImg}`)
 const fecha = new Date().toLocaleDateString("es-ES", { timeZone: "America/Buenos_Aires", day: 'numeric', month: 'long', year: 'numeric' })
 const groupSize = groupMetadata.participants.length + 1
@@ -19,8 +19,8 @@ _Bienvenido/a al grupo, espero que estes cómodo o cómoda en este chat, puedes 
 return { pp, caption, mentions: [userId] }
 }
 
-async function generarDespedida({ conn, userId, groupMetadata, chat }) {
-const username = `@${userId.split('@')[0]}`
+async function generarDespedida({ conn, sender, groupMetadata, chat }) {
+const username = `@${m.sender.split(`@`)[0]}`
 const pp = await conn.profilePictureUrl(userId, 'image').catch(() => `${global.toruImg}`)
 const fecha = new Date().toLocaleDateString("es-ES", { timeZone: "America/Buenos_Aires", day: 'numeric', month: 'long', year: 'numeric' })
 const groupSize = groupMetadata.participants.length - 1
@@ -43,18 +43,18 @@ if (!m.messageStubType || !m.isGroup) return !0
 const primaryBot = global.db.data.chats[m.chat].primaryBot
 if (primaryBot && conn.user.jid !== primaryBot) throw !1
 const chat = global.db.data.chats[m.chat]
-const userId = m.messageStubParameters[0]
+const sender = m.messageStubParameters[0]
 const thumb = Buffer.from(await (await fetch(`${global.toruImg}`)).arrayBuffer())
 
 if (chat.welcome && m.messageStubType == WAMessageStubType.GROUP_PARTICIPANT_ADD) {
-const { pp, caption, mentions } = await generarBienvenida({ conn, userId, groupMetadata, chat })
+const { pp, caption, mentions } = await generarBienvenida({ conn, sender, groupMetadata, chat })
 await conn.sendMessage(m.chat, { text: caption, mentions: mentions, contextInfo: { externalAdReply: { title: botname, body: "¡Bienvenido/a!", thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, m )
 //await conn.sendMessage(m.chat, { image: { url: pp }, caption, mentionedJid: mentions }, { quoted: null })
 try { fs.unlinkSync(img) } catch {}
 }
 
 if (chat.welcome && (m.messageStubType == WAMessageStubType.GROUP_PARTICIPANT_REMOVE || m.messageStubType == WAMessageStubType.GROUP_PARTICIPANT_LEAVE)) {
-const { pp, caption, mentions } = await generarDespedida({ conn, userId, groupMetadata, chat })
+const { pp, caption, mentions } = await generarDespedida({ conn, sender, groupMetadata, chat })
 await conn.sendMessage(m.chat, { text: caption, mentions: mentions, contextInfo: { externalAdReply: { title: botname, body: "¡Adios!", thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, m )
 //await conn.sendMessage(m.chat, { image: { url: pp }, caption, mentionedJid: mentions }, { quoted: null })
 try { fs.unlinkSync(img) } catch {}
