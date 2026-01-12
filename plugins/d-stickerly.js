@@ -8,7 +8,7 @@ if (!args[0]) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un enlace
 
 await m.react("⏰")
 try {
-const res = await fetch(`https://delirius-apiofc.vercel.app/download/stickerly?url=${encodeURIComponent(args[0])}`)
+const res = await fetch(`https://api.delirius.store/download/stickerly?url=${encodeURIComponent(args[0])}`)
 if (!res.ok) throw new Error(`Error al conectar con la API (${res.status})`)
 const json = await res.json()
 if (!json.status || !json.data || !json.data.stickers?.length)
