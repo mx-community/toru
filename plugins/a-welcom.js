@@ -90,7 +90,7 @@ const pais = detectarPais(numero)
 
 const pp = await conn.profilePictureUrl(userId, 'image').catch(() => `${global.toruImg}`)
 
-const { fecha, hora } = fechaHoraPeru()
+const { fecha, hora } = fechaHoraArg()
 const groupSize = groupMetadata.participants.length - 1
 const desc = groupMetadata.desc?.toString() || 'Sin descripción'
 
