@@ -8,14 +8,12 @@ const thumbNo = Buffer.from(await (await fetch(`https://files.catbox.moe/9rldx2.
 let user = global.db.data.users[m.sender]
 if (user.torupiesa >= 10) {
 
-global.piesaImagen = [
+const piesaImagen = [
 "https://files.catbox.moe/hky7eb.jpg", "https://files.catbox.moe/v9ntjs.jpg", 
 "https://files.catbox.moe/qj9hje.jpg", "https://files.catbox.moe/ucw1hj.jpg", 
 "https://files.catbox.moe/v852yh.jpeg", "https://files.catbox.moe/wezfzz.jpg", 
 "https://files.catbox.moe/bi7d3g.jpg"
-].getRandom()
-
-const thumb = Buffer.from(await (await fetch(`${global.piesaImagen}`)).arrayBuffer())
+]
 
 user.torucoin = user.torucoin || 0
 user.toruexp = user.toruexp || 0
@@ -51,8 +49,10 @@ let piesaXd = `\t〩  *P I E S A  :  A R M A D O*
 \t🧧 Boletos : *+${ganado6.toLocaleString()}*
 
 > 🧩 _Reune mas piesas para ganar mas recompensas._`
+
 user.torupiesa -= 10
 await m.react("🧩")
+let thumb = piesaImagen[Math.floor(Math.random() * piesaImagen.length)];
 await conn.sendMessage(m.chat, { image: { url: thumb }, caption: piesaXd }, { quoted: m })
 } else {
 let noXd = `Solo tienes *[ 🧩 ${user.torupiesa} piesas ]* en tu inventario.\n- Reune *🧩 10 piesas* para revelar una imagen y obtener una recompensa.`
@@ -80,3 +80,4 @@ function pickRandom(list) {
 return list[Math.floor(Math.random() * list.length)]
 }
 
+                         
