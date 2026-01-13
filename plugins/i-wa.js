@@ -11,18 +11,19 @@ Espero y estes bien.
 > ╰• Información del propietario del bot.
 \t\t*${usedPrefix}support*
 > ╰• Envia mensaje de reporte, sugerencia o solicitud.
-\t\t*${usedPrefix}donate*
+\t\t*${usedPrefix}donar*
 > ╰• Donación voluntaria.
 \t\t*${usedPrefix}tyc*
 > ╰• Terminos y condiciones.
+\t\t*${usedPrefix}canal*
+> ╰• Canal de WhatsApp.
 
 > ${textbot}`
 await conn.sendMessage(m.chat, { text: infoXd }, { quoted: m })
 };
 
 if (command === "creador") {
-let creador = `📍  Aun no se ha puesto el número principal del propietario.
-- Regrese pronto para verificar.`
+let creador = `📍  Aun no se ha puesto ningun contacto relacionado.`
 await conn.sendMessage(m.chat, { text: creador }, { quoted: m })
 await m.react("👋🏻")
 }
@@ -32,15 +33,19 @@ let infoXd = `\t〨  *C A N A L  :  M X*
 
 \t⸭ 📍  Hola usuario *@${name}*, espero y estes bien, este es nuestro canal, nuevo y reciente.
 
-🌐 *Undefined* (Aun no estableció un canal)
+⚶ *[ MX COMMUNITY ]*
+- https://whatsapp.com/channel/0029Vb7Rtoc5K3zQ08ioYc21
+
+⚶ *[ MX ]*
+- https://whatsapp.com/channel/0029Vb74ylv4dTnOIxKds83s
 
 > ${textbot}`
 await conn.sendMessage(m.chat, { text: infoXd }, { quoted: m })
 };
   
 if (command === "donate" || command === "donar") {
-const thumb = Buffer.from(await (await fetch(`${global.mMages}`)).arrayBuffer())
-let donaXd = `\t〨  *D O N A T E*
+const thumb = Buffer.from(await (await fetch(`${global.toruImg}`)).arrayBuffer())
+let donaXd = `\t〨  *D O N A R*
 
 \t⸭ 💡 \`\`\`Donacion voluntaria.\`\`\`
 - Ingrese los siguientes comandos a su preferencia..
@@ -102,17 +107,15 @@ await conn.sendMessage(m.chat, { text: terminos }, { quoted: m });
 };
 
 if (command === "support" || command === "soporte") {
-if (!text) return conn.sendMessage(m.chat, { text: `Ingrese el comando y escriba su sugerencia, sea nuevos comandos, aportes, colaboracion, entre otras cosas.\n\n• *Por ejemplo:*\n${usedPrefix + command} El comando #menu esta fallando.` }, { quoted: m });
-let teks = `·─┄ · ✦ *Reporte : Usuario* ✦ ·
+if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Ingrese su reporte para enviarlo a los desarrolladores.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* El comando #menu esta fallando.` }, { quoted: m })
+let teks = `·─┄ · ✦ *Reporte : Support* ✦ ·
 \t\t⧡ Numero : wa.me/${m.sender.split`@`[0]}
 \t\t⧡ Mensaje : ${text}
 
 > 📍  Use el comando *#respuesta* para opciones.`
 conn.reply('5493873655135@s.whatsapp.net', m.quoted ? teks + m.quoted.text : teks, null, { contextInfo: { mentionedJid: [m.sender] }})
-conn.reply('5493873579805@s.whatsapp.net', m.quoted ? teks + m.quoted.text : teks, null, { contextInfo: { mentionedJid: [m.sender] }})
 await conn.sendMessage(m.chat, { text: `✓  Comentario enviado a los desarrolladores.` }, { quoted: m })
 };
-
 
 };
 
