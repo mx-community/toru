@@ -5,21 +5,21 @@ import moment from 'moment-timezone'
 import PhoneNumber from 'awesome-phonenumber'
 let handler = async (m, { conn, usedPrefix, args, command, __dirname, participants }) => {
 try {
-let listaPrincipal = `\t⧡ *${command}* » all  [0]
-\t⧡ *${command}* » info  [1]
-\t⧡ *${command}* » dls  [2]
-\t⧡ *${command}* » conv  [3]
-\t⧡ *${command}* » search  [4]
-\t⧡ *${command}* » group  [5]
-\t⧡ *${command}* » prof  [6]
-\t⧡ *${command}* » rpg  [7]
-\t⧡ *${command}* » utils  [8]
-\t⧡ *${command}* » stickers  [9]
-\t⧡ *${command}* » logos  [10]
-\t⧡ *${command}* » coleccion  [11]
-\t⧡ *${command}* » random  [12]
-\t⧡ *${command}* » reac  [13]
-\t⧡ *${command}* » owner [own]`
+let listaPrincipal = `\`\`\`⧡ menu » all       [0]
+⧡ menu » info      [1]
+⧡ menu » dls       [2]
+⧡ menu » conv      [3]
+⧡ menu » search    [4]
+⧡ menu » group     [5]
+⧡ menu » prof      [6]
+⧡ menu » rpg       [7]
+⧡ menu » utils     [8]
+⧡ menu » stickers  [9]
+⧡ menu » logos     [10]
+⧡ menu » coleccion [11]
+⧡ menu » random    [12]
+⧡ menu » reac      [13]
+⧡ menu » owner     [own]\`\`\``
 let menuInfo = `\t⊹ *${usedPrefix}info*
 \t⊹ *${usedPrefix}mp*
 \t⊹ *${usedPrefix}bk*
@@ -461,7 +461,6 @@ let categoReac = `> ${hora}, ${dia} ${fechaTxt}
 ＃ Prefix : *(/ ! # - .)*
 ᗢ Premium : *${premium}*
 ✦ Version : *${vs} (/mx_lt)*
-⎋ URL : ${botweb}
 ${readMore}
 ༤〩 \`Reaccion\`
 ${menuReac}
