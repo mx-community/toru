@@ -377,7 +377,7 @@ let categoRpg = `> ${hora}, ${dia} ${fechaTxt}
 ＃ Prefix : *(/ ! # - .)*
 ᗢ Premium : *${premium}*
 ✦ Version : *${vs} (/mx_lt)*
-⎋ URL : ${botweb}
+${readMore}
 ༤〩 \`Juegos RPG\`
 ${menuRpg}
 
