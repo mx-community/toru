@@ -40,7 +40,7 @@ const medias = urls.slice(0, 10).map(url => ({ type: 'image', data: { url } }))
 const respuesta = `· ┄ · ⊸ 𔓕 *Images  :  Search*
 
 \t＃ *Busqueda* : ${text}
-\t＃ *Imagenes* : *${urls.length}* images
+\t＃ *Imagenes* : *10* imagenes
 \t＃ *Fuente* : Google
 
 > ${textbot}`
