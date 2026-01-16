@@ -34,7 +34,7 @@ const texto = `\t\t【  *I N V E N T A R I O*  】
 
 \t々 *Balance:*
 💵 ${currency} : *${torucoin.toLocaleString()}*
-🪙 ${currency2} : *${toruexp.toLocaleString()}*
+🪙 ${currency2} : *${toNum(toruexp.toLocaleString())}*
 
 \t々 *Banco:*
 💵 ${currency} : *${bank.toLocaleString()}* (bank)
@@ -66,3 +66,6 @@ export default handler
 const more = String.fromCharCode(8206)
 const readMore = more.repeat(4001)
                                                                               
+function toNum(number) {
+if (number >= 1000 && number < 1000000) { return (number / 1000).toFixed(1) + 'k' } else if (number >= 1000000) { return (number / 1000000).toFixed(1) + 'M' } else if (number <= -1000 && number > -1000000) { return (number / 1000).toFixed(1) + 'k' } else if (number <= -1000000) { return (number / 1000000).toFixed(1) + 'M' } else { return number.toString() }}
+
