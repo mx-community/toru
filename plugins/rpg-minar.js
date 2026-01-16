@@ -21,7 +21,7 @@ const tiempoRestante = formatTime(user.lastmining - Date.now())
 return conn.sendMessage(m.chat, { text: `Debes esperar *${tiempoRestante}* para volver a usar el comando.` }, { quoted: m })
 }
 
-if (user.torupico >= 50) {
+if (user.torupico >= 10) {
 imagen = Buffer.from(await (await fetch(`https://files.catbox.moe/bt96yl.jpg`)).arrayBuffer())
 monedas = Math.floor(Math.random() * 25) 
 experiencia = Math.floor(Math.random() * 25) 
