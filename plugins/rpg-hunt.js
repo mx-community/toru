@@ -37,7 +37,7 @@ let minResultado = `\t〩  *H U N T  :  R P G*
 
 ⚶ *Balance:*
 \t💵 ${currency} : *+${monedas.toLocaleString()}*
-\t💶 ${currency2} : *+${experiencia.toLocaleString()}*
+\t🪙 ${currency2} : *+${experiencia.toLocaleString()}*
 
 ⚶ *Recursos:*
 \t💠 Fragmentos : *+${fragmentos.toLocaleString()}*
