@@ -34,7 +34,7 @@ const texto = `\t\t【  *I N V E N T A R I O*  】
 
 \t々 *Balance:*
 💵 ${currency} : *${torucoin.toLocaleString()}*
-🪙 ${currency2} : *${toNum(toruexp.toLocaleString())}*
+🪙 ${currency2} : *${toNum(user.toruexp)}*
 
 \t々 *Banco:*
 💵 ${currency} : *${bank.toLocaleString()}* (bank)
