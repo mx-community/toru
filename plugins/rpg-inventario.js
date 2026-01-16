@@ -33,16 +33,16 @@ let torupesc = user.torupesc || 0
 const texto = `\t\t【  *I N V E N T A R I O*  】
 
 \t々 *Balance:*
-💵 ${currency} : *${torucoin.toLocaleString()}*
+💵 ${currency} : *${toNum(user.torucoin)}*
 🪙 ${currency2} : *${toNum(user.toruexp)}*
 
 \t々 *Banco:*
-💵 ${currency} : *${bank.toLocaleString()}* (bank)
-🪙 ${currency2} : *${bankk.toLocaleString()}* (bank)
+💵 ${currency} : *${toNum(user.bank)}* (bank)
+🪙 ${currency2} : *${toNum(user.bankk)}* (bank)
 ${readMore}
 \t々 *Necesarios:*
-💠 Fragmentos : *${tawbot.toLocaleString()}*
-🌀 Puntos : *${puntos.toLocaleString()}*
+💠 Fragmentos : *${toNum(user.tawbot)}*
+🌀 Puntos : *${toNum(user.puntos)}*
 
 \t々 *Recursos:*
 🗝️ Llaves : *${torullave.toLocaleString()}*
