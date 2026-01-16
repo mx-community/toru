@@ -6,7 +6,7 @@ let user = global.db.data.users[m.sender]
 let mensaje = `· ┄ · ⊸ 𔓕 *Coins  :  Stat*
 
 \t💵 *${currency}* : ${toNum(user.torucoin)} *(${user.torucoin})*
-\t🪙 *${currency2}* : ${toNum(user.toruexp)} *(${user.toruexp})*
+\t🪙 *${currency2}* : ${toNum ? `${toNum(user.toruexp)}  *(${user.toruexp})*` : `${user.toruexp}`}
 
 > ${textbot}`
 conn.sendMessage(m.chat, { text: mensaje }, { quoted: m })
