@@ -15,7 +15,7 @@ title: botname,
 body: textbot, 
 containsAutoReply: true, 
 mediaType: 1, 
-thumbnailUrl: imwel, 
+thumbnailUrl: "https://files.catbox.moe/hnn3hp.jpg", 
 sourceUrl: null }}}, { quoted: fkontak })
 };
 handler.command = ["dat"]
