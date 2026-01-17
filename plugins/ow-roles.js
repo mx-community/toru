@@ -13,7 +13,7 @@ conn.sendMessage(m.chat, { text: `El usuario *[ @${who.split`@`[0]} ]* ya no es 
 
 if (command === "-mod") {
 if (!who) return conn.sendMessage(m.chat, { text: `ᗢ Mencione a un usuario *moderador* para quitar su rol.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* @${m.sender.splir`@`[0]}`, mentions: [m.sender] }, { quoted: m })
-if (!global.prems.includes(who.split`@`[0])) return conn.sendMessage(m.chat, { text: `El usuario mencionado no es un usuario moderador.` }, { quoted: m })
+if (!global.mods.includes(who.split`@`[0])) return conn.sendMessage(m.chat, { text: `El usuario mencionado no es un usuario moderador.` }, { quoted: m })
 let index = global.mods.findIndex((v) => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net' === who.replace(/[^0-9]/g, '') + '@s.whatsapp.net')
 global.mods.splice(index, 1)
 conn.sendMessage(m.chat, { text: `El usuario *[ @${who.split`@`[0]} ]* ya no es un usuario moderador.`, mentions: [who] }, { quoted: m })
