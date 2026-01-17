@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import axios from 'axios';
 let handler = async (m, { text, usedPrefix, command }) => {
 if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione una petición para buscar en Google.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Arboles` }, { quoted: m });
-const apiUrl = `https://delirius-apiofc.vercel.app/search/googlesearch?query=${encodeURIComponent(text)}`;
+const apiUrl = `https://api.delirius.store/search/googlesearch?query=${encodeURIComponent(text)}`;
 try {
 await m.react("⏰");
 const response = await fetch(apiUrl);
