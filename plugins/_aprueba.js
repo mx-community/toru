@@ -4,10 +4,11 @@ const user = global.db.data.users[m.sender] || {};
 const name = await conn.getName(m.sender);
 const imwel = Buffer.from(await (await fetch(`https://files.catbox.moe/hnn3hp.jpg`)).arrayBuffer())
 const imbye = Buffer.from(await (await fetch(`https://files.catbox.moe/tln7ks.jpg`)).arrayBuffer())
-let hola = `Hola`
+let hola = `Hola
+xd`
 await conn.sendMessage(m.chat, { text: hola, 
 contextInfo: { forwardingScore: 1, 
-isForwarded: false, 
+isForwarded: true, 
 externalAdReply: { 
 showAdAttribution: true, 
 renderLargerThumbnail: true, 
