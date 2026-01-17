@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione una búsqueda en Apple Music.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Yo te esperare.` }, { quoted: m });
+if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione una búsqueda en Apple Music.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Golden Brown.` }, { quoted: m });
 await m.react("⏰");
 try {
 let res, json;
@@ -16,7 +16,7 @@ if (!alt?.data || alt.data.length === 0) throw new Error("Sin resultados API 2")
 json = alt.data.map(v => ({ title: v.title, type: "Canción", artists: v.artist, url: v.url, image: v.image }));
 }
 let result = json.slice(0, 10); 
-let textMsg = `· ┄ · ⊸ 𔓕 *Apple  :  Search*\n\n\t＃ *Busqueda* : ${text}\n\n`;
+let textMsg = `· ┄ · ⊸ 𔓕 *Apple  :  Search*\n\n\t＃ *Busqueda* : ${text}\n\t＃ *Resultados* : *10* results\n\t＃ *Fuente* : AppleMusic\n\n\n`;
 result.forEach((item, i) => {
 textMsg += `⧡ *${i + 1}* : ${item.title}
 ⧡ *Artista* : ${item.artists}
@@ -24,7 +24,7 @@ textMsg += `⧡ *${i + 1}* : ${item.title}
 ⧡ *Enlace* : ${item.url}\n\n`;
 });
 const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/e3065p.jpg`)).arrayBuffer());
-await conn.sendMessage(m.chat, { text: textMsg, mentions: [m.sender], contextInfo: { externalAdReply: { title: "AppleMusic : Search", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m });
+await conn.sendMessage(m.chat, { text: textMsg, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ AppleMusic : Search ⧿", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m });
 await m.react("✅");
 } catch (err) {
 console.error(err);
