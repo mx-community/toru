@@ -13,15 +13,16 @@ let count = res.result.count || data.length
 let encabezado = `· ┄ · ⊸ 𔓕 *fdroid  :  search*
 
 \t＃ *Busquedas* : ${text}
-\t＃ *Resultados* : *${count}* apps\n\n`
+\t＃ *Resultados* : *${count}* apps
+\t＃ *Fuente* : FDroid\n\n\n`
 let listado = data.map(v => {
 return `⧡ *Titulo* : ${v.name}
 ⧡ *Licencia* : ${v.license}
 ⧡ *Descripción* : ${v.summary}
 ⧡ *Enlace* : ${v.link}`
-}).join('\n\n')
+}).join('\n\n\n')
 const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/m63ros.jpg`)).arrayBuffer())
-await conn.sendMessage(m.chat, { text: encabezado + listado, mentions: [m.sender], contextInfo: { externalAdReply: { title: "FDROID : search", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: encabezado + listado, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ FDroid : Search ⧿", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 await m.react('✅')
 } catch (e) {
 conn.sendMessage(m.chat, { text: `${e.message}` }, { quoted: m })
