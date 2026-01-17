@@ -62,9 +62,9 @@ async function generarTTS(texto, modelo) {
   };
 }
 
-const handler = async (m, { text, conn, command }) => {
-  if (!text.includes('=')) {
+const handler = async (m, { text, conn, command, usedPrefix }) => {
   let listado = `• toru\n• gura`
+  if (!text.includes('=')) {
     return conn.sendMessage(m.chat, { text: `ᗢ Proporciona un texto mas el tipo de voz segun tu preferencia.\n\n> Voces disponible:\n${listado}\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* hola, como estas=toru` }, { quoted: m });
   }
 
