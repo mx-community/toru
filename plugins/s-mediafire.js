@@ -10,15 +10,15 @@ return conn.sendMessage(m.chat, { text: `No se han encontrado resultados.` }, { 
 }
 let txt = `· ┄ · ⊸ 𔓕 *Mediafire  :  Search*
 
-\t＃ *Fuente* : Mediafire
-\t＃ *Busqueda* : ${text}`.trim() + "\n\n"
+\t＃ *Busqueda* : ${text}
+\t＃ *Fuente* : Mediafire`.trim() + "\n\n\n"
 json.results.forEach((f, i) => {
 txt += `⧡ *${i + 1}* : ${f.filename || 'Undefined'}
 ⧡ *Tamaño* : ${f.filesize || 'Undefined'}
-⧡ *Enlace* : ${f.url || 'Undefined'}\n\n`
+⧡ *Enlace* : ${f.url || 'Undefined'}\n\n\n`
 })
 const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/293guw.jpg`)).arrayBuffer())
-await conn.sendMessage(m.chat, { text: txt, mentions: [m.sender], contextInfo: { externalAdReply: { title: "Mediafire : Search", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: txt, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ Mediafire : Search ⧿", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 await m.react("✅")
 } catch (e) {
 console.error(e)
