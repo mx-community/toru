@@ -14,7 +14,7 @@ let apkResultado = `· ┄ · ⊸ 𔓕 *Apk  :  Search*
 
 > ${textbot}`
 const thumb = (await conn.getFile(data5.icon))?.data
-await conn.sendMessage(m.chat, { text: apkResultado, mentions: [m.sender], contextInfo: { externalAdReply: { title: data5.name, body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: apkResultado, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ Apk : Search ⧿", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 if (data5.size.includes('GB') || data5.size.replace(' MB', '') > 999) {
 await m.react("💾")
 return await conn.sendMessage(m.chat, { text: `📍  El archivo es demasiado pesado para descargar.\n- El limite maximo de descarga es de 999MB.` }, { quoted: m })
