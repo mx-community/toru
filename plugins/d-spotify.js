@@ -1,4 +1,4 @@
-import axios from 'axios';
+/*import axios from 'axios';
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un texto o un enlace de *Spotify* para descargarlo.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Golden Brown` }, { quoted: m });
 await m.react("⏰");
@@ -58,3 +58,4 @@ imagen: firstTrack.image || ''
 }];
 }
   
+*/
