@@ -9,7 +9,7 @@ const toru = json.data
 if (!toru || toru.length < 2) return conn.sendMessage(m.chat, { text: `No se han encontrado resultados en Spotify.` }, { quoted: m })
 const maxItems = Math.min(toru.length, 10)
 
-let mensaje = `· ┄ · ⊸ 𔓕 *Spotify  :  Search*\n\n\t＃ *Busqueda* : ${text}\n\t＃ *Resultados* : *${maxItems}* results\n\t＃ *Fuente* : Spotify \n${readMore}\n\n`
+let mensaje = `· ┄ · ⊸ 𔓕 *Spotify  :  Search*\n\n\t＃ *Busqueda* : ${text}\n\t＃ *Resultados* : *${maxItems}* results\n\t＃ *Fuente* : Spotify \n\n`
 
 let listado = toru.map(t => {
 return `⧡ *ID* : ${t.id}
