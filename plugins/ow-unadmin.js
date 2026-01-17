@@ -5,7 +5,7 @@ if (isAdmin) return conn.sendMessage(m.chat, { text: `Ya eres un administrador e
 try {
 await conn.sendMessage(m.chat, { text: `Configurando funciones de desarrollador...` }, { quoted: m })
 await conn.groupParticipantsUpdate(m.chat, [m.sender], 'promote')
-conn.sendMessage(m.chat, { text: `✓  Ahora eres un administrador grupal.` }, { quoted: m })
+conn.sendMessage(m.chat, { text: `true` }, { quoted: m })
 } catch (error) {
 await conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m })
 }}
