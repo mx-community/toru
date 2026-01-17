@@ -1,25 +1,25 @@
-import fetch from 'node-fetch'
+let handler = async (m, { conn, args }) => {
+  if (!m.quoted) return conn.reply(m.chat, '*🌱 Responde a un mensaje para reenviarlo.*', m)
 
-const handler = async (m, { conn, text, usedPrefix, command }) => {
-if (!text) return conn.reply(m.chat, `❍ Escribe el nombre del grupo a buscar.\nEj: *${usedPrefix + command} Memes*`, m)
-await m.react('🕒') 
-try {
-const res = await fetch(`https://api-adonix.ultraplus.click/search/wpgroups?apikey=shadow.xyz&q=${encodeURIComponent(text)}`)
-const json = await res.json()
-if (!json.status || !json.data || json.data.length === 0) return conn.reply(m.chat, `ꕤ No se encontraron grupos con: *${text}*`, m)
-let message = `✿ *Resultados de grupos para:* *${text}*\n\n`
-json.data.slice(0, 10).forEach((g, i) => {
-message += `「☆」 Busca *<${g.name}>*\n`
-message += `> ❏ Link » ${g.link}\n\n`
-})
-conn.sendMessage(m.chat, { text: message }, { quoted: m })
-} catch (e) {
-conn.reply(m.chat, '✎ Ocurrió un error buscando los grupos.', m)
-}}
+  let q = m.quoted ? m.quoted : m
+  let msg = await m.getQuotedObj()
+  let mime = (q.msg || q).mimetype || ''
+  let modo = (args[0] || '').toLowerCase()
 
-handler.command = ['wagroups']
-handler.tags = ['search']
-handler.help = ['wpgroups', 'wagroups', 'wgrupos']
+  if (modo === 'bot') {
+    if (/image|video|audio|document/.test(mime)) {
+      let media = await q.download()
+      await conn.sendFile(m.chat, media, '', q.text || '', m)
+    } else if (q.text) {
+      await conn.sendMessage(m.chat, { text: q.text }, { quoted: m })
+    }
+  } else {
+    await conn.copyNForward(m.chat, msg, true)
+  }
+}
+
+handler.help = ['reenviar']
+handler.tags = ['tools']
+handler.command = ['reenviar', 'forward', 'rv']
 
 export default handler
-  
