@@ -27,7 +27,7 @@ global.nameqr = "Onix-Created"
 global.sessions = "Sessions/Principal"
 global.jadi = "Sessions/SubBot"
 global.alanWasock = true
-
+global.packname = "lol"
 global.dev = "Alan.Js"
 global.author = "@mx-community"
 global.etiqueta = "@mx-support"
