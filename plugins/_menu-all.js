@@ -364,7 +364,7 @@ ${readMore}
 ${menuShop}
 
 > ${textbot}`
-return conn.sendMessage(m.chat, { text: categoProf, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: categoShop, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'rpg' || args[0] === '7') {
 let categoRpg = `> ${hora}, ${dia} ${fechaTxt}
 
