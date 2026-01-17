@@ -11,7 +11,7 @@ let listaPrincipal = `\`\`\`⧡ menu » all       [0]
 ⧡ menu » conv      [3]
 ⧡ menu » search    [4]
 ⧡ menu » group     [5]
-⧡ menu » prof      [6]
+⧡ menu » shop     [6]
 ⧡ menu » rpg       [7]
 ⧡ menu » utils     [8]
 ⧡ menu » stickers  [9]
@@ -33,6 +33,7 @@ let menuInfo = `\t⊹ *${usedPrefix}info*
 \t⊹ *${usedPrefix}mods!*
 \t⊹ *${usedPrefix}admins!*
 \t⊹ *${usedPrefix}stat*
+\t⊹ *${usedPrefix}plan*
 \t⊹ *${usedPrefix}anuncios*
 \t⊹ *${usedPrefix}support*   [text]`
 let menuDesc = `\t⊹ *${usedPrefix}ytmp3*   [link/text]
@@ -45,6 +46,7 @@ let menuDesc = `\t⊹ *${usedPrefix}ytmp3*   [link/text]
 \t⊹ *${usedPrefix}p-tiktok*   [link]
 \t⊹ *${usedPrefix}a-tiktok*   [link]
 \t⊹ *${usedPrefix}sly*   [link]
+\t⊹ *${usedPrefix}spotify*   [link]
 \t⊹ *${usedPrefix}mediafire*   [link]
 \t⊹ *${usedPrefix}pinterest*   [link]
 \t⊹ *${usedPrefix}github*   [link]`
@@ -53,13 +55,14 @@ let menuConv = `\t⊹ *${usedPrefix}upload*
 \t⊹ *${usedPrefix}turl*   [query]
 \t⊹ *${usedPrefix}catbox*   [query]`
 let menuSearch = `\t⊹ *${usedPrefix}imagen*   [text]
-\t⊹ *${usedPrefix}mfires*   [text]
 \t⊹ *${usedPrefix}fdroids*   [text]
 \t⊹ *${usedPrefix}apk*   [text]
 \t⊹ *${usedPrefix}yts*   [text]
 \t⊹ *${usedPrefix}slys*   [text]
-\t⊹ *${usedPrefix}tiktoks*   [text]
+\t⊹ *${usedPrefix}imagen*   [text]
+\t⊹ *${usedPrefix}pinimg*   [text]
 \t⊹ *${usedPrefix}tenor*   [text]
+\t⊹ *${usedPrefix}spotifys*   [text]
 \t⊹ *${usedPrefix}apples*   [text]
 \t⊹ *${usedPrefix}google*   [text]`
 let menuGroup = `\t⊹ *${usedPrefix}enlace*
@@ -73,16 +76,9 @@ let menuGroup = `\t⊹ *${usedPrefix}enlace*
 \t⊹ *${usedPrefix}mute+*   [mention]
 \t⊹ *${usedPrefix}mute-*   [mention]
 \t⊹ *${usedPrefix}tags*   [text]`
-let menuProf = `\t⊹ *${usedPrefix}myp*
-\t⊹ *${usedPrefix}genero-*
-\t⊹ *${usedPrefix}desc-*
-\t⊹ *${usedPrefix}birth-*
-\t⊹ *${usedPrefix}red-*
-\t⊹ *${usedPrefix}perfil*   (who)
-\t⊹ *${usedPrefix}age+*   [define]
-\t⊹ *${usedPrefix}genero+*   [define]
-\t⊹ *${usedPrefix}desc+*   [define]
-\t⊹ *${usedPrefix}birth*   [define]`
+let menuShop = `\t⊹ *${usedPrefix}internet*
+\t⊹ *${usedPrefix}colaborar*
+\t⊹ *${usedPrefix}plan*   [query]`
 let menuRpg = `\t⊹ *${usedPrefix}aventura*
 \t⊹ *${usedPrefix}minar*
 \t⊹ *${usedPrefix}pescar*
@@ -97,19 +93,20 @@ let menuRpg = `\t⊹ *${usedPrefix}aventura*
 \t⊹ *${usedPrefix}regalo*
 \t⊹ *${usedPrefix}cazar*
 \t⊹ *${usedPrefix}talar*
+\t⊹ *${usedPrefix}robar*   [reply]
 \t⊹ *${usedPrefix}pico*   [improve]
 \t⊹ *${usedPrefix}espada*   [improve]
 \t⊹ *${usedPrefix}hacha*   [improve]
 \t⊹ *${usedPrefix}inv*   [reply]
 \t⊹ *${usedPrefix}rpg*   [query]
-\t⊹ *${usedPrefix}dep*   [query]
-\t⊹ *${usedPrefix}dep2*   [query]
-\t⊹ *${usedPrefix}ret*   [query]
-\t⊹ *${usedPrefix}ret2*   [query]
+\t⊹ *${usedPrefix}dep/dep2*   [query]
+\t⊹ *${usedPrefix}ret/ret2*   [query]
 \t⊹ *${usedPrefix}shop*   [query]
 \t⊹ *${usedPrefix}stats*   [reply]`
 let menuUtils = `\t⊹ *${usedPrefix}lid*
 \t⊹ *${usedPrefix}lids*
+\t⊹ *${usedPrefix}collabs*
+\t⊹ *${usedPrefix}install*   [query]
 \t⊹ *${usedPrefix}cid*   [link]
 \t⊹ *${usedPrefix}chatgpt*  [text]
 \t⊹ *${usedPrefix}imagina*  [text]
@@ -239,8 +236,7 @@ let menuOwn = `\t⊹ *${usedPrefix}fix*
 \t⊹ *${usedPrefix}block-*   [mention]
 \t⊹ *${usedPrefix}bot-name*   [text]
 \t⊹ *${usedPrefix}bot-img*   [reply]
-\t⊹ *${usedPrefix}bot-desc*   [text]
-\t⊹ *${usedPrefix}bot-px*   [query]`
+\t⊹ *${usedPrefix}bot-desc*   [text]`
 
 const user = global.db.data.users[m.sender] || {}
 const name = await conn.getName(m.sender)
@@ -308,7 +304,7 @@ let categoDesc = `> ${hora}, ${dia} ${fechaTxt}
 ᗢ Premium : *${premium}*
 ✦ Version : *${vs} (/mx_lt)*
 ${readMore}
-༤〩 \`Descargador\`
+༤〩 \`Descargadores\`
 ${menuDesc}
 
 > ${textbot}`
@@ -355,8 +351,8 @@ ${menuGroup}
 
 > ${textbot}`
 return conn.sendMessage(m.chat, { text: categoGroup, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
-} else if (args[0] === 'prof' || args[0] === '6') {
-let categoProf = `> ${hora}, ${dia} ${fechaTxt}
+} else if (args[0] === 'shop' || args[0] === '6') {
+let categoShop = `> ${hora}, ${dia} ${fechaTxt}
 
 ⧨ Modo : *Privado*
 🜲 Usuario : @${name}
@@ -364,8 +360,8 @@ let categoProf = `> ${hora}, ${dia} ${fechaTxt}
 ᗢ Premium : *${premium}*
 ✦ Version : *${vs} (/mx_lt)*
 ${readMore}
-༤〩 \`Perfil\`
-${menuProf}
+༤〩 \`Beneficios\`
+${menuShop}
 
 > ${textbot}`
 return conn.sendMessage(m.chat, { text: categoProf, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
@@ -512,8 +508,8 @@ ${menuSearch}
 ${menuGroup}
 
 
-༤〩 \`Perfil\`
-${menuProf}
+༤〩 \`Tienda\`
+${menuShop}
 
 
 ༤〩 \`Juegos RPG\`
@@ -560,7 +556,6 @@ await conn.sendMessage(m.chat, { text: `${e.message}` }, { quoted: m })
 }
 
 handler.command = ['menu', 'help', 'menú']
-
 
 export default handler
 
