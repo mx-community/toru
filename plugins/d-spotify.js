@@ -1,12 +1,12 @@
 import fetch from 'node-fetch'
 const handler = async (m, { conn, text, args, usedPrefix, command }) => {
-if (!args[0]) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un enlace de Spotify.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* https://open.spotify.com/xxx` }, { quoted: m })
+if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un enlace de Spotify.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* https://open.spotify.com/xxx` }, { quoted: m })
 try {
 await m.react("⏰")
-const res = await fetch(`https://api.delirius.store/download/spotifydl?url=${args[0]}`)
+const res = await fetch(`https://api.delirius.store/download/spotifydl?url=${text}`)
 const json = await res.json()
 const toru = json.data
-if (!/^(https?:\/\/)?(www\.)?(open\.spotify\.com)\//i.test(args[0])) return conn.sendMessage(m.chat, { text: `El enlace ingresado no es valido.` }, { quoted: m })
+if (!/^(https?:\/\/)?(www\.)?(open\.spotify\.com)\//i.test(text)) return conn.sendMessage(m.chat, { text: `El enlace ingresado no es valido.` }, { quoted: m })
 
 let mensaje = `· ┄ · ⊸ 𔓕 *Spotify  :  Download*
 
