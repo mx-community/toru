@@ -17,7 +17,7 @@ body: textbot,
 containsAutoReply: true, 
 mediaType: 1, 
 thumbnailUrl: "https://files.catbox.moe/hnn3hp.jpg", 
-sourceUrl: null }}}, { quoted: fkontak })
+sourceUrl: null }}}, { quoted: m })
 };
 handler.command = ["dat"]
 
