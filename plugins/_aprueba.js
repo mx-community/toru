@@ -9,17 +9,23 @@ const toru = json.data
 if (!toru || toru.length < 2) return conn.sendMessage(m.chat, { text: `No se han encontrado resultados en Spotify.` }, { quoted: m })
 const maxItems = Math.min(toru.length, 10)
 
+let mensaje = `· ┄ · ⊸ 𔓕 *Spotify  :  Search*\n\n\t＃ *Busqueda* : ${text}\n\t＃ *Resultados* : *${maxItems}* results\n\t＃ *Fuente* : Spotify \n${readMore}\n\n`
+
 let listado = toru.map(t => {
 return `⧡ *ID* : ${t.id}
 ⧡ *Titulo* : ${t.title}
 ⧡ *Duracion* : ${t.duration}
 ⧡ *Enlace* : ${t.url}`
-}).join('\n\n')
-await conn.sendMessage(m.chat, { text: listado }, { quoted: m })
+}).join('\n\n\n')
+const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/suuskr.jpg`)).arrayBuffer())
+await conn.sendMessage(m.chat, { text: mensaje + listado, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ Spotify : Search ⧿", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 await m.react("✅")
 } catch (e) {
 await conn.sendMessage(m.chat, { text: `${e.message}` }, { quoted: m })
 }}
 
-handler.command = ['spys']
+handler.command = ['spys', 'spotifys']
 export default handler
+
+const more = String.fromCharCode(8206)
+const readMore = more.repeat(4001)
