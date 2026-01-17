@@ -1,18 +1,10 @@
 import axios from 'axios';
 
 const modelos = {
-  miku: { voice_id: "67aee909-5d4b-11ee-a861-00163e2ac61b", voice_name: "Hatsune Miku" },
-  nahida: { voice_id: "67ae0979-5d4b-11ee-a861-00163e2ac61b", voice_name: "Nahida" },
-  nami: { voice_id: "67ad95a0-5d4b-11ee-a861-00163e2ac61b", voice_name: "Nami" },
-  ana: { voice_id: "f2ec72cc-110c-11ef-811c-00163e0255ec", voice_name: "Ana" },
-  optimus_prime: { voice_id: "67ae0f40-5d4b-11ee-a861-00163e2ac61b", voice_name: "Optimus Prime" },
-  goku: { voice_id: "67aed50c-5d4b-11ee-a861-00163e2ac61b", voice_name: "Goku" },
-  taylor_swift: { voice_id: "67ae4751-5d4b-11ee-a861-00163e2ac61b", voice_name: "Taylor Swift" },
-  elon_musk: { voice_id: "67ada61f-5d4b-11ee-a861-00163e2ac61b", voice_name: "Elon Musk" },
-  mickey_mouse: { voice_id: "67ae7d37-5d4b-11ee-a861-00163e2ac61b", voice_name: "Mickey Mouse" },
-  kendrick_lamar: { voice_id: "67add638-5d4b-11ee-a861-00163e2ac61b", voice_name: "Kendrick Lamar" },
-  angela_adkinsh: { voice_id: "d23f2adb-5d1b-11ee-a861-00163e2ac61b", voice_name: "Angela Adkinsh" },
-  eminem: { voice_id: "c82964b9-d093-11ee-bfb7-e86f38d7ec1a", voice_name: "Eminem" }
+  gura: { voice_id: "67ae0979-5d4b-11ee-a861-00163e2ac61b", voice_name: "Nahida" },
+  onix: { voice_id: "67ae0f40-5d4b-11ee-a861-00163e2ac61b", voice_name: "Optimus Prime" },
+  toru: { voice_id: "67ada61f-5d4b-11ee-a861-00163e2ac61b", voice_name: "Elon Musk" },
+  ax: { voice_id: "c82964b9-d093-11ee-bfb7-e86f38d7ec1a", voice_name: "Eminem" }
 };
 
 const userAgents = [
@@ -58,7 +50,7 @@ async function generarTTS(texto, modelo) {
   );
 
   const audioUrl = res.data?.data?.convert_result?.[0]?.oss_url;
-  if (!audioUrl) throw new Error('No se generó el audio');
+  if (!audioUrl) throw new Error('No se pudo generar el audio.');
 
   const audioBuffer = await axios.get(audioUrl, {
     responseType: 'arraybuffer'
@@ -71,24 +63,14 @@ async function generarTTS(texto, modelo) {
 }
 
 const handler = async (m, { text, conn, command }) => {
-  if (!text.includes('|')) {
-    return conn.reply(m.chat,
-`🎙️ *Text To Speech*
-
-Usa:
-.${command} texto|modelo
-
-Ejemplo:
-.${command} hola mundo|miku
-
-Modelos:
-${Object.keys(modelos).join(', ')}`,
-    m);
+  if (!text.includes('=')) {
+  let listado = `• toru\n• gura`
+    return conn.sendMessage(m.chat, { text: `ᗢ Proporciona un texto mas el tipo de voz segun tu preferencia.\n\n> Voces disponible:\n${listado}\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* hola, como estas=toru` }, { quoted: m });
   }
 
-  let [contenido, modelo] = text.split('|').map(v => v.trim().toLowerCase());
+  let [contenido, modelo] = text.split('=').map(v => v.trim().toLowerCase());
 
-  let msg = await conn.sendMessage(m.chat, { text: '🎧 Generando voz...' }, { quoted: m });
+
 
   try {
     const tts = await generarTTS(contenido, modelo);
@@ -100,14 +82,13 @@ ${Object.keys(modelos).join(', ')}`,
     }, { quoted: m });
 
   } catch (e) {
-    await conn.reply(m.chat, `❌ Error:\n${e.message}`, m);
+    await conn.reply(m.chat, `${e.message}`, m);
   } finally {
     if (msg?.key) await conn.sendMessage(m.chat, { delete: msg.key });
   }
 };
 
-handler.command = ['tts2'];
-handler.tags = ['herramientas'];
-handler.help = ['tts2 texto|modelo'];
+handler.command = ['voz']
+
 
 export default handler;
