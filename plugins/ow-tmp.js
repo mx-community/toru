@@ -1,7 +1,7 @@
 import { tmpdir } from 'os'
 import path, {join} from 'path'
 import { existsSync, readdirSync, readFileSync, statSync, unlinkSync, watch } from 'fs'
-let handler = async (m, {conn, usedPrefix: _p, __dirname, args}) => {
+let handler = async (m, {conn, usedPrefix: _p, __dirname, command, args}) => {
 await conn.sendMessage(m.chat, { text: `Limpieza de la carpeta tmp realizado...` }, { quoted: m })
 await m.react("📍")
 
@@ -14,7 +14,7 @@ unlinkSync(file)
 })
 } 
 
-handler.command = ["tmp -d"]
+handler.command = ["tmp_d"]
 handler.owner = true
 export default handler
 
