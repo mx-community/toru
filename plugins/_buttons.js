@@ -15,20 +15,20 @@ title: `〩 YouTube : Search 〩`,
 rows: [
 {
 header: 'AUDIO',
-title: v.title,
-description: `${v.timestamp}\n`,
+title: "",
+description: `${v.title} = ${v.timestamp}\n`,
 id: `${usedPrefix}ytmp3 ${v.url}`
 },
 {
 header: 'VIDEO',
-title: v.title,
-description: `${v.timestamp}\n`,
+title: "",
+description: `${v.title} = ${v.timestamp}\n`,
 id: `${usedPrefix}ytmp4 ${v.url}`
 }
 ]
 })
 }
-await conn.sendList(m.chat, teskd, ``, 'Ver Lista', listSections, m)
+await conn.sendList(m.chat, teskd, `\n\n${botname}`, 'Ver Lista', listSections, m)
 } catch (e) {
 await conn.sendMessage(m.chat, { text: e.message }, { quoted: m })
 console.log(e)
@@ -37,4 +37,3 @@ console.log(e)
 
 handler.command = ["button"]
 export default handler
-
