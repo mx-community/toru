@@ -30,7 +30,7 @@ await baileys.delay(delay) }
 return album
 }
 
-let handler = async (m, { conn, text, args, usedPrefix }) => {
+let handler = async (m, { conn, text, args, usedPrefix, command }) => {
 if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un enlace de Pinterest\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* https://pin.it/xxxx` }, { quoted: m })
 try {
 await m.react('⏰')
