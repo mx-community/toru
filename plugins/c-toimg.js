@@ -1,14 +1,17 @@
-import { webp2png } from '../lib/webp2mp4.js'
-let handler = async (m, {conn, usedPrefix, command}) => {
-const q = m.quoted || m
-const mime = q.mediaType || ''
-if (!/sticker/.test(mime)) return conn.sendMessage(m.chat, { text: `ᗢ Debe de responder a un sticker sin movimiento.` }, { quoted: m })
-await m.react("⏰")
-const media = await q.download()
-let out = (await webp2png(media).catch((_) => null)) || Buffer.alloc(0)
-
-await conn.sendMessage(m.chat, { image: { url: out }, caption: null }, { quoted: m })
-await m.react("✅")
+let handler = async (m, { conn, usedPrefix, command }) => {
+if (!m.quoted) {
+return conn.sendMessage(m.chat, { text: `ᗢ Responda a un sticker sin movimiento para convertirlo en imagen.` }, { quoted: m })
 }
-handler.command = ['timg']
+await m.react('⏰')
+let xx = m.quoted
+let imgBuffer = await xx.download()   
+if (!imgBuffer) {
+return conn.sendMessage(m.chat, { text: `No se ha podido convertir el sticker a imagen.` }, { quoted: m })
+}
+await conn.sendMessage(m.chat, { image: imgBuffer, caption: `${botname}\n> ${textbot}`}, { quoted: m })
+await m.react('✅')
+}
+
+handler.command = ['timg'] 
+
 export default handler
