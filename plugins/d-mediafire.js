@@ -7,7 +7,7 @@ const url = args[0]
 if (!/^https?:\/\/(www\.)?mediafire\.com/i.test(url)) return conn.sendMessage(m.chat, { text: `El enlace ingresado no es válido.` }, { quoted: m })
 await m.react('⏰')
 try {
-const api = `https://delirius-apiofc.vercel.app/download/mediafire?url=${encodeURIComponent(url)}`
+const api = `https://api.delirius.store/download/mediafire?url=${encodeURIComponent(url)}`
 const res = await fetch(api)
 if (!res.ok) throw new Error(`Error de la API: ${res.status} ${res.statusText}`)
 const json = await res.json()
@@ -20,13 +20,14 @@ const thumbBot = Buffer.from(await (await fetch(`${global.toruImg}`)).arrayBuffe
 if (!fileUrl) throw new Error('No se pudo obtener el enlace de descarga.')
 const caption = `· ┄ · ⊸ 𔓕 *Mediafire  :  Download*
 
-\t＃ Titulo  :  *${fileTitle}*
-\t＃ Tamaño  :  ${fileSize}
-\t＃ Paquete  :  ${fileMime}
+\t＃ *Titulo* : ${fileTitle}
+\t＃ *Tamaño* : ${fileSize}
+\t＃ *Paquete* : ${fileMime}
 
 > ${textbot}`.trim()
-
-conn.sendFile(m.chat, fileUrl, fileTitle, caption, m, null, {mimetype: fileMime, asDocument: true})
+const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/293guw.jpg`)).arrayBuffer())
+await conn.sendMessage(m.chat, { text: caption, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ Mediafire : Download ⧿", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+conn.sendFile(m.chat, fileUrl, fileTitle, `${botname}\n> ${textbot}`, m, null, {mimetype: fileMime, asDocument: true})
 await m.react('✅')
 } catch (e) {
 await conn.sendMessage(m.chat, { text: `${e.message}` }, { quoted: m })
