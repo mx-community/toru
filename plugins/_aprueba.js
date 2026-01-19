@@ -10,7 +10,6 @@ if (!/^(https?:\/\/)?(www\.)?(youtube\.com|youtu.be\.com)\//i.test(text)) return
 
 let mensaje = `· ┄ · ⊸ 𔓕 *YouTube  :  MP4*
 
-\t＃ *ID* : ${toru.id}
 \t＃ *Titulo* : ${toru.titulo}
 
 > ${textbot}`
