@@ -90,7 +90,7 @@ caption += `⧡ *Publicado* : ${v.ago || '¿?'}\n`
 caption += `⧡ *Vistas* : ${toNum(v.views)}\n\n`
 }
 
-caption += `> ${textbot}`
+caption += `⏰ Expired : *1min*\n> ${textbot}`
 
 const thumbYoutu = (await conn.getFile(videos[0].thumbnail))?.data
 await conn.sendMessage(m.chat, { text: caption, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ YouTube : Search ⧿", body: botname, thumbnail: thumbYoutu, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
