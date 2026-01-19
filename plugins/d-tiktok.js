@@ -54,15 +54,12 @@ const doc = { audio: { url: dp.results.audio }, mimetype: 'audio/mp4', fileName:
 await conn.sendMessage(m.chat, doc, { quoted: m });
 await m.react("✅")
 } else {
-let d2 = await fetch(`https://eliasar-yt-api.vercel.app/api/search/tiktok?query=${text}`)
-let dp = await d2.json()
-let res = await fetch(api)
-let json = await res.json()
-if (!json || json.code !== 0 || !json.data) return conn.sendMessage(m.chat, { text: `No se han encontrado resultados en el enlace.` }, { quoted: m })
-const data = json.data
-const { id, region, title, cover, origin_cover, duration, play, wmplay, music, music_info, play_count, digg_count, comment_count, share_count, download_count, author, images, create_time } = data
-const medias = map(toru => ({ type: 'image', data: { url: toru.images } }))
-await sendAlbumMessage(m.chat, medias, { caption: `· ┄ · ⊸ 𔓕 *TikTok : Download*\n\n\t＃ *Busqueda* : ${text}\n\t＃ *Resultado* : *${medias.length}* imagenes\n\t＃ *Fuente* : TikTok\n\n> ${textbot}`, quoted: m })
+//let d2 = await fetch(`https://eliasar-yt-api.vercel.app/api/search/tiktok?query=${text}`)
+//let dp = await d2.json()
+if (images && images.length > 0) {
+for (let i = 0; i < images.length; i++) {
+await conn.sendMessage(m.chat, { image: { url: images[i] }, caption: null }, m)
+}
 const doc = { audio: { url: dp.results.audio }, mimetype: 'audio/mp4', fileName: `ttbykeni.mp3`, };
 await conn.sendMessage(m.chat, doc, { quoted: m });
 } catch (err) {
