@@ -10,7 +10,8 @@ if (!/^(https?:\/\/)?(www\.)?(youtube\.com|youtu.be\.com)\//i.test(text)) return
 
 let mensaje = `· ┄ · ⊸ 𔓕 *YouTube  :  MP4*
 
-\t＃ *Titulo* : ${toru.title}
+\t＃ *ID* : ${toru.id}
+\t＃ *Titulo* : ${toru.titulo}
 
 > ${textbot}`
 const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/6lknyb.jpg`)).arrayBuffer())
