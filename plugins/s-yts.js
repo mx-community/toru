@@ -132,9 +132,10 @@ const sendAsDoc = mb > MAX_FILE_SIZE_MB
 const caption = `${botname}\n> ${textbot}`
 
 if (sendAsDoc) {
-await conn.sendMessage(m.chat, { document: { url: apiData.link }, fileName: `${video.title}.${apiData.format}`, mimetype: type === 'audio' ? 'audio/mpeg' : 'video/mp4', caption: `${botname}\n> ${textbot}` }, { quoted: m } )
+await conn.sendMessage(m.chat, { document: { url: apiData.link }, fileName: `${video.titulo}.${apiData.format}`, mimetype: type === 'audio' ? 'audio/mpeg' : 'video/mp4', caption: `${botname}\n> ${textbot}` }, { quoted: m } )
 } else if (type === 'audio') {
-await conn.sendMessage(m.chat, { audio: { url: apiData.link }, fileName: `toru-audio.mp3`, mimetype: 'audio/mpeg', ptt: true, caption: `${botname}\n> ${textbot}` }, { quoted: m }) //Audio mp3 document.
+await conn.sendMessage(m.chat, { document: { url: apiData.link }, fileName: `${video.titulo}.${apiData.format}`, mimetype: type === 'audio' ? 'audio/mpeg' : 'audio/mp3', caption: `${botname}\n> ${textbot}` }, { quoted: m } )
+  //conn.sendMessage(m.chat, { audio: { url: apiData.link }, fileName: `toru-audio.mp3`, mimetype: 'audio/mpeg', ptt: true, caption: `${botname}\n> ${textbot}` }, { quoted: m }) //Audio mp3 document.
   //conn.sendMessage( m.chat, { audio: { url: apiData.link }, fileName: `${video.title}.mp3`, mimetype: 'audio/mpeg', ptt: false, caption }, { quoted: m } )
 } else {
 await conn.sendMessage( m.chat, { video: { url: apiData.link }, fileName: `${video.title}.mp4`, mimetype: 'video/mp4', caption }, { quoted: m })
