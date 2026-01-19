@@ -18,7 +18,7 @@ const texto1 = `· ┄ · ⊸ 𔓕 *Play  :  YouTube*
 \t＃ *Titulo* : ${yt_play[0].title}
 \t＃ *Publicado* : ${yt_play[0].ago}
 \t＃ *Duración* : ${secondString(yt_play[0].duration.seconds)}
-\t＃ *Vistas* : ${MilesNumber(yt_play[0].views)}
+\t＃ *Vistas* : ${toNum(yt_play[0].views)}
 \t＃ *Enlace* : ${yt_play[0].url.replace(/^https?:\/\//, '')}
 
 \`Responda con:\`
@@ -106,7 +106,7 @@ await m.react("⏰")
 const {mediaData, isDirect} = await download(videoApis)
 if (mediaData) {
 const fileSize = await getFileSize(mediaData)
-const messageOptions = {fileName: `${userVideoData.title}.mp4`, caption: `\t\t【  V I D E O  :  Y T  】\n\n\t⸭ ✅ ${userVideoData.title}\n\n> ${textbot}`, mimetype: 'video/mp4'}
+const messageOptions = {fileName: `${userVideoData.title}.mp4`, caption: `${botname}\n> ${textbot}`, mimetype: 'video/mp4'}
 if (fileSize > LimitVid) {
 await conn.sendMessage(m.chat, {document: isDirect ? mediaData : {url: mediaData}, ...messageOptions}, {quoted: m || null})
 await m.react("✅")
@@ -133,13 +133,8 @@ const search = await yts.search({query, hl: 'es', gl: 'ES', ...options})
 return search.videos
 }
 
-function MilesNumber(number) {
-const exp = /(\d)(?=(\d{3})+(?!\d))/g
-const rep = '$1.'
-const arr = number.toString().split('.')
-arr[0] = arr[0].replace(exp, rep)
-return arr[1] ? arr.join('.') : arr[0]
-}
+function toNum(number) {
+if (number >= 1000 && number < 1000000) { return (number / 1000).toFixed(1) + 'k' } else if (number >= 1000000) { return (number / 1000000).toFixed(1) + 'M' } else if (number <= -1000 && number > -1000000) { return (number / 1000).toFixed(1) + 'k' } else if (number <= -1000000) { return (number / 1000000).toFixed(1) + 'M' } else { return number.toString() }}
 
 function secondString(seconds) {
 seconds = Number(seconds)
