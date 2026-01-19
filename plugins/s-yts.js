@@ -80,14 +80,14 @@ ytCache[m.sender] = { results: videos, timestamp: Date.now() }
 let caption = `· ┄ · ⊸ 𔓕 *YouTube  :  Search*\n\n`
 caption += `\t＃ *Busqueda* : ${text}\n`
 caption += `\t＃ *Resultados* : *10* results\n`
-caption += `\t＃ *Fuente* : YouTube\n\n\n`
+caption += `\t＃ *Fuente* : YouTube\n\n📍  Responda a este mensaje con el formato y numero.\nvideo = V3\nAudio = A3\n\n`
 
 for (let i = 0; i < videos.length; i++) {
 const v = videos[i]
 caption += `⧡ *${i + 1}* : ${v.title}\n`
 caption += `⧡ *Duración* : ${v.timestamp || '¿?'}\n`
 caption += `⧡ *Publicado* : ${v.ago || '¿?'}\n`
-caption += `⧡ *Vistas* : ${toNum(v.views)}\n\n\n`
+caption += `⧡ *Vistas* : ${toNum(v.views)}\n\n`
 }
 
 caption += `> ${textbot}`
