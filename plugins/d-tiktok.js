@@ -16,12 +16,12 @@ let json = await res.json()
 if (!json || json.code !== 0 || !json.data) return conn.sendMessage(m.chat, { text: `No se han encontrado resultados en el enlace.` }, { quoted: m })
 const data = json.data
 const { id, region, title, cover, origin_cover, duration, play, wmplay, music, music_info, play_count, digg_count, comment_count, share_count, download_count, author, images, create_time } = data
-let d2 = await fetch(`https://eliasar-yt-api.vercel.app/api/search/tiktok?query=${text}`)
-let dp = await d2.json()
-const doc = { audio: { url: dp.results.audio }, mimetype: 'audio/mp4', fileName: `ttbykeni.mp3`, };
+//let d2 = await fetch(`https://eliasar-yt-api.vercel.app/api/search/tiktok?query=${text}`)
+//let dp = await d2.json()
+//const doc = { audio: { url: dp.results.audio }, mimetype: 'audio/mp4', fileName: `ttbykeni.mp3`, };
 await m.react("⏰")
 await conn.sendMessage(m.chat, { video: { url: play }, caption: `${botname}\n> ${textbot}`, gifPlayback: false, jpegThumbnail: Buffer.from(await (await fetch(cover)).arrayBuffer()) }, { quoted: m })
-await conn.sendMessage(m.chat, doc, { quoted: m });
+//await conn.sendMessage(m.chat, doc, { quoted: m });
 await m.react("✅")
 } catch (err) {
 console.error(err)
