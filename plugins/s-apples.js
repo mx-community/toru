@@ -27,7 +27,7 @@ textMsg += `⧡ *${i + 1}* : ${item.title}
 ⧡ *Tipo* : ${item.type || "Desconocido"}
 ⧡ *Enlace* : ${item.url}\n\n`;
 });
-textMag += `> ${textbot}`;
+textMsg += `> ${textbot}`;
 const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/e3065p.jpg`)).arrayBuffer());
 await conn.sendMessage(m.chat, { text: textMsg, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ AppleMusic : Search ⧿", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m });
 await m.react("✅");
