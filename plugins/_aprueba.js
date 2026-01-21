@@ -1,16 +1,18 @@
-let handler = async (m, { conn, text, command, usedPrefix, args, isRowner }) => {
-const newDesc = m.text.trim().split(' ').slice(1).join(' ');
-if (!newDesc) {
-return conn.sendMessage(m.chat, { text: `ᗢ Proporcione una nueva descripción para el bot.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Inteligencia Artificial.` }, { quoted: m });
-};
+import axios from 'axios'
+let handler = async (m, { conn, usedPrefix, command, text }) => {
 
-await m.react("⏰");
-global.textbot = newDesc;
-conn.sendMessage(m.chat, { text: `✓ Listo...` }, { quoted: m })
-await m.react("✅");
-};
+if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione una petición para hablar con Claude AI.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Hola` }, { quoted: m })
+await m.react("⏰")
+try {
+let { data } = await axios.get(`https://api-hasumi.vercel.app/api/ai/claude?text=${encodeURIComponent(text)}`)
+let respuesta = `${data.texto}`
+await conn.sendMessage(m.chat, { text: respuesta, 
+contextInfo: { forwardingScore: 1, isForwarded: false, 
+externalAdReply: { showAdAttribution: false, renderLargerThumbnail: false, title: "Claude AI", body: botname, containsAutoReply: true, mediaType: 1, thumbnailUrl: "https://files.catbox.moe/zjt0xe.jpg", sourceUrl: null }}}, { quoted: m })
+await m.react("✅")
+} catch (error) {
+conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m })
+}}
 
-handler.command = ['new-desc']; 
-handler.admin = true;
-export default handler;
-
+handler.command = ["claude"]
+export default handler
