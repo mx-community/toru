@@ -16,9 +16,9 @@ let txt = toru.map(({ package: pkg }) => {
 return `⧡ *Titulo* : ${pkg.name}
 ⧡ *Version* : v${pkg.version}
 ⧡ *Descripción* : ${pkg.description}
-⧡ *Enlace* : ${pkg.links.npm}`}).join`\n\n`
+⧡ *Enlace* : ${pkg.links.npm}`}).join`\n\n\n`
 const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/nixtl0.jpg`)).arrayBuffer())
-await conn.sendMessage(m.chat, { text: inicio + txt + `> ${textbot}`, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ NPM - Search ⧿", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: inicio + txt + `\n\n> ${textbot}`, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ NPM - Search ⧿", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 await m.react("✅")
 } catch {
 await conn.sendMessage(m.chat, { text: `[ error ] undefined...` }, { quoted: m })
