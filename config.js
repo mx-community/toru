@@ -8,15 +8,14 @@ import fs from "fs"
 global.botNumber = ""
 global.owner = [ "5493873655135", "573108625104", "5493873634786", "51959842633", "5493876639332", "523142183828", "51957626299" ]
 
-global.apikeyOptishield = "ebe2e764b8a003d278472b711498aec7"
+//global.apikeyOptishield = "ebe2e764b8a003d278472b711498aec7"
 
-global.sendOptishield = async (params) => {
+/*global.sendOptishield = async (params) => {
 params.apikey = global.apikeyOptishield;
 const { data: json } = await axios("https://optishield.uk/api/", { params });
 return json
-}
+}*/
 
-//Roles
 global.suittag = ["5493873655135"] 
 global.prems = ["5493873655135"]
 global.mods = ["5493873655135"]
