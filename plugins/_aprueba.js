@@ -1,32 +1,28 @@
 import fetch from 'node-fetch'
-
 let handler = async (m, { text, usedPrefix, command }) => {
-
-if (!text) return conn.reply(m.chat, `✦ Escribe el nonbre del scraper.\nEjemplo: ${usedPrefix + command} yt-search`, m)
-
+if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione una busqueda en npmjs.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* yt-search` }, { quoted: m })
 try {
-
+await m.react("⏰")
 let res = await fetch(`http://registry.npmjs.com/-/v1/search?text=${text}`)
 let { objects } = await res.json()
 let toru = objects.slice(0, 10)
-if (!toru.length) return conn.reply(m.chat, `『✦』 No se encontró resultado de: ${text}`, m)
+if (!toru.length) return conn.sendMessage(m.chat, { text: `No se han encontrado resultados...` }, { quoted: m })
+let inicio = `· ┄ · ⊸ 𔓕 *NPM  :  Search*
 
+\t＃ *Búsqueda* : ${text}
+\t＃ *Resultados* : *10* results
+\t＃ *Fuente* : npmjs\n\n\n`
 let txt = toru.map(({ package: pkg }) => {
-return `《 ✧ 》 𝖲craper - ${botname} 《 ✧ 》
-
-✦ 𝐍𝐨𝐦𝐛𝐫𝐞: ${pkg.name}
-✦ 𝐕𝐞𝐫𝐬𝐢𝐨𝐧: V${pkg.version}
-✦ 𝐄𝐧𝐥𝐚𝐜𝐞: ${pkg.links.npm}
-✦ 𝐃𝐞𝐬𝐜𝐫𝐢𝐩𝐜𝐢𝐨𝐧: ${pkg.description}
-\n\n----------`
-}).join`\n\n`
-
-await conn.reply(m.chat, txt, m)
+return `⧡ *Titulo* : ${pkg.name}
+⧡ *Version* : v${pkg.version}
+⧡ *Descripción* : ${pkg.description}
+⧡ *Enlace* : ${pkg.links.npm}`}).join`\n\n`
+const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/nixtl0.jpg`)).arrayBuffer())
+await conn.sendMessage(m.chat, { text: inicio + txt + `> ${textbot}`, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ NPM - Search ⧿", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await m.react("✅")
 } catch {
-await conn.reply(m.chat, 'Ocurrió un error', m)
+await conn.sendMessage(m.chat, { text: `[ error ] undefined...` }, { quoted: m })
 }}
 
-handler.help = ['npmjs']
-handler.tags = ['buscador']
-handler.command = ['npmjs']
+handler.command = ['npms']
 export default handler
