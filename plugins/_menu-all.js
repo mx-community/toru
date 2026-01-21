@@ -569,7 +569,7 @@ ${menuRandom}
 
 
 ༤〩 \`Reaccion\`
-${menuReac}${m.isGroup ? (chat.fEdits ? `\n\n\n༤〩 \`Editor\`\n${menuEdit}` : '') : ''}${m.isGroup ? (chat.fPremium ? `\n\n\n༤〩 \`Premium\`\n${menuPrem}` : '') : ''}
+${menuReac}${chat.fEdits ? (chat.fEdits ? `\n\n\n༤〩 \`Editor\`\n${menuEdit}` : '') : ''}${chat.fPremium ? (chat.fPremium ? `\n\n\n༤〩 \`Premium\`\n${menuPrem}` : '') : ''}
 
 
 ༤〩 \`Propietario\`
