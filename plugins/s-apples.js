@@ -20,7 +20,7 @@ if (!alt?.data || alt.data.length === 0) throw new Error("Sin resultados API 2")
 json = alt.data.map(v => ({ title: v.title, type: "Canción", artists: v.artist, url: v.url, image: v.image }));
 }
 let result = json.slice(0, 10); 
-let textMsg = `· ┄ · ⊸ 𔓕 *Apple  :  Search*\n\n\t＃ *Busqueda* : ${text}\n\t＃ *Resultados* : *10* results\n\t＃ *Fuente* : AppleMusic\n\n\n`;
+let textMsg = `· ┄ · ⊸ 𔓕 *Apple  :  Search*\n\n\t＃ *Busqueda* : ${text}\n\t＃ *Resultados* : *${result.length}* results\n\t＃ *Fuente* : AppleMusic\n\n\n`;
 result.forEach((item, i) => {
 textMsg += `⧡ *${i + 1}* : ${item.title}
 ⧡ *Artista* : ${item.artists}
