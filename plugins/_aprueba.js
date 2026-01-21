@@ -1,4 +1,3 @@
-
 import fetch from 'node-fetch'
 
 let handler = async (m, { text, usedPrefix, command }) => {
@@ -9,10 +8,10 @@ try {
 
 let res = await fetch(`http://registry.npmjs.com/-/v1/search?text=${text}`)
 let { objects } = await res.json()
+let toru = objects.toru.slice(0, 10)
+if (!toru.length) return conn.reply(m.chat, `『✦』 No se encontró resultado de: ${text}`, m)
 
-if (!objects.length) return conn.reply(m.chat, `『✦』 No se encontró resultado de: ${text}`, m)
-
-let txt = objects.map(({ package: pkg }) => {
+let txt = toru.map(({ package: pkg }) => {
 return `《 ✧ 》 𝖲craper - ${botname} 《 ✧ 》
 
 ✦ 𝐍𝐨𝐦𝐛𝐫𝐞: ${pkg.name}
@@ -31,4 +30,3 @@ handler.help = ['npmjs']
 handler.tags = ['buscador']
 handler.command = ['npmjs']
 export default handler
-  
