@@ -8,7 +8,7 @@ try {
 
 let res = await fetch(`http://registry.npmjs.com/-/v1/search?text=${text}`)
 let { objects } = await res.json()
-let toru = objects.toru.slice(0, 10)
+let toru = objects.slice(0, 10)
 if (!toru.length) return conn.reply(m.chat, `『✦』 No se encontró resultado de: ${text}`, m)
 
 let txt = toru.map(({ package: pkg }) => {
