@@ -57,19 +57,7 @@ if (!("descargas" in user) || !isNumber(user.descargas)) user.descargas = 0
 if (!("arcoins" in user) || !isNumber(user.arcoins)) user.arcoins = 0
 if (!("uscoins" in user) || !isNumber(user.uscoins)) user.uscoins = 0
 if (!("level" in user) || !isNumber(user.level)) user.level = 0
-if (!("torupico" in user) || !isNumber(user.torupico)) user.torupico = 0
-if (!("toruesp" in user) || !isNumber(user.toruesp)) user.toruesp = 0
-if (!("toruach" in user) || !isNumber(user.toruach)) user.toruach = 0
 if (!("health" in user) || !isNumber(user.health)) user.health = 100
-if (!("tawc" in user) || !isNumber(user.tawc)) user.tawc = 0
-if (!("tawc2" in user) || !isNumber(user.tawc2)) user.tawc2 = 0
-if (!("tawc3" in user) || !isNumber(user.tawc3)) user.tawc3 = 0
-if (!("genre" in user)) user.genre = ""
-if (!("birth" in user)) user.birth = ""
-if (!("misocial" in user)) user.misocial = ""
-if (!("mifoto" in user)) user.mifoto = ""
-if (!("marry" in user)) user.marry = ""
-if (!("description" in user)) user.description = ""
 if (!("packstickers" in user)) user.packstickers = null
 if (!("premium" in user)) user.premium = false
 if (!("administ" in user)) user.administ = false
@@ -115,19 +103,7 @@ dlstickers: 0,
 arcoins: 0,
 uscoins: 0,
 level: 0,
-torupico: 0,
-toruesp: 0,
-toruach: 0,
 health: 100,
-tawc: 0,
-tawc2: 0,
-tawc3: 0,
-genre: "",
-birth: "",
-misocial: "",
-mifoto: "",
-marry: "",
-description: "",
 packstickers: null,
 premium: false,
 administ: false,
@@ -150,12 +126,10 @@ global.db.data.chats[m.chat] = {}
 if (chat) {
 if (!("isBanned" in chat)) chat.isBanned = false
 if (!("isMute" in chat)) chat.isMute = false
-if (!("welcome" in chat)) chat.welcome = true
+if (!("welcome" in chat)) chat.welcome = false
 if (!("sWelcome" in chat)) chat.sWelcome = ""
-if (!('sAutorespond' in chat)) chat.sAutorespond = ""
 if (!("sBye" in chat)) chat.sBye = ""
 if (!("detect" in chat)) chat.detect = false
-if (!('autorespond' in chat)) chat.autorespond = false
 if (!("primaryBot" in chat)) chat.primaryBot = null
 if (!("fAdmin" in chat)) chat.fAdmin = false
 if (!("fViewonce" in chat)) chat.fViewonce = false
@@ -163,20 +137,34 @@ if (!("fAceptar" in chat)) chat.fAceptar = false
 if (!("fRechazar" in chat)) chat.fRechazar = false
 if (!("fNobot" in chat)) chat.fNobot = false
 if (!("fChatgp" in chat)) chat.fChatgp = false
-if (!("fJuegos" in chat)) chat.fJuegos = false
+if (!("fSearch" in chat)) chat.fSearch = true
+if (!("fConvert" in chat)) chat.fConvert = true
+if (!("fAis" in chat)) chat.fAis = true
+if (!("fAjustes" in chat)) chat.fAjustes = true
+if (!("fStickers" in chat)) chat.fStickers = true
+if (!("fOwners" in chat)) chat.fOwners = true
+if (!("fInformation" in chat)) chat.fInformation = true
+if (!("fLogos" in chat)) chat.fLogos = true
+if (!("fEdits" in chat)) chat.fEdits = false
+if (!("fPremium" in chat)) chat.fPremium = false
+if (!("fModers" in chat)) chat.fModers = false
+if (!("fAdminbot" in chat)) chat.fAdminbot = false
+if (!("fGrupos" in chat)) chat.fGrupos = true
+if (!("fRandoms" in chat)) chat.fRandoms = true
+if (!("fUtils" in chat)) chat.fUtils = true
+if (!("fReaction" in chat)) chat.fReaction = true
+if (!("fJuegos" in chat)) chat.fJuegos = true
 if (!("fEnlaces" in chat)) chat.fEnlaces = false
-if (!("fDescargas" in chat)) chat.fDescargas = false
-if (!("fRpg" in chat)) chat.fRpg = false
-if (!("fMenu" in chat)) chat.fMenu = false
+if (!("fDescargas" in chat)) chat.fDescargas = true
+if (!("fRpg" in chat)) chat.fRpg = true
+if (!("fMenu" in chat)) chat.fMenu = true
 } else global.db.data.chats[m.chat] = {
 isBanned: false,
 isMute: false,
-welcome: true,
+welcome: false,
 sWelcome: "",
-sAutorespond: "",
 sBye: "",
 detect: false,
-autorespond: false,
 primaryBot: null,
 fAdmin: false,
 fViewonce: false,
@@ -184,11 +172,27 @@ fAceptar: false,
 fRechazar: false,
 fNobot: false,
 fChatgp: false,
-fJuegos: false,
+fSearch: true,
+fConvert: true,
+fAis: true,
+fAjustes: true,
+fStickers: true,
+fOwners: true,
+fInformation: true,
+fLogos: true,
+fEdits: false,
+fPremium: false,
+fModers: false,
+fAdminbot: false,
+fGrupos: true,
+fRandoms: true,
+fUtils: true,
+fReaction: true,
+fJuegos: true,
 fEnlaces: false,
-fDescargas: false,
-fRpg: false,
-fMenu: false
+fDescargas: true,
+fRpg: true,
+fMenu: true
 }
 const settings = global.db.data.settings[this.user.jid]
 if (typeof settings !== "object") {
@@ -224,7 +228,7 @@ const isOwner = isROwner || m.fromMe
 const isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender) || user.premium == true
 const isOwners = [this.user.jid, ...global.owner.map((number) => number + "@s.whatsapp.net")].includes(m.sender)
 if (settings.self && !isOwners) return
-if (settings.gponly && !isOwners && !m.chat.endsWith('g.us') && !/code|p|ping|qr|estado|status|infobot|botinfo|report|reportar|invite|join|logout|suggest|help|menu/gim.test(m.text)) return
+if (settings.gponly && !isOwners && !m.chat.endsWith('g.us') && !/donar|pay|bk|mp|plan|creador|support/gim.test(m.text)) return
 if (opts["queque"] && m.text && !(isPrems)) {
 const queque = this.msgqueque, time = 1000 * 5
 const previousID = queque[queque.length - 1]
@@ -325,8 +329,7 @@ plugin.command === command : false
 global.comando = command
 
 if ((m.id.startsWith("NJX-") || (m.id.startsWith("BAE5") && m.id.length === 16) || (m.id.startsWith("B24E") && m.id.length === 20))) return
-  
-// Primary by: Alex 🐼
+
 if (global.db.data.chats[m.chat].primaryBot && global.db.data.chats[m.chat].primaryBot !== this.user.jid) {
 const primaryBotConn = global.conns.find(conn => conn.user.jid === global.db.data.chats[m.chat].primaryBot && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED)
 const participants = m.isGroup ? (await this.groupMetadata(m.chat).catch(() => ({ participants: [] }))).participants : []
@@ -344,14 +347,14 @@ if (isAccept) { global.db.data.users[m.sender].commands = (global.db.data.users[
 if (chat) {
 const botId = this.user.jid
 const primaryBotId = chat.primaryBot
-if (name !== "group-banchat.js" && chat?.isBanned && !isROwner) {
+if (name !== "a-bot.js" && chat?.isBanned && !isROwner) {
 if (!primaryBotId || primaryBotId === botId) {
-const aviso = `ꕥ El bot *${botname}* está desactivado en este grupo\n\n> ✦ Un *administrador* puede activarlo con el comando:\n> » *${usedPrefix}bot on*`.trim()
+const aviso = `📍  El bot esta desactivado en este chat...`.trim()
 await m.reply(aviso)
 return
 }}
 if (m.text && user.banned && !isROwner) {
-const mensaje = `ꕥ Estas baneado/a, no puedes usar comandos en este bot!\n\n> ● *Razón ›* ${user.bannedReason}\n\n> ● Si este Bot es cuenta oficial y tienes evidencia que respalde que este mensaje es un error, puedes exponer tu caso con un moderador.`.trim()
+const mensaje = `📍  Estas baneado, no puedes usar comandos...`.trim()
 if (!primaryBotId || primaryBotId === botId) {
 m.reply(mensaje)
 return
@@ -455,23 +458,18 @@ console.log(m.message)
 global.dfail = (type, m, conn) => {
 let edadaleatoria = ['10', '28', '20', '40', '18', '21', '15', '11', '9', '17', '25'].getRandom()
 let user2 = m.pushName || 'Anónimo'
-let verifyaleatorio = ['registrar', 'reg', 'verificar', 'verify', 'register'].getRandom()
+let verifyaleatorio = ['reg', 'verify'].getRandom()
  const msg = {
-rowner: `💬  \`\`\`[ 404 ]: solo propietarios.\`\`\``,
-owner: `💬  \`\`\`[ 404 ]: solo administradores del bot.\`\`\``,
-mods: `💬  \`\`\`[ 404 ]: solo moderadores.\`\`\``,
-premium: `💬  \`\`\`[ 404 ]: solo premiums.\`\`\``,
-group: `💬  \`\`\`[ 404 ]: solo chats grupales.\`\`\``,
-private: `💬  \`\`\`[ 404 ]: solo chats individuales.\`\`\``,
-admin: `💬  \`\`\`[ 404 ]: solo administradores.\`\`\``,
-botAdmin: `💬  \`\`\`[ 404 ]: solo si el bot es admin.\`\`\``,
-unreg: `El comando *#${comando}* solo puede der utilizado por los usuarios registrados.
-- Para registrarte puedes seguir estos pasos.
-
-• Por ejemplo:
-*#${verifyaleatorio}* ${user2}, ${edadaleatoria}`, 
-
-restrict: `💬  \`\`\`[ 404 ]: restringido por el propietario.\`\`\``
+rowner: `No puedes usar este comando...`,
+owner: `Solo administradores del bot...`,
+mods: `Solo moderadores del bot...`,
+premium: `Solo usuarios premium del bot...`,
+group: `Solo se ejecuta en chats grupales...`,
+private: `Solo se ejecuta en chats individuales...`,
+admin: `Solo un administrador puede usar el comando...`,
+botAdmin: `Solo se ejecuta si el bot tiene privilegios admin...`,
+unreg: `El comando ( *${command}* ) require un registro previo...`, 
+restrict: `Comando restringido...`
  }[type]
 if (msg) return conn.reply(m.chat, msg, m).then(_ => m.react('📍'))
 }
