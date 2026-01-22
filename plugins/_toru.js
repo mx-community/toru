@@ -23,8 +23,6 @@ var paypal = 'https://www.paypal.me/aJosueUSDpaypal'
  
 global.apis = 'https://api.delirius.store'
   
-global.redes = [canal, comunidad, webmx, paypal].getRandom()
-
 global.nombre = m.pushName || 'Anónimo'
 global.packsticker = `New Sticker`
 global.packsticker2 = `TORU ${vs} 〩`
