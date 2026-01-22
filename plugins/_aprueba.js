@@ -1,151 +1,115 @@
-import fetch from 'node-fetch'
-import yts from 'yt-search'
+
 import axios from 'axios'
+import fetch from 'node-fetch'
 
-const MAX_FILE_SIZE_MB = 80
-const CACHE_TIME = 10 * 60 * 1000
-let ytCache = {}
+// Objeto para almacenar las búsquedas activas con su tiempo de expiración
+let activeSearches = {}
 
-function formatNumber(num) {
-return num.toLocaleString('en-US')
+var handler = async (m, {conn, usedPrefix, command, text }) => {
+  
+  // Si no hay texto, mostrar uso
+  if (!text) {
+    return m.reply(`*🎵 Uso del comando:*\n\n` +
+      `*Buscar:* ${usedPrefix + command} nombre de la canción\n` +
+      `*Descargar:* Responde con un número del 1 al 10 al mensaje de resultados\n\n` +
+      `Ejemplo: ${usedPrefix + command} Bad Bunny Monaco`)
+  }
+
+  // Si el mensaje cita otro mensaje (respuesta)
+  if (m.quoted) {
+    const quotedId = m.quoted.id
+    
+    // Verificar si existe una búsqueda activa para ese mensaje
+    if (!activeSearches[quotedId]) {
+      return m.reply('⏰ *El tiempo para seleccionar una canción ha expirado.*\n\nRealiza una nueva búsqueda.')
+    }
+
+    // Validar que el texto sea un número válido
+    const selection = parseInt(text.trim())
+    if (isNaN(selection) || selection < 1 || selection > activeSearches[quotedId].results.length) {
+      return m.reply(`❌ Número inválido. Responde con un número del *1* al *${activeSearches[quotedId].results.length}*`)
+    }
+
+    // Obtener la canción seleccionada
+    const selected = activeSearches[quotedId].results[selection - 1]
+    
+    m.reply(`⏳ *Descargando:*\n${selected.title}\n${selected.artist}\n\n_Espera un momento..._`)
+
+    try {
+      // Descargar el audio
+      const downloadUrl = `https://api.delirius.store/download/spotifydl?url=${encodeURIComponent(selected.url)}`
+      const downloadRes = await fetch(downloadUrl)
+      const downloadData = await downloadRes.json()
+
+      if (!downloadData.data || !downloadData.data.url) {
+        throw new Error('No se pudo obtener el enlace de descarga')
+      }
+
+      // Enviar el audio
+      await conn.sendMessage(m.chat, {
+        audio: { url: downloadData.data.url },
+        mimetype: 'audio/mpeg',
+        fileName: `${selected.title}.mp3`
+      }, { quoted: m })
+
+      // Limpiar la búsqueda activa después de descargar
+      delete activeSearches[quotedId]
+
+    } catch (error) {
+      console.error(error)
+      m.reply('❌ *Error al descargar la canción.*\n\nIntenta con otra opción o realiza una nueva búsqueda.')
+    }
+
+    return
+  }
+
+  // Buscar en Spotify
+  m.reply('🔍 *Buscando en Spotify...*')
+
+  try {
+    const searchUrl = `https://api.delirius.store/search/spotify?q=${encodeURIComponent(text)}&limit=10`
+    const response = await fetch(searchUrl)
+    const data = await response.json()
+
+    if (!data.data || data.data.length === 0) {
+      return m.reply('❌ No se encontraron resultados para tu búsqueda.')
+    }
+
+    // Formatear resultados
+    let message = `*🎵 RESULTADOS DE SPOTIFY*\n\n`
+    message += `🔎 Búsqueda: *${text}*\n\n`
+    
+    data.data.forEach((track, index) => {
+      message += `*${index + 1}.* ${track.title}\n`
+      message += `👤 ${track.artist}\n`
+      message += `⏱️ ${track.duration}\n\n`
+    })
+
+    message += `\n📝 *Responde a este mensaje con el número de la canción que deseas descargar (1-${data.data.length})*\n`
+    message += `⏰ Tienes *2 minutos* para seleccionar.`
+
+    // Enviar resultados
+    const sentMsg = await conn.reply(m.chat, message, m)
+
+    // Guardar búsqueda activa con timeout de 2 minutos
+    activeSearches[sentMsg.key.id] = {
+      results: data.data,
+      timestamp: Date.now()
+    }
+
+    // Eliminar búsqueda después de 2 minutos (120000 ms)
+    setTimeout(() => {
+      delete activeSearches[sentMsg.key.id]
+    }, 120000)
+
+  } catch (error) {
+    console.error(error)
+    m.reply('❌ *Error al buscar en Spotify.*\n\nIntenta de nuevo en unos momentos.')
+  }
 }
 
-async function getSize(url) {
-try {
-const res = await axios.head(url)
-const len = res.headers['content-length']
-return len ? parseInt(len, 10) : 0
-} catch {
-return 0
-}
-}
-
-function formatSize(bytes) {
-const units = ['B', 'KB', 'MB', 'GB']
-let i = 0
-while (bytes >= 1024 && i < units.length - 1) {
-bytes /= 1024
-i++
-}
-return `${bytes.toFixed(2)} ${units[i]}`
-}
-
-async function getshadowa(url) {
-try {
-const api = `https://api-hasumi.vercel.app/api/youtube/ytmp3v3?url=${encodeURIComponent(url)}`
-const res = await fetch(api)
-const data = await res.json()
-
-if (data?.status === true && data?.dl_url) {
-return {
-link: data.dl_url,
-format: 'mp3'
-}
-}
-return null
-} catch {
-return null
-}
-}
-
-async function getshadowv(url) {
-try {
-const api = `https://api-hasumi.vercel.app/api/youtube/ytmp4v3?url=${encodeURIComponent(url)}`
-const res = await fetch(api)
-const data = await res.json()
-
-if (data?.status === true && data?.dl_url) {
-return {
-link: data.dl_url,
-format: 'mp4'
-}
-}
-return null
-} catch {
-return null
-}
-}
-
-var handler = async (m, { text, conn, usedPrefix, command }) => {
-if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione una busqueda en YouTube.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Golden Brown` }, { quoted: m })
-
-try {
-await m.react('⏰')
-const results = await yts(text)
-const videos = results.videos.slice(0, 10)
-if (!videos.length) return conn.sendMessage(m.chat, { text: `No se encontraron resultados...` }, { quoted: m })
-
-ytCache[m.sender] = { results: videos, timestamp: Date.now() }
-
-let caption = `· ┄ · ⊸ 𔓕 *YouTube  :  Search*\n\n`
-caption += `\t＃ *Busqueda* : ${text}\n`
-caption += `\t＃ *Resultados* : *10* results\n`
-caption += `\t＃ *Fuente* : YouTube\n\n\n`
-
-for (let i = 0; i < videos.length; i++) {
-const v = videos[i]
-caption += `⧡ *${i + 1}* : ${v.title}\n`
-caption += `⧡ *Duración* : ${v.timestamp || '¿?'}\n`
-caption += `⧡ *Publicado* : ${v.ago || '¿?'}\n`
-caption += `⧡ *Vistas* : ${toNum(v.views)}\n\n\n`
-}
-
-caption += `> ${textbot}`
-
-const thumbYoutu = (await conn.getFile(videos[0].thumbnail))?.data
-await conn.sendMessage(m.chat, { text: caption, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ YouTube : Search ⧿", body: botname, thumbnail: thumbYoutu, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
-//await conn.sendMessage(m.chat, { image: { url: videos[0].thumbnail }, caption }, { quoted: m })
-
-await m.react('✅')
-} catch (e) {
-await conn.sendMessage(m.chat, { text: `${e.message}` }, { quoted: m })
-}
-}
-
-handler.before = async (m, { conn }) => {
-if (!m.text) return
-const match = m.text.trim().match(/^(a|v)(\d{1,2})$/i)
-if (!match) return
-
-const type = match[1].toLowerCase() === 'a' ? 'audio' : 'video'
-const index = parseInt(match[2]) - 1
-
-const userCache = ytCache[m.sender]
-if (!userCache || !userCache.results[index] || Date.now() - userCache.timestamp > CACHE_TIME)
-return conn.sendMessage(m.chat, { text: `📍  La lista ha expirado, vuelva a usar el comando.` }, { quoted: m })
-
-const video = userCache.results[index]
-
-try {
-await m.react('⏰')
-
-const apiData = type === 'audio'
-? await getshadowa(video.url)
-: await getshadowv(video.url)
-
-if (!apiData) return conn.sendMessage(m.chat, { text: `error : API` }, { quoted: m })
-
-const size = await getSize(apiData.link)
-const mb = size / (1024 * 1024)
-const sendAsDoc = mb > MAX_FILE_SIZE_MB
-
-const caption = `${botname}\n> ${textbot}`
-
-if (sendAsDoc) {
-await conn.sendMessage(m.chat, { document: { url: apiData.link }, fileName: `${video.title}.${apiData.format}`, mimetype: type === 'audio' ? 'audio/mpeg' : 'video/mp4', caption: `${botname}\n> ${textbot}` }, { quoted: m } )
-} else if (type === 'audio') {
-await conn.sendMessage( m.chat, { audio: { url: apiData.link }, fileName: `${video.title}.mp3`, mimetype: 'audio/mpeg', ptt: false, caption }, { quoted: m } )
-} else {
-await conn.sendMessage( m.chat, { video: { url: apiData.link }, fileName: `${video.title}.mp4`, mimetype: 'video/mp4', caption }, { quoted: m })
-}
-
-await m.react('✅')
-} catch (e) {
-await conn.sendMessage(m.chat, { text: `${e.message}` }, { quoted: m })
-}
-}
-
-handler.command = ['youtube', 'yts']
-
+handler.command = ['spotify', 'sp', 'music']
+handler.help = ['spotify <búsqueda>']
+handler.tags = ['downloader']
 
 export default handler
