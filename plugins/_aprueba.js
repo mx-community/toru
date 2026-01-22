@@ -1,4 +1,3 @@
-
 import axios from 'axios'
 import fetch from 'node-fetch'
 
@@ -17,23 +16,45 @@ var handler = async (m, {conn, usedPrefix, command, text }) => {
 
   // Si el mensaje cita otro mensaje (respuesta)
   if (m.quoted) {
-    const quotedId = m.quoted.id
+    await m.react('⏰')
+    
+    // Buscar en múltiples posibles IDs del mensaje citado
+    const possibleIds = [
+      m.quoted.id,
+      m.quoted.key?.id,
+      m.quoted.stanzaId
+    ].filter(Boolean)
+    
+    let searchData = null
+    let foundId = null
+    
+    // Intentar encontrar la búsqueda activa
+    for (const id of possibleIds) {
+      if (activeSearches[id]) {
+        searchData = activeSearches[id]
+        foundId = id
+        break
+      }
+    }
     
     // Verificar si existe una búsqueda activa para ese mensaje
-    if (!activeSearches[quotedId]) {
+    if (!searchData) {
+      await m.react('❌')
       return m.reply('⏰ *El tiempo para seleccionar una canción ha expirado.*\n\nRealiza una nueva búsqueda.')
     }
 
     // Validar que el texto sea un número válido
     const selection = parseInt(text.trim())
-    if (isNaN(selection) || selection < 1 || selection > activeSearches[quotedId].results.length) {
-      return m.reply(`❌ Número inválido. Responde con un número del *1* al *${activeSearches[quotedId].results.length}*`)
+    if (isNaN(selection) || selection < 1 || selection > searchData.results.length) {
+      await m.react('❌')
+      return m.reply(`❌ Número inválido. Responde con un número del *1* al *${searchData.results.length}*`)
     }
 
     // Obtener la canción seleccionada
-    const selected = activeSearches[quotedId].results[selection - 1]
+    const selected = searchData.results[selection - 1]
     
-    m.reply(`⏳ *Descargando:*\n${selected.title}\n${selected.artist}\n\n_Espera un momento..._`)
+    await m.react('⬇️')
+    await m.reply(`⏳ *Descargando:*\n${selected.title}\n${selected.artist}\n\n_Espera un momento..._`)
 
     try {
       // Descargar el audio
@@ -49,14 +70,18 @@ var handler = async (m, {conn, usedPrefix, command, text }) => {
       await conn.sendMessage(m.chat, {
         audio: { url: downloadData.data.url },
         mimetype: 'audio/mpeg',
-        fileName: `${selected.title}.mp3`
+        fileName: `${selected.title}.mp3`,
+        ptt: false
       }, { quoted: m })
 
+      await m.react('✅')
+
       // Limpiar la búsqueda activa después de descargar
-      delete activeSearches[quotedId]
+      delete activeSearches[foundId]
 
     } catch (error) {
       console.error(error)
+      await m.react('❌')
       m.reply('❌ *Error al descargar la canción.*\n\nIntenta con otra opción o realiza una nueva búsqueda.')
     }
 
@@ -64,7 +89,8 @@ var handler = async (m, {conn, usedPrefix, command, text }) => {
   }
 
   // Buscar en Spotify
-  m.reply('🔍 *Buscando en Spotify...*')
+  await m.react('🔍')
+  await m.reply('🔍 *Buscando en Spotify...*')
 
   try {
     const searchUrl = `https://api.delirius.store/search/spotify?q=${encodeURIComponent(text)}&limit=10`
@@ -72,6 +98,7 @@ var handler = async (m, {conn, usedPrefix, command, text }) => {
     const data = await response.json()
 
     if (!data.data || data.data.length === 0) {
+      await m.react('❌')
       return m.reply('❌ No se encontraron resultados para tu búsqueda.')
     }
 
@@ -91,19 +118,34 @@ var handler = async (m, {conn, usedPrefix, command, text }) => {
     // Enviar resultados
     const sentMsg = await conn.reply(m.chat, message, m)
 
-    // Guardar búsqueda activa con timeout de 2 minutos
-    activeSearches[sentMsg.key.id] = {
-      results: data.data,
-      timestamp: Date.now()
-    }
+    // Guardar búsqueda activa con TODOS los posibles IDs
+    const messageIds = [
+      sentMsg.key?.id,
+      sentMsg.id,
+      sentMsg.stanzaId,
+      sentMsg.key?.remoteJid + '_' + sentMsg.key?.id
+    ].filter(Boolean)
+
+    // Guardar en todos los IDs posibles para máxima compatibilidad
+    messageIds.forEach(id => {
+      activeSearches[id] = {
+        results: data.data,
+        timestamp: Date.now()
+      }
+    })
+
+    await m.react('✅')
 
     // Eliminar búsqueda después de 2 minutos (120000 ms)
     setTimeout(() => {
-      delete activeSearches[sentMsg.key.id]
+      messageIds.forEach(id => {
+        delete activeSearches[id]
+      })
     }, 120000)
 
   } catch (error) {
     console.error(error)
+    await m.react('❌')
     m.reply('❌ *Error al buscar en Spotify.*\n\nIntenta de nuevo en unos momentos.')
   }
 }
