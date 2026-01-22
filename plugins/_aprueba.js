@@ -1,4 +1,3 @@
-
 import fetch from 'node-fetch'
 import axios from 'axios'
 
@@ -59,11 +58,11 @@ async function downloadSpotify(url) {
     const res = await fetch(api)
     const data = await res.json()
     
-    if (data && data.data && data.data.url) {
+    if (data && data.data && data.data.download) {
       return {
-        link: data.data.url,
+        link: data.data.download,
         title: data.data.title || 'Unknown',
-        artist: data.data.artist || 'Unknown',
+        artist: data.data.author || 'Unknown',
         thumbnail: data.data.image || null
       }
     }
@@ -111,10 +110,9 @@ var handler = async (m, { text, conn, usedPrefix, command }) => {
 
     for (let i = 0; i < results.length; i++) {
       const track = results[i]
-      caption += `⧡ *${i + 1}* : ${track.title || track.name}\n`
-      caption += `⧡ *Artista* : ${track.artist || 'Desconocido'}\n`
-      caption += `⧡ *Duración* : ${track.duration ? formatDuration(track.duration) : '¿?'}\n`
-      caption += `⧡ *Popularidad* : ${track.popularity || '¿?'}\n\n\n`
+      caption += `⧡ *${i + 1}* : ${track.title || track.id}\n`
+      caption += `⧡ *Enlace* : ${track.url || 'Desconocido'}\n`
+      caption += `⧡ *Duración* : ${track.duration || '¿?'}\n\n\n`
     }
 
     caption += `> Para descargar, responde con el número (1-${results.length})\n`
@@ -216,3 +214,4 @@ handler.before = async (m, { conn }) => {
 
 handler.command = ['spotify', 'sp', 'spmusic']
 export default handler
+
