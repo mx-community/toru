@@ -12,10 +12,10 @@ await m.react('✖️')
 return m.reply('ꕥ No se encontró la letra de la canción')
 }
 let { title, artists, lyrics, image, url } = json.data
-let caption = `❀ *Título:* ${title}\n○ *Artista:* ${artists}\n○ *Letra:*\n\n${lyrics}`
-if (caption.length > 4000) caption = caption.slice(0, 3990) + '...'
-caption += `\n\n↯ [Ver en Musixmatch](${url})`
-await conn.sendMessage(m.chat, { image: { url: image }, caption, mentions: [m.sender] }, { quoted: m })
+let texto = `❀ *Título:* ${title}\n○ *Artista:* ${artists}\n○ *Letra:*\n\n${lyrics}`
+if (texto.length > 9000) texto = caption.slice(0, 9000) + '...'
+texto += `\n\n↯ [Ver en Musixmatch](${url})`
+await conn.sendMessage(m.chat, { image: { url: image }, caption: texto, mentions: [m.sender] }, { quoted: m })
 await m.react('✔️')
 } catch (error) {
 await m.react('✖️')
