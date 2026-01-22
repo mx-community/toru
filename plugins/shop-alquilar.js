@@ -23,7 +23,7 @@ await conn.sendMessage(m.chat, { text: plan, mentions: [m.sender], contextInfo: 
 
 };
 
-handler.command = ['plan'];
+handler.command = ['alquilar'];
 
 export default handler;
 
