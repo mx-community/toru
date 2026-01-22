@@ -1910,12 +1910,10 @@ def shell():
                         raise
         sys.exit(0)
 
-    printer('_*< INFO - SPEEDTEST />*_\n\n', quiet)
+    printer('· ┄ · ⊸ 𔓕 *Speed  :  Test*\n\n📍  ```Prueba del servidor...```\n\n', quiet)
 
 
     if not args.mini:
-        printer('▢ *Iniciando prueba...*', quiet)
-        printer('▢ *Buscando servidor...*', quiet)
         try:
             speedtest.get_servers(servers=args.server, exclude=args.exclude)
         except NoMatchedServers:
@@ -1933,19 +1931,17 @@ def shell():
             )
 
         if args.server and len(args.server) == 1:
-            printer('▢ *Obteniendo info. del servidor...*', quiet)
         else:
-            printer('▢ *Se selecionó el mejor servidor...*', quiet)
         speedtest.get_best_server()
     elif args.mini:
         speedtest.get_best_server(speedtest.set_mini_server(args.mini))
 
     results = speedtest.results
 
-    printer('\n▢ *ISP:* %(isp)s' % speedtest.config['client'],
+    printer('\n\t⧡ *ISP* : %(isp)s' % speedtest.config['client'],
             quiet)
-    printer('▢ *Servidor:* %(sponsor)s\n▢ *Ubicación:* %(name)s [%(d)0.2f km] '
-            '\n▢ *Latencia:* %(latency)s ms' % results.server, quiet)
+    printer('\t⧡ *Servidor* : %(sponsor)s\n\t⧡ *Ubicación* : %(name)s [%(d)0.2f km] '
+            '\n\t⧡ *Bot-ID* : toru-mx\n\t⧡ *Latencia* : %(latency)s ms' % results.server, quiet)
 
     if args.download:
         printer('', quiet,
@@ -1954,30 +1950,30 @@ def shell():
             callback=callback,
             threads=(None, 1)[args.single]
         )
-        printer('▢ *Descarga:* %0.2f M%s/s' %
+        printer('\t⧡ *Descarga* : %0.2f M%s/s' %
                 ((results.download / 1000.0 / 1000.0) / args.units[1],
                  args.units[0]),
                 quiet)
     else:
-        printer('▢ *Omitiendo la prueba de descarga.*', quiet)
+        printer('*Omitiendo la prueba de descarga.*', quiet)
 
     if args.upload:
         speedtest.upload()
-        printer('▢ *Subida:* %0.2f M%s/s' %
+        printer('\t⧡ *Subida* : %0.2f M%s/s' %
                 ((results.upload / 1000.0 / 1000.0) / args.units[1],
                  args.units[0]),
                 quiet)
 
     else:
-        printer('▢ *Omitiendo la prueba de subida.*', quiet)
+        printer('*Omitiendo la prueba de subida.*', quiet)
 
-    printer('▢ *Resultados:*\n%r' % results.dict(), debug=True)
+    printer('\t⧡ *Resultados:*\n%r' % results.dict(), debug=True)
 
     if not args.simple and args.share:
         results.share()
 
     if args.simple:
-        printer('▢ Latencia: %s ms\n▢ Descarga: %0.2f M%s/s\n\n▢ Subida: %0.2f M%s/s' %
+        printer('\t⧡ *Bot-ID* : toru-mx\n\t⧡ *Latencia* : %s ms\n\t⧡ *Descarga* : %0.2f M%s/s\n\t⧡ *Subida* : %0.2f M%s/s' %
                 (results.ping,
                  (results.download / 1000.0 / 1000.0) / args.units[1],
                  args.units[0],
@@ -1989,7 +1985,7 @@ def shell():
         printer(results.json())
 
     if args.share and not machine_format:
-        printer('\n▢ *Compartir resultado:* %s' % results.share())
+        printer('\n\t⧡ *Enlace* : %s' % results.share())
 
 
 def main():
