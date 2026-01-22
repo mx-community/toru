@@ -98,7 +98,7 @@ results: results,
 timestamp: Date.now() 
 }
 
-let caption = `· ┄ · ⊸ 𔓕 *Spotify:Search*\n\n`
+let caption = `· ┄ · ⊸ 𔓕 *Spotify  :  Search*\n\n`
 caption += `\t＃ *Búsqueda* : ${text}\n`
 caption += `\t＃ *Resultados* : *${results.length}* canciones\n`
 caption += `\t＃ *Fuente* : Spotify\n\n📍  Responda a este mensaje con el numero correspondiente.\n\n\n`
