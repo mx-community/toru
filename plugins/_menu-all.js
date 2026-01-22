@@ -19,9 +19,9 @@ let listaPrincipal = `\`\`\`⧡ menu » all       [0]
 ⧡ menu » coleccion [11]
 ⧡ menu » random    [12]
 ⧡ menu » reac      [13]
-⧡ menu » ai       [14]
-⧡ menu » editor     [15]
-⧡ menu » premium  [16]
+⧡ menu » ai        [14]
+⧡ menu » editor    [15]
+⧡ menu » premium   [16]
 ⧡ menu » owner     [own]\`\`\``
 let menuInfo = `\t⊹ *${usedPrefix}anuncios*\n\t⊹ *${usedPrefix}ping*\n\t⊹ *${usedPrefix}plan*\n\t⊹ *${usedPrefix}prems!*\n\t⊹ *${usedPrefix}mods!*\n\t⊹ *${usedPrefix}admins!*\n\t⊹ *${usedPrefix}run*
 \t⊹ *${usedPrefix}stat*
