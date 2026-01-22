@@ -19,9 +19,9 @@ let listaPrincipal = `\`\`\`⧡ menu » all       [0]
 ⧡ menu » coleccion [11]
 ⧡ menu » random    [12]
 ⧡ menu » reac      [13]
-⧡ menu » ai        [14]
-⧡ menu » editor    [15]
-⧡ menu » premium   [16]
+⧡ menu » ai       [14]
+⧡ menu » editor     [15]
+⧡ menu » premium  [16]
 ⧡ menu » owner     [own]\`\`\``
 let menuInfo = `\t⊹ *${usedPrefix}anuncios*\n\t⊹ *${usedPrefix}ping*\n\t⊹ *${usedPrefix}plan*\n\t⊹ *${usedPrefix}prems!*\n\t⊹ *${usedPrefix}mods!*\n\t⊹ *${usedPrefix}admins!*\n\t⊹ *${usedPrefix}run*
 \t⊹ *${usedPrefix}stat*
@@ -32,6 +32,7 @@ let menuInfo = `\t⊹ *${usedPrefix}anuncios*\n\t⊹ *${usedPrefix}ping*\n\t⊹ 
 \t⊹ *${usedPrefix}mp*
 \t⊹ *${usedPrefix}bk*
 \t⊹ *${usedPrefix}pay*
+\t⊹ *${usedPrefix}speed*
 \t⊹ *${usedPrefix}support*   [text]`
 let menuDesc = `\t⊹ *${usedPrefix}ytmp3*   [link]
 \t⊹ *${usedPrefix}ytmp4*   [link]
@@ -78,8 +79,9 @@ let menuGroup = `\t⊹ *${usedPrefix}enlace*
 \t⊹ *${usedPrefix}g-desc*   [text]
 \t⊹ *${usedPrefix}g-img*   [reply]
 \t⊹ *${usedPrefix}tags*   [text]`
-let menuShop = `\t⊹ *${usedPrefix}internet*
-\t⊹ *${usedPrefix}colaborar*
+let menuShop = `\t⊹ *${usedPrefix}internet*   (update...)
+\t⊹ *${usedPrefix}colaborar*   (update...)
+\t⊹ *${usedPrefix}alquilar*
 \t⊹ *${usedPrefix}plan*`
 let menuRpg = `\t⊹ *${usedPrefix}aventura*
 \t⊹ *${usedPrefix}minar*
@@ -90,7 +92,7 @@ let menuRpg = `\t⊹ *${usedPrefix}aventura*
 \t⊹ *${usedPrefix}revelar*
 \t⊹ *${usedPrefix}mercader*
 \t⊹ *${usedPrefix}work*
-\t⊹ *${usedPrefix}velero*
+\t⊹ *${usedPrefix}velero*   (error...)
 \t⊹ *${usedPrefix}coins*
 \t⊹ *${usedPrefix}regalo*
 \t⊹ *${usedPrefix}cazar*
