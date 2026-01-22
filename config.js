@@ -21,7 +21,7 @@ global.prems = ["5493873655135"]
 global.mods = ["5493873655135"]
 
 global.botname = "T O R U  :  WhatsApp"
-global.botweb = "https://optishield.uk/dashboard/"
+global.botweb = "https://ko-fi.com/farguts"
 global.textbot = "ᴍᴏᴅᴜʟᴀʀ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ ᴄʀᴇᴀᴛᴇᴅ ʙʏ @Farguts"
 global.botcanal = "https://whatsapp.com/channel/0029Vb7Rtoc5K3zQ08ioYc21"
 global.botgroup = "https://chat.whatsapp.com/I9bKP27LAx1FltvoBBH0kU"
