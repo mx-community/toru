@@ -1910,7 +1910,7 @@ def shell():
                         raise
         sys.exit(0)
 
-    printer('· ┄ · ⊸ 𔓕 *Speed  :  Test*\n\n📍  ```Prueba del servidor...```\n\n', quiet)
+    printer('· ┄ · ⊸ 𔓕 *Speed  :  Test*\n\n', quiet)
 
 
     if not args.mini:
@@ -1931,7 +1931,9 @@ def shell():
             )
 
         if args.server and len(args.server) == 1:
+            printer('▢ *Obteniendo info. del servidor...*', quiet)
         else:
+            printer('📍  Prueba del servidor...', quiet)
         speedtest.get_best_server()
     elif args.mini:
         speedtest.get_best_server(speedtest.set_mini_server(args.mini))
