@@ -4,13 +4,8 @@ import fs from 'fs'
 import moment from 'moment-timezone'
 import PhoneNumber from 'awesome-phonenumber'
 let handler = async (m, { conn, usedPrefix, args, command, __dirname, participants }) => {
-let chat = global.db.data.chats[m.chat]
-let user = global.db.data.users[m.sender] || {}
-let bot = global.db.data.settings[conn.user.jid] || {}
-let isEnable = /true|enable|(turn)?on|1/i.test(command)
-
 try {
-let listaPrincipal = `⧡ menu » all       [0]
+let listaPrincipal = `\`\`\`⧡ menu » all       [0]
 ⧡ menu » info      [1]
 ⧡ menu » dls       [2]
 ⧡ menu » conv      [3]
@@ -24,56 +19,53 @@ let listaPrincipal = `⧡ menu » all       [0]
 ⧡ menu » coleccion [11]
 ⧡ menu » random    [12]
 ⧡ menu » reac      [13]
-⧡ menu » edit       [14]
-⧡ menu » premium   [15]
-⧡ menu » owner     [own]`
-let menuInfo = `\t⊹ *${usedPrefix}info*
+⧡ menu » ai       [14]
+⧡ menu » editor     [15]
+⧡ menu » premium  [16]
+⧡ menu » owner     [own]\`\`\``
+let menuInfo = `\t⊹ *${usedPrefix}anuncios*\n\t⊹ *${usedPrefix}ping*\n\t⊹ *${usedPrefix}plan*\n\t⊹ *${usedPrefix}prems!*\n\t⊹ *${usedPrefix}mods!*\n\t⊹ *${usedPrefix}admins!*\n\t⊹ *${usedPrefix}run*
+\t⊹ *${usedPrefix}stat*
+\t⊹ *${usedPrefix}info*
+\t⊹ *${usedPrefix}creador*
+\t⊹ *${usedPrefix}canal*
+\t⊹ *${usedPrefix}donar*
 \t⊹ *${usedPrefix}mp*
 \t⊹ *${usedPrefix}bk*
 \t⊹ *${usedPrefix}pay*
-\t⊹ *${usedPrefix}creador*
-\t⊹ *${usedPrefix}donar*
-\t⊹ *${usedPrefix}canal*
-\t⊹ *${usedPrefix}run*
-\t⊹ *${usedPrefix}ping*
-\t⊹ *${usedPrefix}prems!*
-\t⊹ *${usedPrefix}mods!*
-\t⊹ *${usedPrefix}admins!*
-\t⊹ *${usedPrefix}stat*
-\t⊹ *${usedPrefix}plan*
-\t⊹ *${usedPrefix}anuncios*
 \t⊹ *${usedPrefix}support*   [text]`
-let menuDesc = `\t⊹ *${usedPrefix}ytmp3*   [link/text]
-\t⊹ *${usedPrefix}ytmp4*   [link/text]
+let menuDesc = `\t⊹ *${usedPrefix}ytmp3*   [link]
+\t⊹ *${usedPrefix}ytmp4*   [link]
 \t⊹ *${usedPrefix}play*   [link/text]
 \t⊹ *${usedPrefix}facebook*   [link]
 \t⊹ *${usedPrefix}instagram*   [link]
 \t⊹ *${usedPrefix}twitter*   [link]
 \t⊹ *${usedPrefix}tiktok*   [link]
-\t⊹ *${usedPrefix}p-tiktok*   [link]
-\t⊹ *${usedPrefix}a-tiktok*   [link]
-\t⊹ *${usedPrefix}sly*   [link]
 \t⊹ *${usedPrefix}spotify*   [link]
 \t⊹ *${usedPrefix}mediafire*   [link]
 \t⊹ *${usedPrefix}pinterest*   [link]
-\t⊹ *${usedPrefix}github*   [link]`
+\t⊹ *${usedPrefix}github*   [link]
+\t⊹ *${usedPrefix}sly*   [link]`
 let menuConv = `\t⊹ *${usedPrefix}upload*
 \t⊹ *${usedPrefix}hd*
 \t⊹ *${usedPrefix}turl*   [query]
+\t⊹ *${usedPrefix}timg*   [reply]
+\t⊹ *${usedPrefix}togif*   [reply]
 \t⊹ *${usedPrefix}catbox*   [query]`
 let menuSearch = `\t⊹ *${usedPrefix}imagen*   [text]
 \t⊹ *${usedPrefix}fdroids*   [text]
 \t⊹ *${usedPrefix}apk*   [text]
+\t⊹ *${usedPrefix}apples*   [text]
 \t⊹ *${usedPrefix}yts*   [text]
 \t⊹ *${usedPrefix}slys*   [text]
-\t⊹ *${usedPrefix}imagen*   [text]
 \t⊹ *${usedPrefix}pinimg*   [text]
 \t⊹ *${usedPrefix}tenor*   [text]
 \t⊹ *${usedPrefix}spotifys*   [text]
-\t⊹ *${usedPrefix}apples*   [text]
 \t⊹ *${usedPrefix}google*   [text]`
 let menuGroup = `\t⊹ *${usedPrefix}enlace*
 \t⊹ *${usedPrefix}revok*
+\t⊹ *${usedPrefix}inum*
+\t⊹ *${usedPrefix}dnum*
+\t⊹ *${usedPrefix}linea*
 \t⊹ *${usedPrefix}add*   [nro]
 \t⊹ *${usedPrefix}kick*   [reply]
 \t⊹ *${usedPrefix}admin+*   [mention]
@@ -82,10 +74,13 @@ let menuGroup = `\t⊹ *${usedPrefix}enlace*
 \t⊹ *${usedPrefix}warn-*   [mention]
 \t⊹ *${usedPrefix}mute+*   [mention]
 \t⊹ *${usedPrefix}mute-*   [mention]
+\t⊹ *${usedPrefix}g-name*   [text]
+\t⊹ *${usedPrefix}g-desc*   [text]
+\t⊹ *${usedPrefix}g-img*   [reply]
 \t⊹ *${usedPrefix}tags*   [text]`
 let menuShop = `\t⊹ *${usedPrefix}internet*
 \t⊹ *${usedPrefix}colaborar*
-\t⊹ *${usedPrefix}plan*   [query]`
+\t⊹ *${usedPrefix}plan*`
 let menuRpg = `\t⊹ *${usedPrefix}aventura*
 \t⊹ *${usedPrefix}minar*
 \t⊹ *${usedPrefix}pescar*
@@ -112,20 +107,15 @@ let menuRpg = `\t⊹ *${usedPrefix}aventura*
 \t⊹ *${usedPrefix}stats*   [reply]`
 let menuUtils = `\t⊹ *${usedPrefix}lid*
 \t⊹ *${usedPrefix}lids*
-\t⊹ *${usedPrefix}collabs*
-\t⊹ *${usedPrefix}install*   [query]
 \t⊹ *${usedPrefix}cid*   [link]
-\t⊹ *${usedPrefix}chatgpt*  [text]
-\t⊹ *${usedPrefix}imagina*  [text]
 \t⊹ *${usedPrefix}fetch*   [link]
 \t⊹ *${usedPrefix}getpic*   [mention]
-\t⊹ *${usedPrefix}flag*   [country]
+\t⊹ *${usedPrefix}pais*   [country]
 \t⊹ *${usedPrefix}hweb*   [link]`
 let menuStick = `\t⊹ *${usedPrefix}exif-*
 \t⊹ *${usedPrefix}exif+*   [text|text]
-\t⊹ *${usedPrefix}s*   [reply]
+\t⊹ *${usedPrefix}sticker*   [reply]
 \t⊹ *${usedPrefix}emojix*   [emoji+emoji]
-\t⊹ *${usedPrefix}mtext*   [text]
 \t⊹ *${usedPrefix}brat*   [text]
 \t⊹ *${usedPrefix}qc*   [text]`
 let menuLogos = `\t⊹ *${usedPrefix}logo1*   [text]
@@ -226,6 +216,19 @@ let menuReac = `\t⊹ *${usedPrefix}angry*   [mention]
 \t⊹ *${usedPrefix}mano*   [mention]
 \t⊹ *${usedPrefix}bullying*   [mention]
 \t⊹ *${usedPrefix}wave*   [mention]`
+let menuAi = `\t⊹ *${usedPrefix}chatgpt*   [text]
+\t⊹ *${usedPrefix}claude*   [text]
+\t⊹ *${usedPrefix}dolphin*   [text]
+\t⊹ *${usedPrefix}imagina*   [text]`
+let menuEdit = `\t⊹ *${usedPrefix}new-name*   [text]
+\t⊹ *${usedPrefix}new-desc*   [text]
+\t⊹ *${usedPrefix}new-ch*   [link]
+\t⊹ *${usedPrefix}new-group*   [link]
+\t⊹ *${usedPrefix}new-icon*   [reply]
+\t⊹ *${usedPrefix}new-menu*   [reply]`
+let menuPrem = `\t⊹ *${usedPrefix}temblor*
+\t⊹ *${usedPrefix}rv*   [reply]
+\t⊹ *${usedPrefix}clima*   [query]`
 let menuOwn = `\t⊹ *${usedPrefix}fix*
 \t⊹ *${usedPrefix}err*
 \t⊹ *${usedPrefix}xbot*
@@ -244,19 +247,16 @@ let menuOwn = `\t⊹ *${usedPrefix}fix*
 \t⊹ *${usedPrefix}bot-name*   [text]
 \t⊹ *${usedPrefix}bot-img*   [reply]
 \t⊹ *${usedPrefix}bot-desc*   [text]`
-let menuEdit = `\t⊹ *${usedPrefix}new-ch*   [link]
-\t⊹ *${usedPrefix}new-group*   [link]
-\t⊹ *${usedPrefix}new-name*   [text]
-\t⊹ *${usedPrefix}new-desc*   [text]
-\t⊹ *${usedPrefix}new-menu*   [reply]
-\t⊹ *${usedPrefix}new-icon*   [reply]`
-let menuPrem = `\t⊹ *${usedPrefix}temblor*
-\t⊹ *${usedPrefix}rv*   [reply]
-\t⊹ *${usedPrefix}clima*   [query]`
+
+const user = global.db.data.users[m.sender] || {}
 const name = await conn.getName(m.sender)
 const thumbBot = Buffer.from(await (await fetch(`${global.toruMenu}`)).arrayBuffer())
 const thumbBot2 = Buffer.from(await (await fetch(`${global.toruImg}`)).arrayBuffer())
 const premium = user.premium ? '✓' : '✘'
+const torucoin = user.torucoin || 0
+const totalreg = Object.keys(global.db.data.users).length
+const groupUserCount = m.isGroup ? participants.length : '-'
+const groupsCount = Object.values(conn.chats).filter(v => v.id.endsWith('@g.us')).length
 const uptime = clockString(process.uptime() * 1000)
 const dFormato = new Date(new Date + 3600000)
 const fecha = new Date(Date.now())
@@ -264,7 +264,13 @@ const locale = 'es-AR'
 const dia = fecha.toLocaleDateString(locale, { weekday: 'long' })
 const fechaTxt = fecha.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })
 const hora = `${moment.tz('America/Buenos_Aires').format('HH:mm:ss')}`
-await m.react("✅")
+const totalCommands = Object.keys(global.plugins).length
+const userId = m.sender.split('@')[0]
+const phone = PhoneNumber('+' + userId)
+const pais = phone.getRegionCode() || 'Desconocido'
+const perfil = await conn.profilePictureUrl(conn.user.jid, 'image').catch(() => `${ifoto}`)
+
+await m.react("📍")
 if (!args[0]) {
 let menu = `> ${hora}, ${dia} ${fechaTxt}
 
@@ -467,8 +473,22 @@ ${menuReac}
 
 > ${textbot}`
 return conn.sendMessage(m.chat, { text: categoReac, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
-} else if (args[0] === 'editor' || args[0] === '14') {
-let categoEdit = `${m.isGroup ? (chat.fEdits ? `> ${hora}, ${dia} ${fechaTxt}
+} else if (args[0] === 'ai' || args[0] === '14') {
+let categoAi = `> ${hora}, ${dia} ${fechaTxt}
+
+⧨ Modo : *Privado*
+🜲 Usuario : @${name}
+＃ Prefix : *(/ ! # - .)*
+ᗢ Premium : *${premium}*
+✦ Version : *${vs} (/mx_lt)*
+${readMore}
+༤〩 \`Inteligencia\`
+${menuAi}
+
+> ${textbot}`
+return conn.sendMessage(m.chat, { text: categoAi, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
+} else if (args[0] === 'editor' || args[0] === '15') {
+let categoEdit = `> ${hora}, ${dia} ${fechaTxt}
 
 ⧨ Modo : *Privado*
 🜲 Usuario : @${name}
@@ -479,10 +499,10 @@ ${readMore}
 ༤〩 \`Editor\`
 ${menuEdit}
 
-> ${textbot}` : `📍  Compra un plan que incluya los comandos de edición usar.\n- Usa *${usedPrefix}plan* para ver los planes disponibles.`) : ''}`
+> ${textbot}`
 return conn.sendMessage(m.chat, { text: categoEdit, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
-} else if (args[0] === 'premium' || args[0] === '15')
-let categoPrem = `${m.isGroup ? (chat.fEdits ? `> ${hora}, ${dia} ${fechaTxt}
+} else if (args[0] === 'premium' || args[0] === '16') {
+let categoPrem = `> ${hora}, ${dia} ${fechaTxt}
 
 ⧨ Modo : *Privado*
 🜲 Usuario : @${name}
@@ -493,7 +513,7 @@ ${readMore}
 ༤〩 \`Premium\`
 ${menuPrem}
 
-> ${textbot}` : `📍  Compra un plan que incluya los comandos premium usar.\n- Usa *${usedPrefix}plan* para ver los planes disponibles.`) : ''}`
+> ${textbot}`
 return conn.sendMessage(m.chat, { text: categoPrem, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'owner' || args[0] === 'own') {
 let categoOwn = `> ${hora}, ${dia} ${fechaTxt}
@@ -569,7 +589,19 @@ ${menuRandom}
 
 
 ༤〩 \`Reaccion\`
-${menuReac}${chat.fEdits ? (chat.fEdits ? `\n\n\n༤〩 \`Editor\`\n${menuEdit}` : '') : ''}${chat.fPremium ? (chat.fPremium ? `\n\n\n༤〩 \`Premium\`\n${menuPrem}` : '') : ''}
+${menuReac}
+
+
+༤〩 \`Inteligencia\`
+${menuAi}
+
+
+༤〩 \`Editor\`
+${menuEdit}
+
+
+༤〩 \`Premium\`
+${menuPrem}
 
 
 ༤〩 \`Propietario\`
