@@ -13,7 +13,7 @@ return m.reply('ꕥ No se encontró la letra de la canción')
 }
 let { title, artists, lyrics, image, url } = json.data
 let texto = `❀ *Título:* ${title}\n○ *Artista:* ${artists}\n○ *Letra:*\n\n${lyrics}`
-if (texto.length > 9000) texto = caption.slice(0, 9000) + '...'
+if (texto.length > 9000) texto = texto.slice(0, 9000) + '...'
 texto += `\n\n↯ [Ver en Musixmatch](${url})`
 await conn.sendMessage(m.chat, { image: { url: image }, caption: texto, mentions: [m.sender] }, { quoted: m })
 await m.react('✔️')
