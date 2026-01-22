@@ -4,7 +4,7 @@ const exec = promisify(cp.exec).bind(cp)
 
 const handler = async (m) => {
 let o
-m.reply(wait)
+m.react("⏰")
 try {
 o = await exec('python3 speed.py --secure --share')
 const {stdout, stderr} = o
@@ -17,6 +17,7 @@ if (stderr.trim()) {
 const match2 = stderr.match(/http[^"]+\.png/)
 const urlImagen2 = match2 ? match2[0] : null
 await conn.sendMessage(m.chat, {image: {url: urlImagen2}, caption: stderr.trim()}, {quoted: m})
+m.react("📍")
 }
 } catch (e) {
 o = e.message
