@@ -1,30 +1,13 @@
-import fetch from 'node-fetch'
+let handler = async (m, { conn, command, usedPrefix }) => {
+let txt = `Prueba
 
-let handler = async (m, { text, usedPrefix, command, conn }) => {
-if (!text) return m.reply(`❀ Por favor, escribe el nombre de la canción para obtener la letra`)
-try {
-await m.react('🕒')
-let res = await fetch(`https://api.delirius.store/search/lyrics?query=${encodeURIComponent(text)}`)
-if (!res.ok) throw new Error(`Error HTTP: ${res.status}`)
-let json = await res.json()
-if (!json.status || !json.data?.lyrics) {
-await m.react('✖️')
-return m.reply('ꕥ No se encontró la letra de la canción')
+prueba 
+
+prueba`
+await conn.sendMessage(m.chat, { text: txt, contextInfo:{ forwardingScore: 9999999, isForwarded: false,  "externalAdReply": { "showAdAttribution": true, "containsAutoReply": true, title: `PRUEBA`, body: textbot, "previewType": "PHOTO", thumbnailUrl: 'https://qu.ax/EQTd.jpg', sourceUrl: botweb }}}, { quoted: fkontak})
 }
-let { title, artists, lyrics, image, url } = json.data
-let texto = `❀ *Título:* ${title}\n○ *Artista:* ${artists}\n○ *Letra:*\n\n${lyrics}`
-if (texto.length > 9000) texto = texto.slice(0, 9000) + '...'
-texto += `\n\n↯ [Ver en Musixmatch](${url})`
-await conn.sendMessage(m.chat, { image: { url: image }, caption: texto, mentions: [m.sender] }, { quoted: m })
-await m.react('✔️')
-} catch (error) {
-await m.react('✖️')
-return conn.reply(m.chat, `⚠︎ Se ha producido un problema\n> Usa *${usedPrefix}report* para informarlo\n\n${error.message}`, m)
-}}
 
-handler.command = ['lyrics']
-handler.help = ['lyrics']
-handler.tags = ['tools']
-
+handler.command = ["prueba"]
 export default handler
-  
+
+
