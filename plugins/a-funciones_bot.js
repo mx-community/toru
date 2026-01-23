@@ -31,6 +31,7 @@ ${readMore}
 ⧡ *${usedPrefix}on/off* logos
 ⧡ *${usedPrefix}on/off* random
 ⧡ *${usedPrefix}on/off* react
+⧡ *${usedPrefix}on/off* autostick
 ⧡ *${usedPrefix}on/off* owners
 
 > ${textbot}`
@@ -58,6 +59,17 @@ throw false
 }
 }
 chat.fSearch = isEnable
+break
+
+case 'autosticker':
+case 'autostick':
+if (m.isGroup) {
+if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}
+}
+chat.fAutoStick = isEnable
 break
 
 case 'stickers':
