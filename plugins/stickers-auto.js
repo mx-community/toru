@@ -10,7 +10,8 @@ if (/^hola|hello|holi|oli|ola$/i.test(m.text)) {
 let stiker = await sticker(null, hola[Math.floor(Math.random() * hola.length)], nombre, nombre2) //Cambia "hola" por otro constante si copias este.
 await delay(3 * 3000)
 if (stiker)
-await conn.sendMessage(m.chat, { sticker: stiker }, { quoted: m })
+await conn.sendFile(m.chat, stiker, 'sticker.webp', '', m)
+  //conn.sendMessage(m.chat, { sticker: stiker }, { quoted: m })
 }
 
 //Copia y pega.
