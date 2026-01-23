@@ -6,7 +6,7 @@ const thumb = Buffer.from(await (await fetch(`${global.toruImg}`)).arrayBuffer()
 prueba 
 
 prueba`
-await conn.sendMessage(m.chat, { text: txt, contextInfo:{ forwardingScore: 9999999, isForwarded: false,  "externalAdReply": { "showAdAttribution": true, "containsAutoReply": true, title: `PRUEBA`, body: textbot, "previewType": "PHOTO", thumbnailUrl: thumb, sourceUrl: botweb }}}, { quoted: m})
+await conn.sendMessage(m.chat, { text: txt, contextInfo:{ forwardingScore: 999, isForwarded: false,  "externalAdReply": { "showAdAttribution": false, "containsAutoReply": false, title: `PRUEBA`, body: textbot, "previewType": "PHOTO", thumbnailUrl: thumb, sourceUrl: null }}}, { quoted: m})
 }
 
 handler.command = ["prueba"]
