@@ -157,6 +157,7 @@ if (!("fJuegos" in chat)) chat.fJuegos = true
 if (!("fEnlaces" in chat)) chat.fEnlaces = false
 if (!("fDescargas" in chat)) chat.fDescargas = true
 if (!("fRpg" in chat)) chat.fRpg = true
+if (!("fAutoStick" in chat)) chat.fAutoStick = false
 if (!("fMenu" in chat)) chat.fMenu = true
 } else global.db.data.chats[m.chat] = {
 isBanned: false,
@@ -192,6 +193,7 @@ fJuegos: true,
 fEnlaces: false,
 fDescargas: true,
 fRpg: true,
+fAutoStick: false,
 fMenu: true
 }
 const settings = global.db.data.settings[this.user.jid]
