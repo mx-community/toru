@@ -34,7 +34,8 @@ Video
 tempStorage[m.sender] = {url: yt_play[0].url, title: yt_play[0].title}
 
 const thumbXd = (await conn.getFile(yt_play[0].thumbnail))?.data
-await conn.sendMessage(m.chat, { text: texto1, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: "YouTube : Download.", thumbnail: thumbXd, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: texto1, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: "⧿ YouTube : Download ⧿", body: botname, containsAutoReply: true, mediaType: 1, thumbnailUrl: yt_play[0].thumbnail, sourceUrl: null }}}, { quoted: m })
+//conn.sendMessage(m.chat, { text: texto1, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: "YouTub", thumbnail: thumbXd, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 }
 
 handler.before = async (m, {conn}) => {
@@ -54,7 +55,7 @@ const audioApis = [
 { url: () => fetch(`https://api.neoxr.eu/api/youtube?url=${userVideoData.url}&type=audio&quality=128kbps&apikey=GataDios`).then((res) => res.json()), extract: (data) => ({data: data.data.url, isDirect: false}) },
 { url: () => fetch(`https://api-shadowxyz.vercel.app/download/ytmp3V2?url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data?.result?.download_url, isDirect: false}) },
 { url: () => fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data.dl, isDirect: false}) },
-{ url: () => fetch(`https://api-hasumi.vercel.app/api/youtube/ytmp3v3?url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data.status ? data.dl_url : null, isDirect: false}) },
+{ url: () => fetch(`https://api-hasumi.vercel.app/api/youtube/ytmp3?url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data.status ? data.dl_url : null, isDirect: false}) },
 { url: () => fetch(`https://api.zenkey.my.id/api/download/ytmp3?apikey=zenkey&url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data.result.download.url, isDirect: false}) }
 ]
 
@@ -63,7 +64,7 @@ const videoApis = [
 { url: () => ytmp4(userVideoData.url), extract: (data) => ({data, isDirect: false})},
 { url: () => fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data.dl, isDirect: false}) },
 { url: () => fetch(`https://api.neoxr.eu/api/youtube?url=${userVideoData.url}&type=video&quality=720p&apikey=GataDios`).then((res) => res.json()), extract: (data) => ({data: data.data.url, isDirect: false}) },
-{ url: () => fetch(`https://api-hasumi.vercel.app/api/youtube/ytmp4v3?url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data.status ? data.dl_url : null, isDirect: false}) },
+{ url: () => fetch(`https://api-hasumi.vercel.app/api/youtube/ytmp4?url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data.status ? data.dl_url : null, isDirect: false}) },
 { url: () => fetch(`https://exonity.tech/api/ytdlp2-faster?apikey=adminsepuh&url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data.result.media.mp4, isDirect: false}) }
 ]
 
