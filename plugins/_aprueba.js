@@ -4,7 +4,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
 try {
 let respuesta = `Toru`
 //const thumb = Buffer.from(await (await fetch(`${toruMenu}`)).arrayBuffer())
-await conn.sendMessage(m.chat, { text: respuesta, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: "Prueba", body: botname, containsAutoReply: true, mediaType: 1, thumbnailUrl: global.toruMenu, sourceUrl: null }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: respuesta, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: "Prueba", body: botname, containsAutoReply: true, mediaType: 1, thumbnailUrl: global.toruMenu, sourceUrl: null }}}, { quoted: fkontak })
 await m.react("✅")
 } catch (error) {
 conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m })
