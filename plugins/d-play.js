@@ -34,7 +34,7 @@ Video
 tempStorage[m.sender] = {url: yt_play[0].url, title: yt_play[0].title}
 
 const thumbXd = (await conn.getFile(yt_play[0].thumbnail))?.data
-await conn.sendMessage(m.chat, { text: texto1, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: "⧿ YouTube : Download ⧿", body: botname, containsAutoReply: true, mediaType: 1, thumbnailUrl: yt_play[0].thumbnail, sourceUrl: null }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: texto1, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: yt_play[0].title, body: "⧿ YouTube : Download ⧿", containsAutoReply: true, mediaType: 1, thumbnailUrl: yt_play[0].thumbnail, sourceUrl: null }}}, { quoted: m })
 //conn.sendMessage(m.chat, { text: texto1, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: "YouTub", thumbnail: thumbXd, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 }
 
