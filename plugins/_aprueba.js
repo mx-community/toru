@@ -83,8 +83,8 @@ let txt = `· ┄ · ⊸ 𔓕 *Stalk  :  FreeFire*
 
 > ${textbot}`
 
-//await m.reply(txt.trim())
-conn.sendMessage(m.chat, { text: txt, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: `${data.name || botname}`, body: `${data.uid || textbot}`, containsAutoReply: true, mediaType: 1, thumbnailUrl: "https://files.catbox.moe/x9c1zz.jpg", sourceUrl: null }}}, { quoted: m })
+await m.reply(txt.trim())
+//conn.sendMessage(m.chat, { text: txt, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: `${data.name || botname}`, body: `${data.uid || textbot}`, containsAutoReply: true, mediaType: 1, thumbnailUrl: "https://files.catbox.moe/x9c1zz.jpg", sourceUrl: null }}}, { quoted: m })
 await m.react('✅')
 } catch (e) {
 console.error(e)
