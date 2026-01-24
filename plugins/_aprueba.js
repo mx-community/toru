@@ -1,97 +1,170 @@
-
 import axios from 'axios'
-import crypto from 'crypto'
-import { Buffer } from 'buffer'
+import { wrapper } from 'axios-cookiejar-support'
+import { CookieJar } from 'tough-cookie'
+import FormData from 'form-data'
 
-const SECRET = "GAMESKINBOFFIDCHECKERSECURITYPROTOCOL"
-const USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+const BASE_URL = 'https://photoeditorai.io'
+const API_BASE = 'https://api.photoeditorai.io/pe/photo-editor'
+const SITE_KEY = '0x4AAAAAACLCCZe3S9swHyiM'
 
-async function generateToken(uid) {
-const timestamp = Date.now()
-const timeStep = Math.floor(timestamp / 30000).toString()
-
-// HMAC-SHA256(Key=SECRET, Data=TimeStep)
-const hmac1 = crypto.createHmac('sha256', SECRET)
-hmac1.update(timeStep)
-const derivedKeyHex = hmac1.digest('hex').substring(0, 32)
-
-// Step 2: Sign the data
-const dataToSign = `${uid}|${timestamp}`
-const hmac2 = crypto.createHmac('sha256', derivedKeyHex)
-hmac2.update(dataToSign)
-const signature = hmac2.digest('hex')
-
-// Step 3: Base64 Encode Combined String
-const combined = `${uid}|${timestamp}|${signature}`
-return Buffer.from(combined).toString('base64')
+const headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'Origin': BASE_URL,
+    'Referer': `${BASE_URL}/`,
+    'Accept': 'application/json, text/plain, */*',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Product-Serial': '72405aaeae4d6fcbbe71854be3d00603', // Taken from dump
+    'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"'
 }
 
-async function stalkFreeFire(uid) {
-const client = axios.create({
-baseURL: 'https://gameskinbo.com',
-headers: {
-'User-Agent': USER_AGENT,
-'Referer': 'https://gameskinbo.com/free_fire_id_checker',
-'Origin': 'https://gameskinbo.com',
-'x-api-client': 'gameskinbo-web',
-'Accept': 'application/json'
-}
-})
+const jar = new CookieJar()
+const client = wrapper(axios.create({ jar }))
 
-try {
-// 1. Generate Token
-const token = await generateToken(uid)
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-// 2. Make API Request
-const url = `/api/ff_id_checker?uid=${uid}&token=${encodeURIComponent(token)}`
-const response = await client.get(url)
-
-if (response.data) {
-return response.data
-} else {
- throw new Error('La API no devolvió datos válidos.')
+async function solveTurnstile() {
+    try {
+        const response = await axios.post('https://cloudflare.ryzecodes.xyz/api/bypass/cf-turnstile', {
+            url: BASE_URL,
+            siteKey: SITE_KEY
+        }, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+        return response.data?.data?.token
+    } catch (e) {
+        console.error('Bypass error:', e.message)
+        return null
+    }
 }
 
-} catch (error) {
-if (error.response) {
-throw new Error(`API Error: ${error.response.status} - ${error.response.statusText}`)
-} else {
-throw new Error(error.message)
-}
-}
+function generateSerial() {
+    return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
 }
 
-let handler = async (m, { conn, args, usedPrefix, command }) => {
-if (!args[0]) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione una UID de FreeFire para buscar.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* 12345678` }, { quoted: m })
-await m.react('⏰')
-try {
-const data = await stalkFreeFire(args[0])
+async function createJob(imageBuffer, prompt, retry = false) {
+    const form = new FormData()
+    form.append('target_images', imageBuffer, { filename: 'image.jpg', contentType: 'image/jpeg' })
+    form.append('prompt', prompt)
+    form.append('model_name', 'photoeditor_3.0')
 
-let txt = `· ┄ · ⊸ 𔓕 *Stalk  :  FreeFire*
+    const currentHeaders = {
+        ...headers,
+        'Product-Serial': generateSerial(),
+        ...form.getHeaders()
+    }
 
-\t⧡ *Nombre* : ${data.name || "undefined"}
-\t⧡ *UID* : ${data.uid || args[0]}
-\t⧡ *Region* : ${data.region || "undefined"}
-\t⧡ *Nivel* : #${data.level || "undefined"} *(${data.likes || "?"} likes)*
+    const token = await solveTurnstile()
+    if (token) {
+        form.append('turnstile_token', token)
+    } else {
+        console.log('Warning: No turnstile token obtained')
+        form.append('turnstile_token', '') 
+    }
 
-\t⧡ *Creado* : ${data.created_at || "undefined"}
-\t⧡ *Ultima conexión* : ${data.last_login || "undefined"}
+    try {
+        const response = await client.post(`${API_BASE}/create-job-v2`, form, {
+            headers: currentHeaders,
+            validateStatus: status => status < 500
+        })
 
-\t⧡ *BR Rank:* : ${data.br_rank_point || "N/A"}
-\t⧡ *CS Rank* : ${data.cs_rank_point || "N/A"}
-\t⧡ *Guild* : ${data.guild_name || "N/A"}
+        if (response.status === 403 || response.status === 429) {
+            if (!retry) return createJob(imageBuffer, prompt, true)
+            throw new Error(`Access Denied: ${response.status}`)
+        }
 
-> ${textbot}`
-
-await m.reply(txt.trim())
-//conn.sendMessage(m.chat, { text: txt, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: `${data.name || botname}`, body: `${data.uid || textbot}`, containsAutoReply: true, mediaType: 1, thumbnailUrl: "https://files.catbox.moe/x9c1zz.jpg", sourceUrl: null }}}, { quoted: m })
-await m.react('✅')
-} catch (e) {
-console.error(e)
-await m.reply(`${e.message}`)
+        return response.data
+    } catch (error) {
+        if (!retry && (error.response?.status === 403 || error.response?.status === 429)) {
+            return createJob(imageBuffer, prompt, true)
+        }
+        throw error
+    }
 }
-}
-handler.command = ['ffstalk']
 
+async function getJob(jobId) {
+    const url = `${API_BASE}/get-job/${jobId}`
+    let attempts = 0
+    while (attempts < 30) {
+        try {
+            const response = await client.get(url, { headers })
+            const data = response.data
+            
+            const jobStatus = data.result?.status
+            const jobResult = data.result
+
+            if (jobStatus === 2 || (jobResult && jobResult.output && jobResult.output.length > 0)) {
+                return jobResult
+            }
+            if (jobStatus === -1 || jobStatus === 'failed') { 
+                throw new Error(jobResult.error || 'Job failed')
+            }
+        
+        } catch (e) {
+            console.error('Poll error:', e.message)
+        }
+        
+        await sleep(2000)
+        attempts++
+    }
+    throw new Error('Timeout waiting for job')
+}
+
+const handler = async (m, { conn, text, args, usedPrefix, command }) => {
+    let q = m.quoted ? m.quoted : m
+    let mime = (q.msg || q).mimetype || ''
+    
+    if (!/image\/(jpe?g|png)/.test(mime)) {
+       return conn.sendMessage(m.chat, { text: `ᗢ Responda a una imagen y proporciona un texto para editar la imagen.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Edita esta imagen.` }, { quoted: m })
+    }
+
+    const prompt = text.trim()
+    if (!prompt) return conn.sendMessage(m.chat, { text: `ᗢ Responda a una imagen y proporciona un prompt para editar la imagen.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Edita esta imagen.` }, { quoted: m })
+
+    await m.react?.('⏰')
+
+    try {
+        const img = await q.download()
+        
+        const jobData = await createJob(img, prompt)
+        
+        const jobId = jobData.result?.job_id || jobData.job_id || jobData.id || jobData.uuid
+        
+        if (!jobId) {
+             console.log('Job Creation Response:', JSON.stringify(jobData))
+             if (jobData.code && jobData.code !== 100000) throw new Error(`API Error: ${jobData.msg || jobData.code}`)
+             throw new Error('No Job ID received')
+        }
+
+        const result = await getJob(jobId)
+        
+        
+        let outputUrl = result.url || result.output_url || result.result_url
+        if (!outputUrl && Array.isArray(result.output) && result.output.length > 0) {
+            outputUrl = result.output[0]
+        }
+        
+        if (!outputUrl) throw new Error('No output URL in result')
+
+        const mediaResponse = await axios.get(outputUrl, { responseType: 'arraybuffer' })
+        
+        await conn.sendMessage(m.chat, { 
+            image: mediaResponse.data, 
+            caption: `${prompt}` 
+        }, { quoted: m })
+
+        await m.react?.('✅')
+    } catch (e) {
+        console.error(e)
+        m.reply(`${e.message}`)
+    }
+}
+
+handler.command = ["editai"]
 export default handler
+
 
