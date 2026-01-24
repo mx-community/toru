@@ -99,7 +99,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 
         if (checkData.hash_exists === 'yes') {
 
-             m.reply("⚠️ This file already exists on the MediaFire account.");
+             conn.reply(m.chat, "⚠️ This file already exists on the MediaFire account.", m);
              return;
         }
 
@@ -154,20 +154,17 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 
         if (quickKey) {
              const link = `https://www.mediafire.com/file/${quickKey}/`;
-             await m.reply(`✅ *UPLOAD SUCCESSFUL*\n\n📄 *File:* ${filename}\n📦 *Size:* ${fileSize} bytes\n🔗 *Link:* ${link}`);
+             await conn.reply(m.chat, `✅ *UPLOAD SUCCESSFUL*\n\n📄 *File:* ${filename}\n📦 *Size:* ${fileSize} bytes\n🔗 *Link:* ${link}, m`);
         } else {
              throw new Error("Upload process timed out or failed to retrieve QuickKey.");
         }
 
     } catch (e) {
         console.error(e);
-        m.reply(`❌ *Upload Failed:* ${e.message}`);
+        conn.reply(m.chat, `❌ *Upload Failed:* ${e.message}`, m);
     }
 }
 
-handler.help = ['mediafireupload'];
-handler.tags = ['tools'];
 handler.command = ["upmf"];
 
 export default handler;
-
