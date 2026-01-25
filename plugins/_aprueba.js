@@ -5,6 +5,7 @@ let handler = async (m, {conn, args, text, usedPrefix, command}) => {
 if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un texto para generar un video.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Haz una caja con un gato dentro dormido y cómodo.` }, { quoted: m })
 try {
 await m.react('⏰')
+  conn.sendMessage(m.chat, { text: `Generando el video, espere 2-3 minutos...` }, { quoted: m })
 const taskRes = await fetch(`https://api.soymaycol.icu/ai-qwen-task?q=${encodeURIComponent(text)}&apikey=soymaycol%3C3`)
 const taskJson = await taskRes.json()
 if (!taskJson?.status || !taskJson?.check_url) {
