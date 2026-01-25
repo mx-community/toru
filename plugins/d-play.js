@@ -64,7 +64,7 @@ const videoApis = [
 { url: () => ytmp4(userVideoData.url), extract: (data) => ({data, isDirect: false})},
 { url: () => fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data.dl, isDirect: false}) },
 { url: () => fetch(`https://api.neoxr.eu/api/youtube?url=${userVideoData.url}&type=video&quality=720p&apikey=GataDios`).then((res) => res.json()), extract: (data) => ({data: data.data.url, isDirect: false}) },
-{ url: () => fetch(`https://api-hasumi.vercel.app/api/youtube/ytmp4?url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data.status ? data.dl_url : null, isDirect: false}) },
+{ url: () => fetch(`https://sylphy.xyz/download/ytmp4?url=${userVideoData.url}&q=480p&api_key=sylphy-vOjFUm7`).then((res) => res.json()), extract: (data) => ({data: data.status ? data.result.dl_url : null, isDirect: false}) },
 { url: () => fetch(`https://exonity.tech/api/ytdlp2-faster?apikey=adminsepuh&url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data.result.media.mp4, isDirect: false}) }
 ]
 
