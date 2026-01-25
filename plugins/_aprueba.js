@@ -2,10 +2,7 @@ import fetch from 'node-fetch'
 import axios from 'axios'
 
 let handler = async (m, {conn, args, text, usedPrefix, command}) => {
-const text = args.join(' ').trim()
-if (!text) {
-return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un texto para generar un video.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Haz una caja con un gato dentro dormido y cómodo.` }, { quoted: m })
-}
+if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un texto para generar un video.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Haz una caja con un gato dentro dormido y cómodo.` }, { quoted: m })
 try {
 await m.react('⏰')
 const taskRes = await fetch(`https://api.soymaycol.icu/ai-qwen-task?q=${encodeURIComponent(text)}&apikey=soymaycol%3C3`)
