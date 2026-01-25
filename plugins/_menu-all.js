@@ -225,6 +225,7 @@ let menuAi = `\t⊹ *${usedPrefix}chatgpt*   [text]
 \t⊹ *${usedPrefix}aivid2*   [text]
 \t⊹ *${usedPrefix}editai*   [reply]
 \t⊹ *${usedPrefix}dolphin*   [text]
+\t⊹ *${usedPrefix}txtimg*   [text]
 \t⊹ *${usedPrefix}imagina*   [text]`
 let menuEdit = `\t⊹ *${usedPrefix}new-name*   [text]
 \t⊹ *${usedPrefix}new-desc*   [text]
