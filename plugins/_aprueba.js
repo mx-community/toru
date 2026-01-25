@@ -5,9 +5,9 @@ import crypto from 'crypto';
 let handler = async (m, { conn, args, usedPrefix, command }) => {
     let q = m.quoted ? m.quoted : m;
     let mime = (q.msg || q).mimetype || '';
-    if (!mime) throw `Please reply to a file/media with ${usedPrefix + command}`;
+    if (!mime) return conn.sendMessage(m.chat, { text: `Please reply to a file/media with ${usedPrefix + command}` }, { quoted: m });
 
-    m.reply('🚀 *Processing upload to MediaFire...*');
+  await m.react("⏰");;
 
     try {
         let media = await q.download();
