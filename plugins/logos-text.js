@@ -57,7 +57,7 @@ return conn.sendMessage(m.chat, { text: `📍  No se ha encontrado el logo ( *${
 };
 
 const data = await ephoto(modelo, text);
-await conn.sendMessage(m.chat, { image: { url: data }, caption: `${botname}\n> ${textbot}` }, { quoted: m });
+await conn.sendMessage(m.chat, { image: { url: data }, caption: `\t＃ *Texto* : ${text}\n\t＃ *Fuente* : ephoto360\n\n${botname}\n> ${textbot}` }, { quoted: m });
 };
 
 async function ephoto(url, text) {
