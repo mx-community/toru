@@ -17,7 +17,7 @@ if (q.msg && q.msg.fileName) {
 filename = q.msg.fileName;
 } else {
  let ext = mime.split('/')[1] || 'bin';
- filename = `upload_${Date.now()}.${ext}`;
+ filename = `toru_${Date.now()}.${ext}`;
 }
 
 const fileSize = media.length;
