@@ -1,11 +1,12 @@
 import axios from 'axios';
+import fetch from 'node-fetch';
 import FormData from 'form-data';
 import crypto from 'crypto';
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
 let q = m.quoted ? m.quoted : m;
 let mime = (q.msg || q).mimetype || '';
-if (!mime) return conn.sendMessage(m.chat, { text: `ᗢ Responda a una extensión para subirlo en Mediafire.` }, { quoted: m });
+if (!mime) return conn.sendMessage(m.chat, { text: `ᗢ Responda a un archivo multimedia para subirlo en Mediafire.` }, { quoted: m });
 await m.react("⏰");
 let mediaFont = "Mediafire";
 try {
@@ -160,7 +161,9 @@ let toruUpload = `· ┄ · ⊸ 𔓕 *Upload  :  Mediafire*
 \t＃ *Enlace* : ${link}
 
 > ${textbot}`
-await conn.sendMessage(m.chat, { text: toruUpload }, { quoted: m });
+const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/uzje6f.jpg`)).arrayBuffer());
+await conn.sendMessage(m.chat, { text: toruUpload, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ Upload : Mediafire ⧿", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m }); 
+ //await conn.sendMessage(m.chat, { text: toruUpload }, { quoted: m });
 } else {
  throw new Error("📍  El proceso de carga se agoto o no se pudo obtener la clave rapida...");
 }
