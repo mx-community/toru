@@ -50,7 +50,7 @@ return null
 
 async function getshadowv(url) {
 try {
-const api = `https://api-hasumi.vercel.app/api/youtube/ytmp4v3?url=${encodeURIComponent(url)}`
+const api = `https://sylphy.xyz/download/ytmp4?url=${encodeURIComponent(url)}&q=480p&api_key=sylphy-vOjFUm7`
 const res = await fetch(api)
 const data = await res.json()
 
@@ -84,7 +84,7 @@ ytCache[m.sender] = { results: videos, timestamp: Date.now() }
 let caption = `· ┄ · ⊸ 𔓕 *YouTube  :  Search*\n\n`
 caption += `\t＃ *Busqueda* : ${text}\n`
 caption += `\t＃ *Resultados* : *${videos.length}* results\n`
-caption += `\t＃ *Fuente* : YouTube\n\n\n`
+caption += `\t＃ *Fuente* : YouTube\n\n📍  Responda a este mensaje con el formato y numero.\n\nA2\nV1\n\n\n`
 
 for (let i = 0; i < videos.length; i++) {
 const v = videos[i]
