@@ -15,12 +15,12 @@ if (!toru?.status || !toru?.url) {
 return conn.sendMessage(m.chat, { text: `📍  La api no obtuvo respuestas, intentalo en un minuto...` }, { quoted: m })
 }
 
-await conn.sendMessage(m.chat, { video: { url: toru.url }, caption: `${botname}\n> ${textbot}` }, { quoted: m })
+await conn.sendMessage(m.chat, { image: { url: toru.url }, caption: `${botname}\n> ${textbot}` }, { quoted: m })
 await m.react("✅")
 } catch (error) {
 conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m })
 }}
 
-handler.command = ["imagina2"]
+handler.command = ["txtimg"]
 export default handler
   
