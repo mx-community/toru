@@ -155,10 +155,10 @@ if (quickKey) {
 const link = `https://www.mediafire.com/file/${quickKey}/`;
 let toruUpload = `· ┄ · ⊸ 𔓕 *Upload  :  Mediafire*
 
-\t＃ *Nombre* : ${filename}
-\t＃ *Peso* : ${toruBit(fileSize)}
-\t＃ *Fuente* : ${mediaFont}
-\t＃ *Enlace* : ${link}
+＃ *Nombre* : ${filename}
+＃ *Peso* : ${toruBit(fileSize)}
+＃ *Fuente* : ${mediaFont}
+＃ *Enlace* : ${link}
 
 > ${textbot}`
 const thumbXd = Buffer.from(await (await fetch(`https://files.catbox.moe/uzje6f.jpg`)).arrayBuffer());
