@@ -5,7 +5,7 @@ if (!global.db.data.chats[m.chat].fAis && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ inteligencia artificial ]* estan desactivados...` }, { quoted: m })
 }
 
-if (!text) return conn.sendMessage(m.chat, { text: `¡Hola! ¿Quieres hablar? dime que quires saber...` }, { quoted: m })
+if (!text) return conn.sendMessage(m.chat, { text: `¡Hola! ¿Quieres hablar? dime que quieres saber...` }, { quoted: m })
 try {
 let data = await fetch(`https://api.soymaycol.icu/ai-pukamind?q=${text}&apikey=soymaycol%3C3`)
 let toru = await data.json()
