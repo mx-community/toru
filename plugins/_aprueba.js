@@ -14,9 +14,9 @@ let toru = await data.json()
 if (!toru?.status || !toru?.music_url) {
 return conn.sendMessage(m.chat, { text: `📍  La api no obtuvo respuestas, intentalo en un minuto...` }, { quoted: m })
 }
-
-await conn.sendMessage(m.chat, { text: `· ┄ · ⊸ 𔓕 *Music  :  AI*\n\n\t＃ *Prompt* : ${text}\n\t＃ *Genero* : Romántico\n\t＃ *Mensaje* : Lyrics\n\n${toru.lyrics}\n\n> ${textbot}` }, { quoted: m })
-await conn.sendMessage(m.chat, { audio: { url: toru.music_url } }, { quoted: m })
+  await conn.sendMessage( m.chat, { audio: { url: toru.music_url }, fileName: `toru_bot_music_ai.mp3`, mimetype: 'audio/mpeg', ptt: false, null }, { quoted: m } )
+  ///await conn.sendMessage(m.chat, { text: `· ┄ · ⊸ 𔓕 *Music  :  AI*\n\n\t＃ *Prompt* : ${text}\n\t＃ *Genero* : Romántico\n\t＃ *Mensaje* : Lyrics\n\n${toru.lyrics}\n\n> ${textbot}` }, { quoted: m })
+//await conn.sendMessage(m.chat, { audio: { url: toru.music_url } }, { quoted: m })
 await m.react("✅")
 } catch (error) {
 conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m })
