@@ -161,8 +161,8 @@ let toruUpload = `· ┄ · ⊸ 𔓕 *Upload  :  Mediafire*
 \t＃ *Enlace* : ${link}
 
 > ${textbot}`
-const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/uzje6f.jpg`)).arrayBuffer());
-await conn.sendMessage(m.chat, { text: toruUpload, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ Upload : Mediafire ⧿", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m }); 
+const thumbXd = Buffer.from(await (await fetch(`https://files.catbox.moe/uzje6f.jpg`)).arrayBuffer());
+await conn.sendMessage(m.chat, { text: toruUpload, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ Upload : Mediafire ⧿", body: botname, thumbnail: thumbXd, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m }); 
  //await conn.sendMessage(m.chat, { text: toruUpload }, { quoted: m });
 } else {
  throw new Error("📍  El proceso de carga se agoto o no se pudo obtener la clave rapida...");
