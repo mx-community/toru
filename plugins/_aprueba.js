@@ -10,9 +10,10 @@ await m.react("⏰")
 try {
 let data = await fetch(`https://api.soymaycol.icu/ai-pixverse?q=${encodeURIComponent(text)}&apikey=soymaycol%3C3`)
 let toru = await data.json()
-if (!toru?.status || !toru?.video) {
+  
+/*if (!toru?.status || !toru?.video) {
 return conn.sendMessage(m.chat, { text: `Error al procesar...` }, { quoted: m })
-}
+}*/
   await conn.sendMessage(m.chat, { video: { url: toru.video }, caption: `${botname}\n> ${textbot}`, { quoted: m })
 await m.react("✅")
 } catch (error) {
