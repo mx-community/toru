@@ -15,7 +15,6 @@ await conn.sendMessage(m.chat, { text: toru.result }, { quoted: m })
 conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m })
 }}
 
-handler.customPrefix = /@~5493873634786/i
-handler.command = new RegExp()
+handler.command = ["toru"]
 export default handler
  
