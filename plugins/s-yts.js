@@ -54,9 +54,9 @@ const api = `https://sylphy.xyz/download/ytmp4?url=${encodeURIComponent(url)}&q=
 const res = await fetch(api)
 const data = await res.json()
 
-if (data?.status === true && data?.dl_url) {
+if (data?.status === true && data?.result.dl_url) {
 return {
-link: data.dl_url,
+link: data.result.dl_url,
 format: 'mp4'
 }
 }
@@ -84,7 +84,7 @@ ytCache[m.sender] = { results: videos, timestamp: Date.now() }
 let caption = `· ┄ · ⊸ 𔓕 *YouTube  :  Search*\n\n`
 caption += `\t＃ *Busqueda* : ${text}\n`
 caption += `\t＃ *Resultados* : *${videos.length}* results\n`
-caption += `\t＃ *Fuente* : YouTube\n\n📍  Responda a este mensaje con el formato y numero.\n\nA2\nV1\n\n\n`
+caption += `\t＃ *Fuente* : YouTube\n\n📍  Responda a este mensaje con el formato y numero.\nA2 = Audio\nV1 = Video\n\n\n`
 
 for (let i = 0; i < videos.length; i++) {
 const v = videos[i]
