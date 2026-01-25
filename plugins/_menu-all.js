@@ -48,6 +48,7 @@ let menuDesc = `\t⊹ *${usedPrefix}ytmp3*   [link]
 \t⊹ *${usedPrefix}sly*   [link]`
 let menuConv = `\t⊹ *${usedPrefix}upload*
 \t⊹ *${usedPrefix}hd*
+\t⊹ *${usedPrefix}upmf*   [reply]
 \t⊹ *${usedPrefix}turl*   [query]
 \t⊹ *${usedPrefix}timg*   [reply]
 \t⊹ *${usedPrefix}togif*   [reply]
