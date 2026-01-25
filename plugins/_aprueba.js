@@ -8,8 +8,12 @@ return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ inteligencia a
 if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un texto para generar un video.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Gato durmiendo en una cama cómodamente.` }, { quoted: m })
 await m.react("⏰")
 try {
-let { data } = await axios.get(`https://api.soymaycol.icu/ai-pixverse?q=${encodeURIComponent(text)}&apikey=soymaycol%3C3`)
-await conn.sendMessage(m.chat, { video: { url: data.video }, caption: `${botname}\n> ${textbot}`, { quoted: m })
+let data = await fetch(`https://api.soymaycol.icu/ai-pixverse?q=${encodeURIComponent(text)}&apikey=soymaycol%3C3`)
+let toru = await data.json()
+if (!toru?.status || toru?.video) {
+return conn.sendMessage(m.chat, { text: `Error al procesar...` }, { quoted: m })
+}
+  await conn.sendMessage(m.chat, { video: { url: toru.video }, caption: `${botname}\n> ${textbot}`, { quoted: m })
 await m.react("✅")
 } catch (error) {
 conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m })
