@@ -45,6 +45,7 @@ let menuDesc = `\t⊹ *${usedPrefix}ytmp3*   [link]
 \t⊹ *${usedPrefix}mediafire*   [link]
 \t⊹ *${usedPrefix}pinterest*   [link]
 \t⊹ *${usedPrefix}github*   [link]
+\t⊹ *${usedPrefix}drive*   [link]
 \t⊹ *${usedPrefix}sly*   [link]`
 let menuConv = `\t⊹ *${usedPrefix}upload*
 \t⊹ *${usedPrefix}hd*
@@ -220,7 +221,8 @@ let menuReac = `\t⊹ *${usedPrefix}angry*   [mention]
 \t⊹ *${usedPrefix}bullying*   [mention]
 \t⊹ *${usedPrefix}wave*   [mention]`
 let menuAi = `\t⊹ *${usedPrefix}chatgpt*   [text]
-\t⊹ *${usedPrefix}claude*   [text]
+\t⊹ *${usedPrefix}aivid*   [text]
+\t⊹ *${usedPrefix}aivid2*   [text]
 \t⊹ *${usedPrefix}editai*   [reply]
 \t⊹ *${usedPrefix}dolphin*   [text]
 \t⊹ *${usedPrefix}imagina*   [text]`
