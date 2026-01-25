@@ -154,13 +154,14 @@ const handler = async (m, { conn, text, args, usedPrefix, command }) => {
         
         await conn.sendMessage(m.chat, { 
             image: mediaResponse.data, 
-            caption: `${prompt}` 
+            caption: `${botname}\n> ${textbot}` 
         }, { quoted: m })
 
         await m.react?.('✅')
     } catch (e) {
         console.error(e)
-        m.reply(`${e.message}`)
+        conn.sendMessage(m.chat, { text: `${e.message}` }, { quoted: m })
+        //m.reply(`${e.message}`)
     }
 }
 
