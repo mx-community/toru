@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let handler = async (m, { conn, args, command }) => {
+let handler = async (m, { conn, args, command, usedPrefix }) => {
 let facebookRegex = /^(https?:\/\/)?(www\.)?(facebook\.com|fb\.watch|fb\.com|m\.facebook\.com|web\.facebook\.com)\/.*$/i
 if (!args[0]) {
 return conn.sendMessage(m.chat, { text: `ᗢ Proporcioné un enlace de Facebook.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* https://www.facebook.com/xxx` }, { quoted: m })
