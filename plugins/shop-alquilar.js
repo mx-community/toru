@@ -1,13 +1,13 @@
 import fetch from 'node-fetch'
 const handler = async (m, { conn, command, args, usedPrefix, text }) => {
-if (!global.db.data.chats[m.chat].fInformation && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ información ]* estan desactivados...` }, { quoted: m })
+if (!global.db.data.chats[m.chat].fTienda && m.isGroup) {
+return conn.sendMessage(m.chat, { text: `?  Los comandos de *[ tienda ]* estan desactivados...` }, { quoted: m })
 }
 const user = global.db.data.users[m.sender] || {};
 const name = await conn.getName(m.sender);
 const thumb = Buffer.from(await (await fetch(`${global.toruImg}`)).arrayBuffer())
 if (command === "alquilar") {
-let plan = `· ┄ · ⊸ 𔓕 *Shop  :  Bot*
+let plan = `· �? · �? 𔓕 *Shop  :  Bot*
 
 📍 "Puedes entrar a la siguiente pagina web..."
 
