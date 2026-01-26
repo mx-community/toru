@@ -50,13 +50,13 @@ return null
 
 async function getshadowv(url) {
 try {
-const api = `https://sylphy.xyz/download/ytmp4?url=${encodeURIComponent(url)}&q=480p&api_key=sylphy-vOjFUm7`
+const api = `https://api-hasumi.vercel.app/api/youtube/ytmp4?url=${encodeURIComponent(url)}`
 const res = await fetch(api)
 const data = await res.json()
 
-if (data?.status === true && data?.result.dl_url) {
+if (data?.status === true && data?.dl_url) {
 return {
-link: data.result.dl_url,
+link: data.dl_url,
 format: 'mp4'
 }
 }
