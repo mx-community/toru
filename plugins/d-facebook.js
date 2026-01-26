@@ -1,3 +1,47 @@
+import axios from 'axios'
+
+let handler = async (m, { conn, args, command }) => {
+let facebookRegex = /^(https?:\/\/)?(www\.)?(facebook\.com|fb\.watch|fb\.com|m\.facebook\.com|web\.facebook\.com)\/.*$/i
+if (!args[0]) {
+return conn.sendMessage(m.chat, { text: `ᗢ Proporcioné un enlace de Facebook.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* https://www.facebook.com/xxx` }, { quoted: m })
+}
+if (!facebookRegex.test(args[0])) {
+return conn.sendMessage(m.chat, { text: `El enlace ingresado no es valido.` }, { quoted: m })
+}
+try {
+await m.react("⏰")
+let res = await fetch(`https://api-hasumi.vercel.app/api/downloader/facebook?url=${args[0]}`)
+let json = await res.json()
+let l = await axios.get(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(json.dl_url)}`)
+let sizeMatch = json.size.match(/([\d.]+)\s*MB/i)
+let sizeInMB = sizeMatch ? parseFloat(sizeMatch[1]) : 0
+let txt = `· ┄ · ⊸ 𔓕 *Facebook  :  Download*
+
+\t＃ *Titulo* : ${json.titulo || 'toru_facebook'}
+\t＃ *Duración* : ${json.duracion || '¿?'}
+\t＃ *Calidad* : ${json.calidad || 'SD'}
+\t＃ *Tamaño* : ${json.size || 'N/A'}
+\t＃ *Fuente* : *Facebook*
+
+> ${textbot}`
+        
+if (sizeInMB > 60) {
+return conn.sendMessage(m.chat, { text: `El archivo pesa *${json.size} / 60MB*. No podra ser enviado...` }, { quoted: m })
+} else if (sizeInMB > 40) {
+await conn.sendMessage(m.chat, { document: { url: json.dl_url }, mimetype: 'video/mp4', fileName: `toru_facebook_${Date.now()}.mp4`, caption: txt }, { quoted: m })
+} else {
+await conn.sendMessage(m.chat, { video: { url: json.dl_url }, caption: txt, mimetype: 'video/mp4'}, { quoted: m })
+}} catch (error) {
+console.error(error)
+await conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m })
+}}
+
+handler.command = ['fb', 'facebook']
+export default handler
+
+  
+
+/*
 import fetch from 'node-fetch'
 
 let handler = async (m, { conn, usedPrefix, command, args }) => {
@@ -47,3 +91,4 @@ await conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m })
 handler.command = ['fb', 'facebook']
 export default handler
   
+*/
