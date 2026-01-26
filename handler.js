@@ -157,6 +157,7 @@ if (!("fJuegos" in chat)) chat.fJuegos = true
 if (!("fEnlaces" in chat)) chat.fEnlaces = false
 if (!("fDescargas" in chat)) chat.fDescargas = true
 if (!("fRpg" in chat)) chat.fRpg = true
+if (!("fTienda" in chat)) chat.fTienda = true
 if (!("fAutoStick" in chat)) chat.fAutoStick = false
 if (!("fMenu" in chat)) chat.fMenu = true
 } else global.db.data.chats[m.chat] = {
@@ -193,6 +194,7 @@ fJuegos: true,
 fEnlaces: false,
 fDescargas: true,
 fRpg: true,
+fTienda: true,
 fAutoStick: false,
 fMenu: true
 }
