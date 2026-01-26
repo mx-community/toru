@@ -17,7 +17,8 @@ let sizeMatch = json.size.match(/([\d.]+)\s*MB/i)
 let sizeInMB = sizeMatch ? parseFloat(sizeMatch[1]) : 0
 let txt = `· ┄ · ⊸ 𔓕 *Facebook  :  Download*
 
-\t＃ *Titulo* : ${json.titulo || 'toru_facebook'}
+📍  ${json.titulo || 'toru_facebook_download'}
+
 \t＃ *Duración* : ${json.duracion || '¿?'}
 \t＃ *Calidad* : ${json.calidad || 'SD'}
 \t＃ *Tamaño* : ${json.size || 'N/A'}
