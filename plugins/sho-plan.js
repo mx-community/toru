@@ -3,10 +3,10 @@ const handler = async (m, { conn, command, args, usedPrefix, text }) => {
 if (!global.db.data.chats[m.chat].fTienda && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ tienda ]* estan desactivados...` }, { quoted: m })
 }
+
 const user = global.db.data.users[m.sender] || {};
 const name = await conn.getName(m.sender);
 const thumb = Buffer.from(await (await fetch(`${global.toruImg}`)).arrayBuffer())
-if (command === "plan") {
 let plan = `· ┄ · ⊸ 𔓕 *Plan  :  Server*
 
 📍 "Para contrarar un plan para tener el *bot* en tu chat grupal junto con tus amigos, lo puedes seleccionar a tu preferencia."
@@ -47,8 +47,6 @@ let plan = `· ┄ · ⊸ 𔓕 *Plan  :  Server*
 
 > 📍  Si al querer realizar una compra, consulta con un asistente o al mismo propietario para afirmar el proceso.`.trim();
 await conn.sendMessage(m.chat, { text: plan, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m });
-};
-
 };
 
 handler.command = ['plan'];
