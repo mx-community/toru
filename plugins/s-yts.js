@@ -32,7 +32,7 @@ return `${bytes.toFixed(2)} ${units[i]}`
 
 async function getshadowa(url) {
 try {
-const api = `https://api-hasumi.vercel.app/api/youtube/ytmp3v3?url=${encodeURIComponent(url)}`
+const api = `https://api-hasumi.vercel.app/api/youtube/ytmp3?url=${encodeURIComponent(url)}`
 const res = await fetch(api)
 const data = await res.json()
 
