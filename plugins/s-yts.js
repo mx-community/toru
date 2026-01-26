@@ -91,7 +91,8 @@ const v = videos[i]
 caption += `⧡ *${i + 1}* : ${v.title}\n`
 caption += `⧡ *Duración* : ${v.timestamp || '¿?'}\n`
 caption += `⧡ *Publicado* : ${v.ago || '¿?'}\n`
-caption += `⧡ *Vistas* : ${toNum(v.views)}\n\n\n`
+caption += `⧡ *Vistas* : ${toNum(v.views)}\n`
+caption += `⧡ *Enlace* : ${v.url || '¿?'}\n\n\n`
 }
 
 caption += `> ${textbot}`
@@ -108,7 +109,7 @@ await conn.sendMessage(m.chat, { text: `${e.message}` }, { quoted: m })
 
 handler.before = async (m, { conn }) => {
 if (!m.text) return
-const match = m.text.trim().match(/^(a|audio|video|v) (\d{1,2})$/i)
+const match = m.text.trim().match(/^(a|v) (\d{1,2})$/i)
 if (!match) return
 
 const type = match[1].toLowerCase() === 'a' ? 'audio' : 'video'
