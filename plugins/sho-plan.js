@@ -1,8 +1,5 @@
 import fetch from 'node-fetch'
 const handler = async (m, { conn, command, args, usedPrefix, text }) => {
-if (!global.db.data.chats[m.chat].fTienda && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ tienda ]* estan desactivados...` }, { quoted: m })
-}
 
 const user = global.db.data.users[m.sender] || {};
 const name = await conn.getName(m.sender);
