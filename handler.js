@@ -465,21 +465,21 @@ console.warn(err)
 console.log(m.message)
 }}}
 
-global.dfail = (type, m, command, conn) => {
+global.dfail = (type, m, conn) => {
 let edadaleatoria = ['10', '28', '20', '40', '18', '21', '15', '11', '9', '17', '25'].getRandom()
 let user2 = m.pushName || 'Anónimo'
 let verifyaleatorio = ['reg', 'verify'].getRandom()
  const msg = {
-rowner: `No puedes usar este comando...`,
-owner: `Solo administradores del bot...`,
-mods: `Solo moderadores del bot...`,
-premium: `Solo usuarios premium del bot...`,
-group: `Solo se ejecuta en chats grupales...`,
-private: `Solo se ejecuta en chats individuales...`,
-admin: `Solo un administrador puede usar el comando...`,
-botAdmin: `Solo se ejecuta si el bot tiene privilegios admin...`,
-unreg: `El comando ( *${command}* ) require un registro previo...`, 
-restrict: `Comando restringido...`
+rowner: `〩 No puedes usar este comando...`,
+owner: `〩 Solo administradores del bot...`,
+mods: `〩 Solo moderadores del bot...`,
+premium: `〩 Solo usuarios premium del bot...`,
+group: `〩 Solo se ejecuta en chats grupales...`,
+private: `〩 Solo se ejecuta en chats individuales...`,
+admin: `〩 Solo un administrador puede usar el comando...`,
+botAdmin: `〩 Solo se ejecuta si el bot tiene privilegios admin...`,
+unreg: `〩 El comando requiere un registro previo...`, 
+restrict: `〩 Comando restringido...`
  }[type]
 if (msg) return conn.reply(m.chat, msg, m).then(_ => m.react('📍'))
 }
