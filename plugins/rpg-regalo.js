@@ -30,8 +30,8 @@ let cofreXd = `\t〩  *R E G A L O  :  R P G*
 > ¡Abriste un cofre, reclama tu recompensa!
 
 ⚶ *Balance:*
-\t${toem} ${currency}  :  *+${monedas.toLocaleString()}*
-\t${toem2} ${currency2}  :  *+${experiencia.toLocaleString()}*
+\t${toem} ${currency} : *+${monedas.toLocaleString()}*
+\t${toem2} ${currency2} : *+${experiencia.toLocaleString()}*
 
 ⚶ *Necesario:*
 \t💠 Fragmentos : *+${fragmentos.toLocaleString()}*
@@ -45,7 +45,7 @@ let cofreXd = `\t〩  *R E G A L O  :  R P G*
 \t🗝️ Llaves : *+3*
 
 > 🎁 _Consigue mas regalos para mas recompensas._`
-conn.sendMessage(m.chag, { text: cofreXd }, { quoted: m })
+conn.sendMessage(m.chat, { text: cofreXd }, { quoted: m })
 //conn.sendMessage(m.chat, { text: cofreXd, mentions: [m.sender], contextInfo: { externalAdReply: { title: "々  R E G A L O  々", body: "¡Abriste un regalo!", thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 user.toruregal -= 1
 } else {
