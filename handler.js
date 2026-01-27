@@ -49,6 +49,9 @@ if (!("dlstickers" in user) || !isNumber(user.dlstickers)) user.dlstickers = 0
 if (!("cupones" in user) || !isNumber(user.cupones)) user.cupones = 0
 if (!("bank" in user) || !isNumber(user.bank)) user.bank = 0
 if (!("bankk" in user) || !isNumber(user.bankk)) user.bankk = 0
+if (!("torupico" in user) || !isNumber(user.torupico)) user.torupico = 0
+if (!("toruesp" in user) || !isNumber(user.toruesp)) user.toruesp = 0
+if (!("toruach" in user) || !isNumber(user.toruach)) user.toruach = 0
 if (!("puntos" in user) || !isNumber(user.puntos)) user.puntos = 0
 if (!("nivele" in user) || !isNumber(user.nivele)) user.nivele = 0
 if (!("rangos" in user) || !isNumber(user.rangos)) user.rangos = 0
@@ -91,6 +94,9 @@ torupesc: 0,
 coin: 0,
 bank: 0,
 bankk: 0,
+torupico: 0,
+toruesp: 0,
+toruach: 0,
 puntos: 0,
 nivele: 0,
 rangos: 0,
@@ -459,7 +465,7 @@ console.warn(err)
 console.log(m.message)
 }}}
 
-global.dfail = (type, m, conn) => {
+global.dfail = (type, m, command, conn) => {
 let edadaleatoria = ['10', '28', '20', '40', '18', '21', '15', '11', '9', '17', '25'].getRandom()
 let user2 = m.pushName || 'Anónimo'
 let verifyaleatorio = ['reg', 'verify'].getRandom()
