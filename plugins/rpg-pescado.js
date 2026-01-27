@@ -29,9 +29,8 @@ let fishResultado = `\t〩  *F I S H I N G  :  R P G*
 \t🐟 Pescado *+${pescado.toLocaleString()}*
 
 > ${textbot}`
-conn.sendMessage(m.chat, { fishResultado }, { quoted: m })
+conn.sendMessage(m.chat, { text: fishResultado }, { quoted: m })
 //conn.sendMessage(m.chat, { text: fishResultado, mentions: [m.sender], contextInfo: { externalAdReply: { title: "々  P E S C A R  々", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
-await m.react("🐟")
 }
 
 handler.command = ['pescar', 'fish']
