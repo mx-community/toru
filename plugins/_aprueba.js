@@ -12,9 +12,11 @@ if (!toru?.status || !toru?.data) {
 return conn.sendMessage(m.chat, { text: `📍  La API no obtuvo respuestas, intentalo en un minuto...` }, { quoted: m })
 }
 
+const toruc = toru.data.channel
 let toruWa = `· ┄ · ⊸ 𔓕 *YouTube  :  Stalk*
 
-\t＃ *Usuario* : ${toru.data.channel.username}
+\t＃ *Usuario* : ${toruc.username}
+\t＃ *Suscriptores* : ${toruc.subscriberCount}
 `
 
 await conn.sendMessage(m.chat, { text: toruWa }, { quoted: m })
