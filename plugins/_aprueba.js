@@ -17,14 +17,14 @@ let toruWa = `· ┄ · ⊸ 𔓕 *YouTube  :  Stalk*
 
 ${toruc.description}
 
-\t＃ *Usuario* : ${toruc.username}
-\t＃ *Suscriptores* : ${toruc.subscriberCount}
-\t＃ *Videos* : ${toruc.videoCount}
-\t＃ *Canal* : ${toruc.channelUrl}
+＃ *Usuario* : ${toruc.username}
+＃ *Suscriptores* : ${toruc.subscriberCount}
+＃ *Videos* : ${toruc.videoCount}
+＃ *Canal* : ${toruc.channelUrl}
 
 > ${textbot}`
 
-await conn.sendMessage(m.chat, { text: toruWa, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: false, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: toruc.avatarUrl, sourceUrl: toruc.channelUrl }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: toruWa, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: false, title: toruc.username, body: botname, containsAutoReply: true, mediaType: 1, thumbnailUrl: "https://files.catbox.moe/6lknyb.jpg", sourceUrl: toruc.channelUrl }}}, { quoted: m })
 //conn.sendMessage(m.chat, { text: toruWa }, { quoted: m })
 //conn.sendMessage(m.chat, { image: { url: toru.url }, caption: `${botname}\n> ${textbot}` }, { quoted: m })
 await m.react("✅")
