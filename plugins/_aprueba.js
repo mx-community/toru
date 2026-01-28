@@ -7,6 +7,7 @@ return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ inteligencia a
 
 if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un texto para generar un video.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Gato bailando con otros gatos con sombrero.` }, { quoted: m })
 await m.react("⏰")
+  conn.sendMessage(m.chat, { text: `Generando el video, espere 2-3 minutos...` }, { quoted: m })
 try {
 let data = await fetch(`https://api.soymaycol.icu/ai-veo3?q=${text}&aspect_ratio=16%3A9&duration=5&quality=480p&apikey=soymaycol%3C3`)
 let toru = await data.json()
