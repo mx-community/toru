@@ -1,36 +1,30 @@
 import axios from 'axios'
 import fetch from 'node-fetch'
 let handler = async (m, { conn, usedPrefix, command, text }) => {
-if (!global.db.data.chats[m.chat].fAis && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ inteligencia artificial ]* estan desactivados...` }, { quoted: m })
-}
 
-if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un texto para generar un video.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Gato bailando con otros gatos con sombrero.` }, { quoted: m })
+if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione el nombre del usuario en YouTube para ver sus detalles.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Lol_Human` }, { quoted: m })
 await m.react("⏰")
-  conn.sendMessage(m.chat, { text: `Generando el video, espere 2-3 minutos...` }, { quoted: m })
 try {
-let data = await fetch(`https://api.soymaycol.icu/ai-veo3?q=${text}&aspect_ratio=16%3A9&duration=5&quality=480p&apikey=soymaycol%3C3`)
+let data = await fetch(`https://api.soymaycol.icu/youtubestalk?username=${text}&apikey=soymaycol%3C3`)
 let toru = await data.json()
 
-if (!toru?.status || !toru?.video) {
+if (!toru?.status || !toru?.data) {
 return conn.sendMessage(m.chat, { text: `📍  La API no obtuvo respuestas, intentalo en un minuto...` }, { quoted: m })
 }
 
-let toruWa = `· ┄ · ⊸ 𔓕 *Generador  :  Video*
+let toruWa = `· ┄ · ⊸ 𔓕 *YouTube  :  Stalk*
 
-\t＃ *Titulo* : ${text}
-\t＃ *Ratio* : 16:9
-\t＃ *Calidad* : 480p
-\t＃ *Duración* : 5 segundos
+\t＃ *Usuario* : ${toru.data.channel.username}
+`
 
-> ${textbot}`
-
-await conn.sendMessage(m.chat, { video: { url: toru.video }, caption: toruWa }, { quoted: m })
+await conn.sendMessage(m.chat, { text: toruWa }, { quoted: m })
+//conn.sendMessage(m.chat, { image: { url: toru.url }, caption: `${botname}\n> ${textbot}` }, { quoted: m })
 await m.react("✅")
 } catch (error) {
 conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m })
 }}
 
-handler.command = ["aivid3"]
+handler.command = ["stalk-yt"]
 export default handler
   
+   
