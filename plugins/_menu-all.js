@@ -297,7 +297,7 @@ ${listaPrincipal}
 
 \t⚶ Por ejemplo:
 *#menu info*`
-return conn.sendMessage(m.chat, { text: menu, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: botname, body: textbot, containsAutoReply: false, mediaType: 1, thumbnailUrl: global.toruImg, sourceUrl: botweb }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: menu, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: false, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: global.toruImg, sourceUrl: botweb }}}, { quoted: m })
  //conn.sendMessage(m.chat, { text: menu, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot2, sourceUrl: botweb, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 //conn.sendMessage(m.chat, { text: menu, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: false, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbBot2, sourceUrl: botweb }}}, { quoted: m })
 
